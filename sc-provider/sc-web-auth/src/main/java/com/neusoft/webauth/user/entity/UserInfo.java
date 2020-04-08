@@ -45,7 +45,7 @@ public class UserInfo {
     /**
      * 电子邮件
      */
-    private String email;
+    private String mail;
     /**
      * IP地址
      */
@@ -177,11 +177,11 @@ public class UserInfo {
     }
 
     public String getEmail() {
-        return email;
+        return mail;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.mail = email;
     }
 
     public String getIp() {

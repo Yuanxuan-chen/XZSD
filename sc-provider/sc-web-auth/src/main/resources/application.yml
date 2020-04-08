@@ -17,7 +17,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/xzsd?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
-    password: root
+    password: 123456789
     druid:
       initialSize: 1
       minIdle: 1
@@ -39,7 +39,9 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
 sc:
   cloud:
-    debug: true
+#    debug: true TODO: dev模式
+
+    dev: true
     task:
       core-pool-size: 20
       max-pool-size: 50
