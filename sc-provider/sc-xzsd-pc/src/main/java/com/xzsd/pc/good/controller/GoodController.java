@@ -22,6 +22,47 @@ public class GoodController {
     private GoodService goodService;
 
     /**
+     * 商品分页查询
+     * @return
+     */
+    @PostMapping("listGood")
+    public AppResponse listGood(Good good) {
+        try{
+            return goodService.listGood(good);
+        }catch (Exception e){
+            throw  e;
+        }
+    }
+
+    /**
+     * 商品详细信息查询
+     * @return
+     */
+    @PostMapping("selectGood")
+    public AppResponse selectGood(String goodCode) {
+        try{
+            return goodService.selectGood(goodCode);
+        }catch (Exception e){
+            throw  e;
+        }
+    }
+
+    /**
+     * 商品状态更改
+     * @author Yuanxuan
+     * @date 2020-04-08
+     * @return
+     */
+    @PostMapping("stateGood")
+    public AppResponse stateGood(Good good) {
+        try{
+            return goodService.stateGood(good);
+        }catch (Exception e){
+            throw  e;
+        }
+    }
+
+    /**
      * 商品新增接口
      * @param good
      * @return
@@ -30,6 +71,22 @@ public class GoodController {
     public AppResponse createGood(Good good) {
         try{
             return goodService.createGood(good);
+        }catch (Exception e){
+            throw  e;
+        }
+    }
+
+    /**
+     * 商品信息修改
+     * @author Yuanxuan
+     * @date 2020-04-08
+     * @param good
+     * @return
+     */
+    @PostMapping("updateGood")
+    public AppResponse updateGood(Good good) {
+        try{
+            return goodService.updateGood(good);
         }catch (Exception e){
             throw  e;
         }
