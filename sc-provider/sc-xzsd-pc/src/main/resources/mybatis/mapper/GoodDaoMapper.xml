@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.pc.good.dao.GoodDao">
+
+<!--    &lt;!&ndash;商品详细信息查询&ndash;&gt;-->
+<!--    <select id="selectGood" parameterType="com.xzsd.pc.good.entity.Good" resultType="com.xzsd.pc.good.entity.Good">-->
+<!--        SELECT good_code as 'goodCode',-->
+<!--               good_name as 'goodName',-->
+<!--               stock as 'stock',-->
+<!--               sell_price as 'sellPrice',-->
+<!--               browse_volume as 'browseVolume',-->
+<!--               sell_volume as 'sellVolume',-->
+<!--               author,-->
+<!--               publish-->
+<!--        FROM t_sys_goods-->
+<!--        WHERE good_code = #{goodCode}-->
+<!--        AND is_delete = 0-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;商品分页查询&ndash;&gt;-->
+<!--    <select id="listGood" parameterType="com.xzsd.pc.good.entity.Good" resultType="com.xzsd.pc.good.entity.Good">-->
+<!--        SELECT good_code as 'goodCode',-->
+<!--               good_name as 'goodName',-->
+<!--               stock as 'stock',-->
+<!--               sell_price as 'sellPrice',-->
+<!--               browse_volume as 'browseVolume',-->
+<!--               sell_volume as 'sellVolume',-->
+<!--               author,-->
+<!--               publish-->
+<!--        FROM t_sys_goods-->
+<!--        WHERE is_delete = 0-->
+<!--        ORDER BY good_code-->
+<!--    </select>-->
+
+    <!--新增商品-->
+    <insert id="createGood" parameterType="com.xzsd.pc.good.entity.Good">
+        INSERT INTO t_sys_goods
+            (good_code,
+            good_name,
+            stock,
+            sell_price,
+            browse_volume,
+            sell_volume,
+            author,
+            publish,
+            is_delete,
+            version)
+            VALUES
+            (#{goodCode},
+            #{goodName},
+            #{stock},
+            #{sellPrice},
+            #{browseVolume},
+            #{sellVolume},
+            #{author},
+            #{publish},
+            0,
+            0)
+    </insert>
+
+<!--删除商品-->
+    <update id="deleteGood" parameterType="java.lang.String" >
+        update t_sys_goods
+        set is_delete = 1,
+            version = version + 1
+        where good_code = #{goodCode};
+    </update>
+
+</mapper>
