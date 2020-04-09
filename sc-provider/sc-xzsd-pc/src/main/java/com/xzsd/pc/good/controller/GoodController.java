@@ -30,6 +30,7 @@ public class GoodController {
         try{
             return goodService.listGood(good);
         }catch (Exception e){
+            System.out.println("商品分页查询异常");
             throw  e;
         }
     }
@@ -43,6 +44,7 @@ public class GoodController {
         try{
             return goodService.selectGood(goodCode);
         }catch (Exception e){
+            System.out.println("商品详细信息查询异常");
             throw  e;
         }
     }
@@ -58,6 +60,7 @@ public class GoodController {
         try{
             return goodService.stateGood(good);
         }catch (Exception e){
+            System.out.println("商品状态更改异常");
             throw  e;
         }
     }
@@ -67,11 +70,12 @@ public class GoodController {
      * @param good
      * @return
      */
-    @PostMapping("createGood")
-    public AppResponse createGood(Good good) {
+    @PostMapping("saveGood")
+    public AppResponse saveGood(Good good) {
         try{
-            return goodService.createGood(good);
+            return goodService.saveGood(good);
         }catch (Exception e){
+            System.out.println("商品新增异常");
             throw  e;
         }
     }
@@ -88,20 +92,22 @@ public class GoodController {
         try{
             return goodService.updateGood(good);
         }catch (Exception e){
+            System.out.println("商品信息修改异常");
             throw  e;
         }
     }
 
     /**
      * 商品删除接口
-     * @param goodCode
+     * @param good
      * @return
      */
     @PostMapping("deleteGood")
-    public AppResponse deleteGood(String goodCode) {
+    public AppResponse deleteGood(Good good) {
         try{
-            return goodService.deleteGood(goodCode);
+            return goodService.deleteGood(good);
         }catch (Exception e){
+            System.out.println("商品删除异常");
             throw  e;
         }
     }

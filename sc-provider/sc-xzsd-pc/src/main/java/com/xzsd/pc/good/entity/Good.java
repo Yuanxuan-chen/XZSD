@@ -59,7 +59,7 @@ public class Good {
     /**
      * 商家名称
      */
-    private String businessName;
+    private int businessName;
 
     /**
      * 库存
@@ -150,6 +150,14 @@ public class Good {
      * 页面大小
      */
     private int pageSize;
+
+    public int getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(int businessName) {
+        this.businessName = businessName;
+    }
 
     public int getPageNum() {
         return pageNum;
@@ -245,14 +253,6 @@ public class Good {
 
     public void setBusinessCode(String businessCode) {
         this.businessCode = businessCode;
-    }
-
-    public String getBusinessName() {
-        return businessName;
-    }
-
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
     }
 
     public String getStock() {

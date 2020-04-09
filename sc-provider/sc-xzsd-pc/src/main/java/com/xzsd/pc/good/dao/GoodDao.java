@@ -12,11 +12,25 @@ import java.util.List;
 public interface GoodDao {
 
     /**
+     * 获取商品版本号
+     * @param goodCode
+     * @return
+     */
+    int goodVersion(String goodCode);
+
+    /**
+     * 统计同名商品个数
+     * @param good
+     * @return
+     */
+    int countGoodName(Good good);
+
+    /**
      * 创建商品
      * @param good
      * @return
      */
-    int createGood(Good good);
+    int saveGood(Good good);
 
     /**
      * 修改商品信息
@@ -27,10 +41,10 @@ public interface GoodDao {
 
     /**
      * 删除商品
-     * @param goodCode
+     * @param good
      * @return
      */
-    int deleteGood(String goodCode);
+    int deleteGood(Good good);
 
 
     /**

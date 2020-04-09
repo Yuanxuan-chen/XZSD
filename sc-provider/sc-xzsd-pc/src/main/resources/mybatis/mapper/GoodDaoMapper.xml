@@ -3,29 +3,49 @@
 
 <mapper namespace="com.xzsd.pc.good.dao.GoodDao">
     <!--新增商品-->
-    <insert id="createGood" parameterType="com.xzsd.pc.good.entity.Good">
+    <insert id="saveGood" parameterType="com.xzsd.pc.good.entity.Good">
         INSERT INTO t_sys_goods
             (good_code,
-            good_name,
-            stock,
-            sell_price,
-            browse_volume,
-            sell_volume,
-            author,
-            publish,
-            is_delete,
-            version)
+             good_name,
+             book_number,
+             level_one_code,
+             level_one_name,
+             level_two_code,
+             level_two_name,
+             ad,
+             good_introduce,
+             business_name,
+             stock,
+             cost_price,
+             sell_price,
+             pictureURL,
+             publish,
+             author,
+             is_delete,
+             create_user,
+             create_time,
+             version)
             VALUES
             (#{goodCode},
-            #{goodName},
-            #{stock},
-            #{sellPrice},
-            #{browseVolume},
-            #{sellVolume},
-            #{author},
-            #{publish},
-            0,
-            0)
+             #{goodName},
+             #{bookNumber},
+             #{levelOneCode},
+             #{levelOneName},
+             #{levelTwoCode},
+             #{levelTwoName},
+             #{ad},
+             #{goodIntroduce},
+             ${businessName},
+             #{stock},
+             #{costPrice},
+             #{sellPrice},
+             #{pictureURL},
+             #{publish},
+             #{author},
+             0,
+             #{createUser},
+             now(),
+             0)
     </insert>
 
 <!--商品信息修改-->
@@ -33,7 +53,9 @@
         update t_sys_goods as t
         set t.good_name = #{goodName},
             t.book_number = #{bookNumber},
+            t.level_one_code = #{levelOneCode},
             t.level_one_name = #{levelOneName},
+            t.level_two_code = #{levelTwoCode},
             t.level_two_name = #{levelTwoName},
             t.ad = #{ad},
             t.good_introduce = #{goodIntroduce},
@@ -43,27 +65,38 @@
             t.sell_price = #{sellPrice},
             t.pictureURL = #{pictureURL},
             t.publish = #{publish},
-            t.author = #{author}
+            t.author = #{author},
+            t.update_user = #{updateUser},
+            t.update_time = now(),
+            t.version = version + 1
         where good_code = #{goodCode}
+        AND version = #{version}
     </update>
 
 <!--删除商品-->
-    <update id="deleteGood" parameterType="java.lang.String" >
+    <update id="deleteGood" parameterType="com.xzsd.pc.good.entity.Good" >
         update t_sys_goods
         set is_delete = 1,
-            version = version + 1
-        where good_code = #{goodCode};
+            version = version + 1,
+            update_user = #{updateUser},
+            update_time = now()
+        where good_code = #{goodCode}
+        AND version = #{version}
     </update>
 
 <!--商品状态更改-->
     <update id="stateGood" parameterType="com.xzsd.pc.good.entity.Good">
         update t_sys_goods as t
-        set t.good_state = #{goodState}
+        set t.good_state = #{goodState},
+            t.update_user = #{updateUser},
+            t.update_time = now(),
+            t.version = version + 1
         where good_code = #{goodCode}
+        AND version = #{version}
     </update>
 
 <!--商品详细信息查询-->
-    <select id="selectGood" parameterType="java.lang.String" resultType="com.xzsd.pc.good.entity.Good">
+    <select id="selectGood" parameterType="com.xzsd.pc.good.entity.Good" resultType="com.xzsd.pc.good.entity.Good">
         SELECT
             t.good_name goodName,
             t.book_number bookNumber,
@@ -73,11 +106,12 @@
             t.level_two_name levelTwoName,
             t.ad ad,
             t.good_introduce goodIntroduce,
-            t.business_name business_name,
+            t.business_name businessName,
             t.stock stock,
             t.cost_price costPrice,
             t.sell_price sellPrice,
-            t.pictureURL pictureURL
+            t.pictureURL pictureURL,
+            t.version version
         FROM t_sys_goods as t
         WHERE good_code = #{goodCode}
         AND is_delete = 0
@@ -85,23 +119,56 @@
 
 <!--商品分页查询-->
     <select id="listGood" parameterType="com.xzsd.pc.good.entity.Good" resultType="com.xzsd.pc.good.entity.Good">
-        SELECT good_code goodCode,
-               good_name goodName,
-               cost_price costPrice,
-               sell_price sellPrice,
-               sell_volume sellVolume,
-               level_two_name levelOneName,
-               level_two_name levelTwoName,
-               ad ad,
-               good_introduce goodIntroduce,
-               good_state goodState,
-               get_good_date getGoodDate,
-               browse_volume browseVolume,
-               business_name businessName,
-               stock stock,
-               book_number bookNumber
+        SELECT
+        good_code goodCode,
+        good_name goodName,
+        cost_price costPrice,
+        sell_price sellPrice,
+        sell_volume sellVolume,
+        level_two_name levelOneName,
+        level_two_name levelTwoName,
+        ad ad,
+        good_introduce goodIntroduce,
+        good_state goodState,
+        get_good_date getGoodDate,
+        browse_volume browseVolume,
+        business_name businessName,
+        stock stock,
+        book_number bookNumber,
+        version version
         FROM t_sys_goods
         WHERE is_delete = 0
+        AND good_state = ${goodState}
+--         todo 商品状态没调试好
+        <if test="goodName != null and goodName != ''">
+            AND good_name like concat('%', #{goodName}, '%')
+        </if>
+        <if test="ad != null and ad != ''">
+            AND ad like CONCAT('%', #{ad}, '%')
+        </if>
+        <if test="publish != null and publish != ''">
+            AND publish like CONCAT('%', #{publish}, '%')
+        </if>
+        <if test="author != null and author != ''">
+            AND author like CONCAT('%', #{author}, '%')
+        </if>
         ORDER BY good_code
      </select>
+
+<!--统计商品名称数量-->
+    <select id="countGoodName" parameterType="com.xzsd.pc.good.entity.Good" resultType="int">
+        SELECT COUNT(good_name)
+        FROM t_sys_goods as t
+        WHERE is_delete = 0
+        AND good_name = #{goodName}
+    </select>
+
+<!--获取商品版本号-->
+    <select id="goodVersion" parameterType="java.lang.String" resultType="int">
+        SELECT version
+        FROM t_sys_goods
+        WHERE good_code = #{goodCode}
+    </select>
+
+
 </mapper>
