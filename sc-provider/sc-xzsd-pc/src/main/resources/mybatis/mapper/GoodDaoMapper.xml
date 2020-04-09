@@ -138,8 +138,9 @@
         version version
         FROM t_sys_goods
         WHERE is_delete = 0
-        AND good_state = ${goodState}
---         todo 商品状态没调试好
+        <if test="goodState != 0">
+            AND good_state = ${goodState}
+        </if>
         <if test="goodName != null and goodName != ''">
             AND good_name like concat('%', #{goodName}, '%')
         </if>
