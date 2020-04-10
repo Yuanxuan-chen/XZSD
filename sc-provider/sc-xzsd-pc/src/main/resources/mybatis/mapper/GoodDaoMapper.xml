@@ -4,7 +4,7 @@
 <mapper namespace="com.xzsd.pc.good.dao.GoodDao">
     <!--新增商品-->
     <insert id="saveGood" parameterType="com.xzsd.pc.good.entity.Good">
-        INSERT INTO t_sys_goods
+        insert into t_sys_goods
             (good_code,
              good_name,
              book_number,
@@ -25,7 +25,7 @@
              create_user,
              create_time,
              version)
-            VALUES
+            values
             (#{goodCode},
              #{goodName},
              #{bookNumber},
@@ -70,7 +70,7 @@
             t.update_time = now(),
             t.version = version + 1
         where good_code = #{goodCode}
-        AND version = #{version}
+        and version = #{version}
     </update>
 
 <!--删除商品-->
@@ -81,7 +81,7 @@
             update_user = #{updateUser},
             update_time = now()
         where good_code = #{goodCode}
-        AND version = #{version}
+        and version = #{version}
     </update>
 
 <!--商品状态更改-->
@@ -92,12 +92,12 @@
             t.update_time = now(),
             t.version = version + 1
         where good_code = #{goodCode}
-        AND version = #{version}
+        and version = #{version}
     </update>
 
 <!--商品详细信息查询-->
     <select id="selectGood" parameterType="com.xzsd.pc.good.entity.Good" resultType="com.xzsd.pc.good.entity.Good">
-        SELECT
+        select
             t.good_name goodName,
             t.book_number bookNumber,
             t.level_one_code levelOneCode,
@@ -112,14 +112,14 @@
             t.sell_price sellPrice,
             t.pictureURL pictureURL,
             t.version version
-        FROM t_sys_goods as t
-        WHERE good_code = #{goodCode}
-        AND is_delete = 0
+        from t_sys_goods as t
+        where good_code = #{goodCode}
+        and is_delete = 0
     </select>
 
 <!--商品分页查询-->
     <select id="listGood" parameterType="com.xzsd.pc.good.entity.Good" resultType="com.xzsd.pc.good.entity.Good">
-        SELECT
+        select
         good_code goodCode,
         good_name goodName,
         cost_price costPrice,
@@ -136,39 +136,39 @@
         stock stock,
         book_number bookNumber,
         version version
-        FROM t_sys_goods
-        WHERE is_delete = 0
+        from t_sys_goods
+        where is_delete = 0
         <if test="goodState != 0">
-            AND good_state = ${goodState}
+            and good_state = ${goodState}
         </if>
         <if test="goodName != null and goodName != ''">
-            AND good_name like concat('%', #{goodName}, '%')
+            and good_name like concat('%', #{goodName}, '%')
         </if>
         <if test="ad != null and ad != ''">
-            AND ad like CONCAT('%', #{ad}, '%')
+            and ad like CONCAT('%', #{ad}, '%')
         </if>
         <if test="publish != null and publish != ''">
-            AND publish like CONCAT('%', #{publish}, '%')
+            and publish like CONCAT('%', #{publish}, '%')
         </if>
         <if test="author != null and author != ''">
-            AND author like CONCAT('%', #{author}, '%')
+            and author like CONCAT('%', #{author}, '%')
         </if>
         ORDER BY good_code
      </select>
 
 <!--统计商品名称数量-->
     <select id="countGoodName" parameterType="com.xzsd.pc.good.entity.Good" resultType="int">
-        SELECT COUNT(good_name)
-        FROM t_sys_goods as t
-        WHERE is_delete = 0
-        AND good_name = #{goodName}
+        select COUNT(good_name)
+        from t_sys_goods as t
+        where is_delete = 0
+        and good_name = #{goodName}
     </select>
 
 <!--获取商品版本号-->
     <select id="goodVersion" parameterType="java.lang.String" resultType="int">
-        SELECT version
-        FROM t_sys_goods
-        WHERE good_code = #{goodCode}
+        select version
+        from t_sys_goods
+        where good_code = #{goodCode}
     </select>
 
 

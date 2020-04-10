@@ -16,6 +16,7 @@ import java.util.List;
 /**
  * @author Yuanxuan
  * @date 2020-04-08 上午 07:44
+ * todo 商品更改的权限问题  状态编码默认
  */
 @Service
 public class GoodService {
@@ -31,11 +32,8 @@ public class GoodService {
      */
     public AppResponse listGood(Good good){
         PageHelper.startPage(good.getPageNum(), good.getPageSize());
-
         List<Good> goodList = goodDao.listGood(good);
-
         return AppResponse.success("成功", new PageInfo<Good>(goodList));
-
     }
 
     /**
@@ -45,11 +43,9 @@ public class GoodService {
      */
     public AppResponse selectGood(String goodCode) {
         Good good = goodDao.selectGood(goodCode);
-
         if(null == good) {
             return AppResponse.success("无此类商品, 请重新输入", good);
         }
-
         return AppResponse.success("商品详细信息查询成功", good);
     }
 
@@ -62,11 +58,9 @@ public class GoodService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse stateGood(Good good) {
-
         //获取修改人的编码
         String updateUser = SecurityUtils.getCurrentUserId();
         good.setUpdateUser(updateUser);
-
         int count = goodDao.stateGood(good);
         if(0 == count) {
             return AppResponse.bizError("商品状态更改失败");
@@ -84,16 +78,13 @@ public class GoodService {
         //获取创建人的编码
         String createUser = SecurityUtils.getCurrentUserId();
         good.setCreateUser(createUser);
-
         //判断商品是否存在
 //        int countGoodName = goodDao.countGoodName(good);
 //        if(0 != countGoodName) {
 //            return AppResponse.bizError("商品新增失败, 商品名称已存在, 请重新提交.");
 //        }
-
         //生成随机商品编码
         good.setGoodCode(UUIDUtils.getUUID());
-
         //商品创建
         int count = goodDao.saveGood(good);
         if(0 == count) {
@@ -112,11 +103,9 @@ public class GoodService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse updateGood(Good good) {
-
         //获取修改人的编码
         String updateUser = SecurityUtils.getCurrentUserId();
         good.setUpdateUser(updateUser);
-        
         int count = goodDao.updateGood(good);
         if(0 == count) {
             return AppResponse.bizError("商品信息修改失败");
@@ -135,14 +124,11 @@ public class GoodService {
         //获取修改人的编码
         String updateUser = SecurityUtils.getCurrentUserId();
         good.setUpdateUser(updateUser);
-
         int count = goodDao.deleteGood(good);
         if(0 == count) {
             return AppResponse.bizError("商品删除失败");
         }
         return AppResponse.success("商品删除成功");
     }
-
-
 
 }
