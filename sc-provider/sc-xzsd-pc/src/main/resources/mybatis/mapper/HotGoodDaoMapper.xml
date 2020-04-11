@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.pc.hotGood.entity.HotGood">
+
+<!--热门商品新增-->
+    <insert id="saveHotGood" parameterType="com.xzsd.pc.hotGood.entity.HotGood" >
+        insert into t_sys_hot_good
+        (hot_good_code,
+         good_code,
+         good_name,
+         hot_sort,
+         is_delete,
+         create_user,
+         create_time,
+         version)
+         values
+        (
+         ${hotGoodCode},
+         ${goodCode},
+         ${goodName},
+         ${hotSort},
+         0,
+         ${create_user},
+         now(),
+         0)
+    </insert>
+
+<!--热门商品修改-->
+    <update id="updateHotGood" parameterType="com.xzsd.pc.hotGood.entity.HotGood" >
+        update t_sys_hot_good
+        set good_name = ${goodName},
+            hot_sort = ${hotSort},
+            update_user = ${updateUser},
+            update_time = now(),
+            version = version + 1
+        where is_delete = 0
+        and version = ${version}
+        and hot_good_code = ${hotGoodCode}
+    </update>
+
+<!--热门商品删除-->
+    <update id="deleteHotGood" parameterType="com.xzsd.pc.hotGood.entity.HotGood" >
+        update t_sys_hot_good
+        set is_delete = 1,
+            update_user = ${updateUser},
+            update_time = now(),
+            version = version + 1
+        where is_delete = 0
+        and version = ${version}
+        and hot_good_code = ${hotGoodCode}
+    </update>
+
+<!--    todo-->
+
+
+
+</mapper>
