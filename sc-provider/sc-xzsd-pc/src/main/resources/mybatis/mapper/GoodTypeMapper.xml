@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.pc.goodType.dao.GoodTypeDao">
+
+<!--分类新增-->
+    <insert id="saveGoodType" parameterType="com.xzsd.pc.goodType.entity.GoodType" >
+        insert into t_sys_good_type
+        (type_code,
+         type_name,
+         remark,
+         is_delete,
+         create_user,
+         create_time,
+         version,
+         parent_code)
+         values
+        (#{typeCode},
+         #{typeName},
+         #{remark},
+         0,
+         #{createUser},
+         now(),
+         0,
+         #{parentCode})
+    </insert>
+
+<!--分类修改-->
+    <update id="updateGoodType" parameterType="com.xzsd.pc.goodType.entity.GoodType" >
+        update t_sys_good_type
+        set type_name = #{typeName},
+            remark = #{remark},
+            version = version + 1,
+            parent_code = #{parentCode},
+            update_user = #{updateUser},
+            update_time = now()
+        where type_code = #{typeCode}
+        and is_delete = 0
+        and version = #{version}
+    </update>
+
+<!--分类删除-->
+    <update id="deleteGoodType" parameterType="com.xzsd.pc.goodType.entity.GoodType" >
+        update t_sys_good_type
+        set is_delete = 1,
+            version = version + 1,
+            update_user = #{updateUser},
+            update_time = now()
+        where type_code = #{typeCode}
+        and is_delete = 0
+        and version = #{version}
+    </update>
+
+<!--分类详细信息查询-->
+    <select id="selecteGoodType" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType" >
+        select *
+        from t_sys_good_type
+        where is_delete = 0
+        and type_code = #{typeCode}
+    </select>
+
+<!--分类分页查询-->
+    <select id="listGoodType" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType" >
+        select *
+        from t_sys_good_type
+        where is_delete = 0
+        order by type_code
+    </select>
+
+<!--分类一级菜单查询-->
+    <select id="selectLevelOne" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType">
+        select *
+        from t_sys_good_type
+        where is_delete = 0
+        and parent_code = 0
+        order by type_code
+    </select>
+
+<!--分类二级菜单查询-->
+    <select id="selectLevelTwo" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType">
+        select *
+        from t_sys_good_type
+        where is_delete = 0
+        and parent_code = #{parentCode}
+        order by type_code
+    </select>
+
+</mapper>
