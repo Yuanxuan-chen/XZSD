@@ -94,7 +94,7 @@ public class Customer {
     /**
      * 角色, 0管理员, 1店长, 2司机, 3客户
      */
-    private String role;
+    private int role;
 
     /**
      * 邀请码
@@ -267,11 +267,11 @@ public class Customer {
         this.idcard = idcard;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 

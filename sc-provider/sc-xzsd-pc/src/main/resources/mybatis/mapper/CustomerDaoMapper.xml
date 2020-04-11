@@ -17,6 +17,7 @@
         from t_sys_user
         where is_delete = 0
         and user_code = #{customerCode}
+        and role = 4
     </select>
     
     <select id="listCustomer" parameterType="com.xzsd.pc.customer.entity.Customer" resultType="com.xzsd.pc.customer.entity.Customer" >
@@ -32,6 +33,7 @@
         version
         from t_sys_user
         where is_delete = 0
+        and role = 4
         <if test="customerCode != null and customerCode != '' ">
             and user_code like concat('%', #{customerCode}, '%')
         </if>
