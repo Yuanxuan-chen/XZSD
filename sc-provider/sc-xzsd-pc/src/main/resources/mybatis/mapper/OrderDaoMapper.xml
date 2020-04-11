@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.pc.order.dao.OrderDao">
+
+<!--订单分页查询-->
+    <select id="listOrder" parameterType="com.xzsd.pc.order.entity.Order" resultType="com.xzsd.pc.order.entity.Order" >
+        select *
+        from t_sys_order
+        where is_delete = 0
+        <if test="buyerName != null and buyerName != '' " >
+            and buyer_name like concat('%', #{buyerName}, '%')
+        </if>
+        <if test="buyerTel != null and buyerTel != '' " >
+            and buyer_tel like concat('%', #{buyerTel}, '%')
+        </if>
+        <if test="orderCode != null and orderCode != '' " >
+            and order_code like  concat('%', #{orderCode}, '%')
+        </if>
+        <if test="orderState != 0 " >
+            and order_state = #{orderState}
+        </if>
+        <if test="payStart != null and payStart != '' " >
+            and str_to_date(pay_time,'%Y-%m-%d') >= #{payStart}
+        </if>
+        <if test="payStop != null and payStop != '' " >
+            and #{payStop} >= str_to_date(pay_time,'%Y-%m-%d')
+        </if>
+        order by order_code
+    </select>
+
+<!--订单详细信息查询-->
+    <select id="selectOrder" parameterType="com.xzsd.pc.order.entity.Order" resultType="com.xzsd.pc.order.entity.Order" >
+        select *
+        from t_sys_order
+        where is_delete = 0
+        and order_code = #{orderCode}
+    </select>
+
+<!--订单物流状态修改-->
+    <update id="stateOrder" parameterType="com.xzsd.pc.order.entity.Order" >
+        update t_sys_order
+        set order_state = #{orderState},
+            version = version + 1,U
+            update_user = #{updateser},
+            update_time = now()
+        where is_delete = 0
+        and order_code = #{orderCode}
+        and version = #{version}
+    </update>
+    
+</mapper>
