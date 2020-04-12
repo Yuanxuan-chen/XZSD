@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.pc.store.dao.StoreDao">
+
+<!--门店信息新增-->
+    <insert id="saveStore" parameterType="com.xzsd.pc.store.entity.Store" >
+        insert into t_sys_store
+        (store_code,
+         store_name,
+         tel,
+         shopkeeper_code,
+         licence_code,
+         invite_code,
+         province_code,
+         province_name,
+         downtown_code,
+         downtown_name,
+         area_code,
+         area_name,
+         address,
+         is_delete,
+         create_user,
+         create_time,
+         version)
+        values
+        (#{storeCode},
+        #{storeName},
+        #{tel},
+        #{shopkeeperCode},
+        #{licenceCode},
+        #{inviteCode},
+        #{provinceCode},
+        #{provinceName},
+        #{downtownCode},
+        #{downtownName},
+        #{areaCode},
+        #{areaName},
+        #{address},
+        0,
+        #{createUser},
+        now(),
+        0)
+    </insert>
+
+<!--门店信息修改-->
+    <update id="updateStore" parameterType="com.xzsd.pc.store.entity.Store" >
+        update t_sys_store
+        set
+         store_name = #{storeName},
+         tel = #{tel},
+         shopkeeper_code = #{shopkeeperCode},
+         licence_code = #{licenceCode},
+         invite_code = #{inviteCode},
+         province_code = #{provinceCode},
+         province_name = #{provinceName},
+         downtown_code = #{downtownCode},
+         downtown_name = #{downtownName},
+         area_code = #{areaCode},
+         area_name = #{areaName},
+         address = #{address},
+         version = version + 1
+        where is_delete = 0
+        and version = #{version}
+        and store_code = #{storeCode}
+    </update>
+
+<!--门店信息删除-->
+    <update id="deleteStore" parameterType="com.xzsd.pc.store.entity.Store" >
+        update t_sys_store
+        set is_delete = 1,
+            version = version + 1
+        where is_delete = 0
+        and version = #{version}
+        and store_code = #{storeCode}
+    </update>
+
+<!--门店详细信息详情-->
+    <select id="selectStore" parameterType="com.xzsd.pc.store.entity.Store" resultType="com.xzsd.pc.store.entity.Store" >
+        select *
+        from t_sys_store
+        where is_delete = 0
+        and store_code = #{storeCode}
+    </select>
+
+<!--门店信息分页查询-->
+    <select id="listStore" parameterType="com.xzsd.pc.store.entity.Store" resultType="com.xzsd.pc.store.entity.Store" >
+        select *
+        from t_sys_store
+        where is_delete = 0
+        <if test="storeCode != null and storeCode != '' " >
+            and store_code like concat('%', #{storeCode}, '%')
+        </if>
+        <if test="storeName != null and storeName != '' " >
+            and store_name like concat('%', #{storeName}, '%')
+        </if>
+        <if test="shopkeeperName != null and shopkeeperName != '' " >
+            and shopkeeper_name like concat('%', #{shopkeeperName}, '%')
+        </if>
+        <if test="provinceCode != null and provinceCode != '' " >
+            and province_code = #{provinceCode}
+        </if>
+        <if test="downtownCode != null and downtownCode != '' " >
+            and downtown_code = #{downtownCode}
+        </if>
+        <if test="areaCode != null and areaCode != '' " >
+            and area_code = #{areaCode}
+        </if>
+        order by store_code
+    </select>
+
+
+
+</mapper>

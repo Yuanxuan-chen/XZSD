@@ -3,6 +3,8 @@ package com.xzsd.pc.store.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.neusoft.core.restful.AppResponse;
+import com.neusoft.security.client.utils.SecurityUtils;
+import com.neusoft.util.UUIDUtils;
 import com.xzsd.pc.store.dao.StoreDao;
 import com.xzsd.pc.store.entity.Store;
 import org.springframework.stereotype.Service;
@@ -43,9 +45,9 @@ public class StoreService {
     public AppResponse selectStore(Store store) {
         Store storeInfo = storeDao.selectStore(store);
         if(null == storeInfo) {
-            return AppResponse.bizError("门店信息分页查询失败");
+            return AppResponse.bizError("门店详细信息详情失败");
         }
-        return AppResponse.success("门店信息分页查询成功", storeInfo);
+        return AppResponse.success("门店详细信息详情成功", storeInfo);
     }
 
     /**
@@ -55,11 +57,17 @@ public class StoreService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse saveStore(Store store) {
+        //创建者编号
+        String createUser = SecurityUtils.getCurrentUserId();
+        store.setCreateUser(createUser);
+        //生成随机门店编号
+        store.setStoreCode(UUIDUtils.getUUID());
+        //门店信息新增
         int storeInfo = storeDao.saveStore(store);
         if(0 == storeInfo) {
-            return AppResponse.bizError("门店信息分页查询失败");
+            return AppResponse.bizError("门店信息新增失败");
         }
-        return AppResponse.success("门店信息分页查询成功");
+        return AppResponse.success("门店信息新增成功");
     }
 
     /**
@@ -69,11 +77,15 @@ public class StoreService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse updateStore(Store store) {
+        //修改者编号
+        String updateUser = SecurityUtils.getCurrentUserId();
+        store.setUpdateUser(updateUser);
+        //门店信息修改
         int storeInfo = storeDao.updateStore(store);
         if(0 == storeInfo) {
-            return AppResponse.bizError("门店信息分页查询失败");
+            return AppResponse.bizError("门店信息修改失败");
         }
-        return AppResponse.success("门店信息分页查询成功");
+        return AppResponse.success("门店信息修改成功");
     }
 
     /**
@@ -83,11 +95,15 @@ public class StoreService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse deleteStore(Store store) {
+        //修改者编号
+        String updateUser = SecurityUtils.getCurrentUserId();
+        store.setUpdateUser(updateUser);
+        //门店信息删除
         int storeInfo = storeDao.deleteStore(store);
         if(0 == storeInfo) {
-            return AppResponse.bizError("门店信息分页查询失败");
+            return AppResponse.bizError("门店信息删除失败");
         }
-        return AppResponse.success("门店信息分页查询成功");
+        return AppResponse.success("门店信息删除成功");
     }
 
 }

@@ -48,27 +48,27 @@ public class Store {
     /**
      * 门店编号
      */
-    private String store_code;
+    private String storeCode;
 
     /**
      * 门店账号
      */
-    private String store_acct;
+    private String storeAcct;
 
     /**
      *门店名称
      */
-    private String store_name;
+    private String storeName;
 
     /**
      *营业执照编码
      */
-    private String licence_code;
+    private String licenceCode;
 
     /**
      *邀请码
      */
-    private String invite_code;
+    private String inviteCode;
 
 
     /**
@@ -109,12 +109,12 @@ public class Store {
     /**
      * 店长编号
      */
-    private String shopkeeper_code;
+    private String shopkeeperCode;
 
     /**
      *店长名字
      */
-    private String shopkeeper_name;
+    private String shopkeeperName;
 
     /**
      *联系电话
@@ -124,7 +124,7 @@ public class Store {
     /**
      *司机编号
      */
-    private String driver_code;
+    private String driverCode;
 
 
     public int getPageNum() {
@@ -191,45 +191,7 @@ public class Store {
         this.version = version;
     }
 
-    public String getStore_code() {
-        return store_code;
-    }
 
-    public void setStore_code(String store_code) {
-        this.store_code = store_code;
-    }
-
-    public String getStore_acct() {
-        return store_acct;
-    }
-
-    public void setStore_acct(String store_acct) {
-        this.store_acct = store_acct;
-    }
-
-    public String getStore_name() {
-        return store_name;
-    }
-
-    public void setStore_name(String store_name) {
-        this.store_name = store_name;
-    }
-
-    public String getLicence_code() {
-        return licence_code;
-    }
-
-    public void setLicence_code(String licence_code) {
-        this.licence_code = licence_code;
-    }
-
-    public String getInvite_code() {
-        return invite_code;
-    }
-
-    public void setInvite_code(String invite_code) {
-        this.invite_code = invite_code;
-    }
 
     public String getProvinceCode() {
         return provinceCode;
@@ -287,21 +249,7 @@ public class Store {
         this.address = address;
     }
 
-    public String getShopkeeper_code() {
-        return shopkeeper_code;
-    }
 
-    public void setShopkeeper_code(String shopkeeper_code) {
-        this.shopkeeper_code = shopkeeper_code;
-    }
-
-    public String getShopkeeper_name() {
-        return shopkeeper_name;
-    }
-
-    public void setShopkeeper_name(String shopkeeper_name) {
-        this.shopkeeper_name = shopkeeper_name;
-    }
 
     public String getTel() {
         return tel;
@@ -311,11 +259,67 @@ public class Store {
         this.tel = tel;
     }
 
-    public String getDriver_code() {
-        return driver_code;
+    public String getStoreCode() {
+        return storeCode;
     }
 
-    public void setDriver_code(String driver_code) {
-        this.driver_code = driver_code;
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    public String getStoreAcct() {
+        return storeAcct;
+    }
+
+    public void setStoreAcct(String storeAcct) {
+        this.storeAcct = storeAcct;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getLicenceCode() {
+        return licenceCode;
+    }
+
+    public void setLicenceCode(String licenceCode) {
+        this.licenceCode = licenceCode;
+    }
+
+    public String getInviteCode() {
+        return inviteCode;
+    }
+
+    public void setInviteCode(String inviteCode) {
+        this.inviteCode = inviteCode;
+    }
+
+    public String getShopkeeperCode() {
+        return shopkeeperCode;
+    }
+
+    public void setShopkeeperCode(String shopkeeperCode) {
+        this.shopkeeperCode = shopkeeperCode;
+    }
+
+    public String getShopkeeperName() {
+        return shopkeeperName;
+    }
+
+    public void setShopkeeperName(String shopkeeperName) {
+        this.shopkeeperName = shopkeeperName;
+    }
+
+    public String getDriverCode() {
+        return driverCode;
+    }
+
+    public void setDriverCode(String driverCode) {
+        this.driverCode = driverCode;
     }
 }
