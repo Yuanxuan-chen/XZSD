@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.pc.driver.dao.DriverDao">
+<!--司机信息新增-->
+    <insert id="saveDriver" parameterType="com.xzsd.pc.driver.entity.Driver" >
+        insert into t_sys_user
+        (user_code,
+         user_name,
+         tel,
+         user_acct,
+         user_password,
+         idcard,
+         province_code,
+         province_name,
+         downtown_code,
+         downtown_name,
+         area_code,
+         area_name,
+         is_delete,
+         create_user,
+         create_time,
+         version,
+         role
+         )
+        values
+        (#{driverCode},
+         #{driverName},
+         #{tel},
+         #{driverAcct},
+         #{driverPassword},
+         #{idcard},
+         #{provinceCode},
+         #{provinceName},
+         #{downtownCode},
+         #{downtownName},
+         #{areaCode},
+         #{areaName},
+         0,
+         #{createUser},
+         now(),
+         0,
+         3)
+    </insert>
+
+<!--司机信息修改-->
+    <update id="updateDriver" parameterType="com.xzsd.pc.driver.entity.Driver" >
+        update t_sys_user
+        set user_name = #{driverName},
+            tel = #{tel},
+            user_acct = #{driverAcct},
+            user_password =  #{driverPassword},
+            idcard =  #{idcard},
+            province_code =  #{provinceCode},
+            province_name =  #{provinceName},
+            downtown_code =  #{downtownCode},
+            downtown_name =  #{downtownName},
+            area_code =  #{areaCode},
+            area_name =  #{areaName},
+            version = version + 1,
+            update_user = #{updateUser},
+            update_time = now()
+        where is_delete = 0
+        and role = 3
+        and user_code = #{driverCode}
+        and version = #{version}
+    </update>
+
+<!--司机信息删除-->
+    <update id="deleteDriver" parameterType="com.xzsd.pc.driver.entity.Driver">
+        update t_sys_user
+        set is_delete = 1,
+            version = version + 1,
+            update_user = #{updateUser},
+            update_time = now()
+        where is_delete = 0
+        and role = 3
+        and user_code = #{driverCode}
+        and version = #{version}
+    </update>
+
+<!--司机详细信息-->
+    <select id="selectDriver" parameterType="com.xzsd.pc.driver.entity.Driver" resultType="com.xzsd.pc.driver.entity.Driver" >
+        select
+            user_name driverName,
+            tel,
+            user_acct driverAcct,
+            user_password driverPassword,
+            idcard,
+            province_name,
+            downtown_name,
+            area_name,
+            version
+        from t_sys_user
+        where is_delete = 0
+        and role = 3
+        and user_code = #{driverCode};
+    </select>
+
+<!--司机信息分页查询-->
+    <select id="listDriver" parameterType="com.xzsd.pc.driver.entity.Driver" resultType="com.xzsd.pc.driver.entity.Driver" >
+        select
+            user_code driverCode,
+            user_name driverName,
+            tel,
+            idcard,
+            user_acct driverAcct,
+            version
+        from t_sys_user
+        where is_delete = 0
+        and role = 3
+        <if test="driverCode != null and driverCode != '' " >
+            and user_code like concat('%', #{driverCode}, '%')
+        </if>
+        <if test="driverName != null and driverName != '' " >
+            and user_name like concat('%', #{driverName}, '%')
+        </if>
+        <if test="provinceCode != null and provinceCode != '' " >
+            and province_code = #{provinceCode}
+        </if>
+        <if test="downtownCode != null and downtownCode != '' " >
+            and downtown_code = #{downtownCode}
+        </if>
+        <if test="areaCode != null and areaCode != '' " >
+            and area_code = #{areaCode}
+        </if>
+        order by user_code
+    </select>
+</mapper>

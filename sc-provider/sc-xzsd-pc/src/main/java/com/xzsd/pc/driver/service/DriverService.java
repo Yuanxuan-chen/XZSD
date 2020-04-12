@@ -3,6 +3,8 @@ package com.xzsd.pc.driver.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.neusoft.core.restful.AppResponse;
+import com.neusoft.security.client.utils.SecurityUtils;
+import com.neusoft.util.UUIDUtils;
 import com.xzsd.pc.driver.dao.DriverDao;
 import com.xzsd.pc.driver.entity.Driver;
 import org.springframework.stereotype.Service;
@@ -49,10 +51,18 @@ public class DriverService {
 
     /**
      * 司机信息新增
+     * @author Yuanxuan
+     * @date 2020-04-12
      * @param driver
      * @return
      */
     public AppResponse saveDriver(Driver driver) {
+        //创建者信息
+        String createUser = SecurityUtils.getCurrentUserId();
+        driver.setCreateUser(createUser);
+        //随机司机编码产生
+        driver.setDriverCode(UUIDUtils.getUUID());
+        //司机信息新增
         int driverInfo = driverDao.saveDriver(driver);
         if(0 == driverInfo) {
             return AppResponse.bizError("司机信息新增失败");
@@ -66,6 +76,10 @@ public class DriverService {
      * @return
      */
     public AppResponse updateDriver(Driver driver) {
+        //修改者信息
+        String updateUser = SecurityUtils.getCurrentUserId();
+        driver.setUpdateUser(updateUser);
+        //司机信息修改
         int driverInfo = driverDao.updateDriver(driver);
         if(0 == driverInfo) {
             return AppResponse.bizError("司机信息修改失败");
@@ -79,12 +93,15 @@ public class DriverService {
      * @return
      */
     public AppResponse deleteDriver(Driver driver) {
+        //修改者信息
+        String updateUser = SecurityUtils.getCurrentUserId();
+        driver.setUpdateUser(updateUser);
+        //司机信息删除
         int driverInfo = driverDao.deleteDriver(driver);
         if(0 == driverInfo) {
             return AppResponse.bizError("司机信息删除失败");
         }
         return AppResponse.success("司机信息删除成功");
     }
-
 
 }

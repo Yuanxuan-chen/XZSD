@@ -94,7 +94,7 @@ public class Driver {
     /**
      *司机密码
      */
-    private String dirverPassword;
+    private String driverPassword;
 
     /**
      *联系电话
@@ -242,12 +242,12 @@ public class Driver {
         this.driverName = driverName;
     }
 
-    public String getDirverPassword() {
-        return dirverPassword;
+    public String getDriverPassword() {
+        return driverPassword;
     }
 
-    public void setDirverPassword(String dirverPassword) {
-        this.dirverPassword = dirverPassword;
+    public void setDriverPassword(String driverPassword) {
+        this.driverPassword = driverPassword;
     }
 
     public String getTel() {
