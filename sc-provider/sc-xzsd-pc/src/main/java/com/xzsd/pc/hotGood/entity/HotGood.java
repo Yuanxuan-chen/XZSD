@@ -63,7 +63,7 @@ public class HotGood {
     /**
      *热门排序
      */
-    private String photSort;
+    private String hotSort;
 
 
     public int getPageNum() {
@@ -154,11 +154,11 @@ public class HotGood {
         this.goodName = goodName;
     }
 
-    public String getPhotSort() {
-        return photSort;
+    public String getHotSort() {
+        return hotSort;
     }
 
-    public void setPhotSort(String photSort) {
-        this.photSort = photSort;
+    public void setHotSort(String hotSort) {
+        this.hotSort = hotSort;
     }
 }

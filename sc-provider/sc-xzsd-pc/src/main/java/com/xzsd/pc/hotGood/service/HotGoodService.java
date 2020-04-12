@@ -63,7 +63,7 @@ public class HotGoodService {
         String createUser = SecurityUtils.getCurrentUserId();
         hotGood.setCreateUser(createUser);
         //创建热门商品编码
-        hotGood.setGoodCode(UUIDUtils.getUUID());
+        hotGood.setHotGoodCode(UUIDUtils.getUUID());
         //热门商品新增
         int hotGoodInfo = hotGoodDao.saveHotGood(hotGood);
         if(0 == hotGoodInfo){
