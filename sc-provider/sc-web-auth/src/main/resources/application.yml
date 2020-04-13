@@ -34,6 +34,10 @@ spring:
     loadbalancer:
       retry:
         enabled: false
+  http:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
 mybatis:
   mapper-locations: classpath:mybatis/mapper/**/*Mapper.xml
   config-location: classpath:mybatis/mybatis-config.xml
