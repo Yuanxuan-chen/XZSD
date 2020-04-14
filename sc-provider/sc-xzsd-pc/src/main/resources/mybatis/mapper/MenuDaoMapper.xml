@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.pc.menu.dao.MenuDao" >
+
+<!--菜单新增-->
+    <insert id="saveMenu" parameterType="com.xzsd.pc.menu.entity.Menu">
+        insert into t_sys_menu
+            (menu_code,
+             menu_name,
+             route,
+             comment,
+             is_delete,
+             create_user,
+             create_time,
+             update_user,
+             update_time,
+             version)
+             values
+            (
+             #{menuCode},
+             #{menuName},
+             #{route},
+             #{comment},
+             0,
+             #{createUser},
+             now(),
+             #{createUser},
+             now(),
+             0
+            )
+    </insert>
+
+<!--菜单修改-->
+    <update id="updateMenu" parameterType="com.xzsd.pc.menu.entity.Menu" >
+        update t_sys_menu
+        set menu_name = #{menuName},
+            route = #{route},
+            comment = #{comment},
+            update_user = #{updateUser},
+            update_time = now(),
+            version = version + 1
+        where is_delete = 0
+        and menu_code = #{menuCode}
+        and version = #{version}
+    </update>
+
+<!--菜单删除-->
+    <update id="deleteMenu" parameterType="com.xzsd.pc.menu.entity.Menu" >
+        update t_sys_menu
+        set is_delete = 1,
+            update_user = #{updateUser},
+            update_time = now(),
+            version = version + 1
+        where is_delete = 0
+        and menu_code = #{menuCode}
+    </update>
+
+<!--菜单详细信息查询-->
+    <select id="selectMenu" parameterType="com.xzsd.pc.menu.entity.Menu" resultType="com.xzsd.pc.menu.entity.Menu">
+        select menu_code menuCode,
+               menu_name menuName,
+               route,
+               comment,
+               version
+        from t_sys_menu
+        where is_delete = 0
+        and menu_code = #{menuCode}
+    </select>
+
+<!--菜单列表查询-->
+    <select id="listMenu" parameterType="com.xzsd.pc.menu.entity.Menu" resultType="com.xzsd.pc.menu.entity.Menu" >
+        select menu_code,
+               menu_name,
+               route,
+               comment,
+               version
+        from t_sys_menu
+        where is_delete = 0
+    </select>
+
+<!--首页菜单列表查询-->
+    <select id="listMenuHome" parameterType="com.xzsd.pc.menu.entity.Menu" resultType="com.xzsd.pc.menu.entity.Menu" >
+        select menu_code,
+               menu_name
+        from t_sys_menu
+        where is_delete = 0
+        <if test="role = 2 ">
+            and (menu_name = '订单管理' or menu_name = '商品管理')
+        </if>
+        <if test="role = 3 or role = 4">
+            and menu_name = ''
+        </if>
+    </select>
+
+
+</mapper>
