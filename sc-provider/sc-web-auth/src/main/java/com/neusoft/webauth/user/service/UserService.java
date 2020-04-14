@@ -40,10 +40,10 @@ public class UserService {
     public AppResponse saveUser(UserInfo userInfo) {
 
         // 校验账号是否存在
-//        int countUserAcct = userDao.countUserAcct(userInfo);
-//        if(0 != countUserAcct) {
-//            return AppResponse.bizError("用户账号已存在，请重新输入！");
-//        }
+        int countUserAcct = userDao.countUserAcct(userInfo);
+        if(0 != countUserAcct) {
+            return AppResponse.bizError("用户账号已存在，请重新输入！");
+        }
         // 密码加密 默认为123456
         String pwd = PasswordUtils.generatePassword("123456");
         userInfo.setUserCode(StringUtil.getCommonCode(2));
