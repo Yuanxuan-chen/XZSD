@@ -47,9 +47,9 @@ public class UserService {
         //用户新增
         int count = userDao.saveUser(user);
         if(0 == count) {
-            return AppResponse.bizError("失败");
+            return AppResponse.bizError("用户新增失败");
         }
-        return AppResponse.success("成功");
+        return AppResponse.success("用户新增成功");
     }
 
     /**
@@ -58,7 +58,7 @@ public class UserService {
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
-    public AppResponse updateUser(User user) {
+    public AppResponse updateCode(User user) {
         int countUserAcct = userDao.countUserAcct(user);
         if(0 != countUserAcct){
             return AppResponse.bizError("用户账号已存在，请重新输入！");
@@ -68,11 +68,11 @@ public class UserService {
         user.setUserCode(UUIDUtils.getUUID());
         user.setUserPassword(password);
         //用户修改
-        int count = userDao.updateUserByID(user);
+        int count = userDao.updateCode(user);
         if(0 == count) {
-            return AppResponse.bizError("失败");
+            return AppResponse.bizError("用户修改失败");
         }
-        return AppResponse.success("成功");
+        return AppResponse.success("用户修改成功");
     }
 
     /**
@@ -84,9 +84,9 @@ public class UserService {
     public AppResponse deleteUser(User user) {
         int count = userDao.deleteUser(user);
         if(0 == count) {
-            return AppResponse.bizError("失败");
+            return AppResponse.bizError("用户删除失败");
         }
-        return AppResponse.success("成功");
+        return AppResponse.success("用户删除成功");
     }
 
     /**
@@ -97,9 +97,9 @@ public class UserService {
     public AppResponse selectUser(User user) {
         User userInfo = userDao.selectUser(user);
         if(null == userInfo) {
-            return AppResponse.bizError("失败");
+            return AppResponse.bizError("用户详细信息查询失败");
         }
-        return AppResponse.success("成功", userInfo);
+        return AppResponse.success("用户详细信息查询成功", userInfo);
     }
 
     /**
@@ -111,8 +111,8 @@ public class UserService {
         PageHelper.startPage(user.getPageNum(), user.getPageSize());
         List<User> userInfo = userDao.listUser(user);
         if(null == userInfo) {
-            return AppResponse.bizError("失败");
+            return AppResponse.bizError("用户分页查询失败");
         }
-        return AppResponse.success("成功", new PageInfo<User>(userInfo));
+        return AppResponse.success("用户分页查询成功", new PageInfo<User>(userInfo));
     }
 }

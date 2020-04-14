@@ -33,7 +33,7 @@ public class User {
     /**
      * 修改者
      */
-    private String updateUserCode;
+    private String updateUser;
 
     /**
      * 修改时间
@@ -170,12 +170,12 @@ public class User {
         this.creatTime = creatTime;
     }
 
-    public String getUpdateUserCode() {
-        return updateUserCode;
+    public String getUpdateUser() {
+        return updateUser;
     }
 
-    public void setUpdateUserCode(String updateUserCode) {
-        this.updateUserCode = updateUserCode;
+    public void setUpdateUser(String updateUser) {
+        this.updateUser = updateUser;
     }
 
     public String getUpdateTime() {

@@ -42,7 +42,7 @@ public class UserController {
     @PostMapping("updateUser")
     public AppResponse updateUser(User user) {
         try {
-            return userService.updateUser(user);
+            return userService.updateCode(user);
         }catch (Exception e) {
             throw e;
         }

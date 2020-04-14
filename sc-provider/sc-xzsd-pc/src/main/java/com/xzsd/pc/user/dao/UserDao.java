@@ -22,7 +22,7 @@ public interface UserDao {
      * @param user
      * @return
      */
-    int updateUserByID(User user);
+    int updateCode(User user);
 
     /**
      * 用户删除

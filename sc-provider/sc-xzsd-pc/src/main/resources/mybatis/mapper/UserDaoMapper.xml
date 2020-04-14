@@ -52,7 +52,7 @@
     </insert>
 
 <!--用户修改-->
-    <update id="updateUserByID" parameterType="com.xzsd.pc.user.entity.User">
+    <update id="updateCode" parameterType="com.xzsd.pc.user.entity.User" >
         update t_sys_user
         set user_acct = #{userAcct},
             user_password = #{userPassword},
