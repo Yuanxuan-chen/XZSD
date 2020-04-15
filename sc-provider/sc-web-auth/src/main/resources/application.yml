@@ -39,8 +39,8 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
 sc:
   cloud:
-#    debug: true todo
-    dev: true
+    debug: true
+#    dev: true
     task:
       core-pool-size: 20
       max-pool-size: 50
