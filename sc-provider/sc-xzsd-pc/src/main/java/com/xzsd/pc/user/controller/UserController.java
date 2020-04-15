@@ -39,10 +39,10 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("updateCode")
-    public AppResponse updateCode(User user) {
+    @PostMapping("updateUser")
+    public AppResponse updateUser(User user) {
         try {
-            return userService.updateCode(user);
+            return userService.updateUser(user);
         }catch (Exception e) {
             throw e;
         }
