@@ -39,8 +39,8 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("updateUser")
-    public AppResponse updateUser(User user) {
+    @PostMapping("updateCode")
+    public AppResponse updateCode(User user) {
         try {
             return userService.updateCode(user);
         }catch (Exception e) {
@@ -85,6 +85,20 @@ public class UserController {
     public AppResponse listUser(User user) {
         try {
             return userService.listUser(user);
+        }catch (Exception e) {
+            throw e;
+        }
+    }
+
+    /**
+     * 顶部栏接口
+     * @param user
+     * @return
+     */
+    @PostMapping("topColumn")
+    public AppResponse topColumn(User user) {
+        try {
+            return userService.topColumn(user);
         }catch (Exception e) {
             throw e;
         }

@@ -67,7 +67,6 @@
             update_user = #{updateUser},
             update_time = now()
         where is_delete = 0
-        and version = #{version}
         and user_code = #{userCode}
     </update>
 
@@ -126,4 +125,16 @@
         </if>
         order by user_code
     </select>
+
+<!--顶部栏接口-->
+    <select id="topColumn" parameterType="com.xzsd.pc.user.entity.User" resultType="com.xzsd.pc.user.entity.User" >
+        select user_code userCode,
+               user_name userName,
+               user_picture_url userPictureUrl,
+               role
+        from t_sys_user
+        where is_delete = 0
+        and user_code = #{userCode}
+    </select>
+
 </mapper>

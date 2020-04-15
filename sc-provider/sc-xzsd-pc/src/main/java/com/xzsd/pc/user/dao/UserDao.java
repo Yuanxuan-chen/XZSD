@@ -32,14 +32,14 @@ public interface UserDao {
     int deleteUser(User user);
 
     /**
-     * selectUser
+     * 用户详细信息查询
      * @param user
      * @return
      */
     User selectUser(User user);
 
     /**
-     * listUser
+     * 用户分页查询
      * @param user
      * @return
      */
@@ -51,4 +51,11 @@ public interface UserDao {
      * @return
      */
     int countUserAcct(User user);
+
+    /**
+     * 顶部栏接口
+     * @param user
+     * @return
+     */
+    User topColumn(User user);
 }

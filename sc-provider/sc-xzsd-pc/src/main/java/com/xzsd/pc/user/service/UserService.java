@@ -115,4 +115,18 @@ public class UserService {
         }
         return AppResponse.success("用户分页查询成功", new PageInfo<User>(userInfo));
     }
+
+    /**
+     * 顶部栏接口
+     * @param user
+     * @return
+     */
+    public AppResponse topColumn(User user) {
+        User userInfo = userDao.topColumn(user);
+        if(null == userInfo) {
+            return AppResponse.bizError("用户详细信息查询失败");
+        }
+        return AppResponse.success("用户详细信息查询成功", userInfo);
+    }
+
 }
