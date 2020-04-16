@@ -42,6 +42,7 @@
             version = version + 1
         where is_delete = 0
         and menu_code = #{menuCode}
+        and version = #{version}
     </update>
 
 <!--菜单删除-->

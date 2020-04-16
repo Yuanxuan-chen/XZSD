@@ -67,4 +67,12 @@ public interface GoodDao {
      * @return
      */
     List<Good> listGood(Good good);
+
+
+    /**
+     * 商品选择
+     * @param good
+     * @return
+     */
+    List<Good> listGoodOfSlideshow(Good good);
 }

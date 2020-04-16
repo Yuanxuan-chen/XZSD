@@ -36,6 +36,20 @@ public class GoodController {
     }
 
     /**
+     * 商品选择
+     * @return
+     */
+    @PostMapping("listGoodOfSlideshow")
+    public AppResponse listGoodOfSlideshow(Good good) {
+        try{
+            return goodService.listGoodOfSlideshow(good);
+        }catch (Exception e){
+            System.out.println("商品分页查询异常");
+            throw  e;
+        }
+    }
+
+    /**
      * 商品详细信息查询
      * @return
      */

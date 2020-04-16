@@ -35,7 +35,7 @@
              #{levelTwoName},
              #{ad},
              #{goodIntroduce},
-             ${businessName},
+             #{businessName},
              #{stock},
              #{costPrice},
              #{sellPrice},
@@ -125,8 +125,10 @@
         cost_price costPrice,
         sell_price sellPrice,
         sell_volume sellVolume,
-        level_two_name levelOneName,
-        level_two_name levelTwoName,
+        t.level_one_code levelOneCode,
+        t.level_one_name levelOneName,
+        t.level_two_code levelOneCode,
+        t.level_two_name levelTwoName,
         ad ad,
         good_introduce goodIntroduce,
         good_state goodState,
@@ -139,7 +141,7 @@
         from t_sys_goods
         where is_delete = 0
         <if test="goodState != 0">
-            and good_state = ${goodState}
+            and good_state = #{goodState}
         </if>
         <if test="goodName != null and goodName != ''">
             and good_name like concat('%', #{goodName}, '%')
@@ -169,6 +171,28 @@
         select version
         from t_sys_goods
         where good_code = #{goodCode}
+    </select>
+
+<!--商品选择-->
+    <select id="listGoodOfSlideshow" parameterType="com.xzsd.pc.good.entity.Good" resultType="com.xzsd.pc.good.entity.Good" >
+        select
+            good_code goodCode,
+            good_name goodName,
+            level_one_code levelOneCode,
+            level_one_name levelOneName,
+            level_two_code levelOneCode,
+            level_two_name levelTwoName,
+            good_state goodState,
+            version version
+        from t_sys_goods
+        where is_delete = 0
+        <if test="goodName != null and goodName != '' ">
+            and good_name like concat('%', #{goodName}, '%')
+        </if>
+        <if test="goodCode != null and goodCode != '' ">
+            and good_code like concat('%', #{goodCode}, '%')
+        </if>
+        order by good_code
     </select>
 
 

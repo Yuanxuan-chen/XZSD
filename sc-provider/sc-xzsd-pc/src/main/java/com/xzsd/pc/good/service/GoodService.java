@@ -33,7 +33,18 @@ public class GoodService {
     public AppResponse listGood(Good good){
         PageHelper.startPage(good.getPageNum(), good.getPageSize());
         List<Good> goodList = goodDao.listGood(good);
-        return AppResponse.success("成功", new PageInfo<Good>(goodList));
+        return AppResponse.success("商品分页查询成功", new PageInfo<Good>(goodList));
+    }
+
+    /**
+     * 商品选择
+     * @param good
+     * @return
+     */
+    public AppResponse listGoodOfSlideshow(Good good){
+        PageHelper.startPage(good.getPageNum(), good.getPageSize());
+        List<Good> goodList = goodDao.listGoodOfSlideshow(good);
+        return AppResponse.success("商品选择成功", new PageInfo<Good>(goodList));
     }
 
     /**
