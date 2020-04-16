@@ -97,6 +97,7 @@
                version
         from t_sys_user
         where is_delete = 0
+        and role != 4
         and user_code  = #{userCode}
     </select>
 
@@ -115,6 +116,7 @@
                version
         from t_sys_user
         where is_delete = 0
+        and role != 4
         <if test="userName != null and userName != '' " >
             and user_name like concat('%', #{userName}, '%')
         </if>
