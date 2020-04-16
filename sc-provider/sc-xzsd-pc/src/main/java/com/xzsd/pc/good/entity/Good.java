@@ -19,7 +19,7 @@ public class Good {
     /**
      * 书号
      */
-    private String bookNumber;
+    private String isbn;
 
     /**
      * 一级分类编号
@@ -79,7 +79,7 @@ public class Good {
     /**
      * 图片路径
      */
-    private String pictureURL;
+    private String pictureUrl;
 
     /**
      * 删除标记, 0未删, 1已删
@@ -191,12 +191,13 @@ public class Good {
         this.goodName = goodName;
     }
 
-    public String getBookNumber() {
-        return bookNumber;
+
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setBookNumber(String bookNumber) {
-        this.bookNumber = bookNumber;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getLevelOneCode() {
@@ -279,12 +280,12 @@ public class Good {
         this.sellPrice = sellPrice;
     }
 
-    public String getPictureURL() {
-        return pictureURL;
+    public String getPictureUrl() {
+        return pictureUrl;
     }
 
-    public void setPictureURL(String pictureURL) {
-        this.pictureURL = pictureURL;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     public int getIsDelete() {
