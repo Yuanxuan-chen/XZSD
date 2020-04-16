@@ -7,7 +7,7 @@
         insert into t_sys_goods
             (good_code,
              good_name,
-             book_number,
+             isbn,
              level_one_code,
              level_one_name,
              level_two_code,
@@ -18,7 +18,7 @@
              stock,
              cost_price,
              sell_price,
-             pictureURL,
+             pictureUrl,
              publish,
              author,
              is_delete,
@@ -28,7 +28,7 @@
             values
             (#{goodCode},
              #{goodName},
-             #{bookNumber},
+             #{isbn},
              #{levelOneCode},
              #{levelOneName},
              #{levelTwoCode},
@@ -39,7 +39,7 @@
              #{stock},
              #{costPrice},
              #{sellPrice},
-             #{pictureURL},
+             #{pictureUrl},
              #{publish},
              #{author},
              0,
@@ -52,7 +52,7 @@
     <update id="updateGood" parameterType="com.xzsd.pc.good.entity.Good">
         update t_sys_goods as t
         set t.good_name = #{goodName},
-            t.book_number = #{bookNumber},
+            t.isbn = #{isbn},
             t.level_one_code = #{levelOneCode},
             t.level_one_name = #{levelOneName},
             t.level_two_code = #{levelTwoCode},
@@ -63,7 +63,7 @@
             t.stock = #{stock},
             t.cost_price = #{costPrice},
             t.sell_price = #{sellPrice},
-            t.pictureURL = #{pictureURL},
+            t.pictureUrl = #{pictureUrl},
             t.publish = #{publish},
             t.author = #{author},
             t.update_user = #{updateUser},
@@ -81,7 +81,7 @@
             update_user = #{updateUser},
             update_time = now()
         where good_code = #{goodCode}
-        and version = #{version}
+        and is_delete = 0
     </update>
 
 <!--商品状态更改-->
@@ -99,7 +99,7 @@
     <select id="selectGood" parameterType="com.xzsd.pc.good.entity.Good" resultType="com.xzsd.pc.good.entity.Good">
         select
             t.good_name goodName,
-            t.book_number bookNumber,
+            t.isbn isbn,
             t.level_one_code levelOneCode,
             t.level_one_name levelOneName,
             t.level_two_code levelOneCode,
@@ -110,7 +110,7 @@
             t.stock stock,
             t.cost_price costPrice,
             t.sell_price sellPrice,
-            t.pictureURL pictureURL,
+            t.pictureUrl pictureUrl,
             t.version version
         from t_sys_goods as t
         where good_code = #{goodCode}
@@ -134,7 +134,7 @@
         browse_volume browseVolume,
         business_name businessName,
         stock stock,
-        book_number bookNumber,
+        isbn isbn,
         version version
         from t_sys_goods
         where is_delete = 0

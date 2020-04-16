@@ -76,7 +76,6 @@
         where is_delete = 0
         and role = 3
         and user_code = #{driverCode}
-        and version = #{version}
     </update>
 
 <!--司机详细信息-->

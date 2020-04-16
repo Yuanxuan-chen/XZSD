@@ -40,7 +40,6 @@
             update_time = now(),
             update_user = #{updateUser}
         where slideshow_code = #{slideshowCode}
-        and version = #{version}
         and is_delete = 0
     </update>
     

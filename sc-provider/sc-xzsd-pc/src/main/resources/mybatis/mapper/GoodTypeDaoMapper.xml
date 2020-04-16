@@ -48,7 +48,6 @@
             update_time = now()
         where type_code = #{typeCode}
         and is_delete = 0
-        and version = #{version}
     </update>
 
 <!--分类详细信息查询-->

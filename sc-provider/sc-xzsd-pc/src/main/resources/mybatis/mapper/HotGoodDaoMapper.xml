@@ -47,7 +47,6 @@
             update_time = now(),
             version = version + 1
         where is_delete = 0
-        and version = #{version}
         and hot_good_code = #{hotGoodCode}
     </update>
 
