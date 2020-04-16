@@ -123,9 +123,9 @@ public class UserService {
     public AppResponse topColumn(User user) {
         User userInfo = userDao.topColumn(user);
         if(null == userInfo) {
-            return AppResponse.bizError("用户详细信息查询失败");
+            return AppResponse.bizError("顶部栏查询异常");
         }
-        return AppResponse.success("用户详细信息查询成功", userInfo);
+        return AppResponse.success("顶部栏查询成功", userInfo);
     }
 
 }
