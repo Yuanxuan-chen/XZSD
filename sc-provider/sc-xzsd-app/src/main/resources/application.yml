@@ -15,8 +15,12 @@ security:
   sessions: stateless
 spring:
   redis:
-    host: 127.0.0.1
+    host: 47.92.101.6
+    password: dnc.2009
     database: 9
+#  redis:
+#    host: 127.0.0.1
+#    database: 9
   datasource:
     name: dataSource
     type: com.alibaba.druid.pool.DruidDataSource
@@ -58,8 +62,8 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
 sc:
   cloud:
-#    dev: true
-    debug: true
+    dev: true
+#    debug: true
     task:
       core-pool-size: 20
       max-pool-size: 50
