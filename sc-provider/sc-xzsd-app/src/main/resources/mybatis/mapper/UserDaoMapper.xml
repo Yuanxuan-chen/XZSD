@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.app.user.dao.UserDao">
+
+<!--司机信息查询-->
+    <select id="selectdriver" parameterType="com.xzsd.app.user.entity.User" resultType="com.xzsd.app.user.entity.User" >
+        select user_code userCode,
+               user_picture_url userPictureUrl,
+               user_acct userAcct,
+               user_name userName,
+               tel
+        from t_sys_user
+        where is_delete = 0
+        and role = 3
+        and user_code = #{userCode}
+    </select>
+
+<!--客户信息查询-->
+    <select id="selecteCustomer" parameterType="com.xzsd.app.user.entity.User" resultType="com.xzsd.app.user.entity.User" >
+        select user_acct userAcct,
+               user_picture_url userPictureUrl
+        from t_sys_user
+        where is_delete = 0
+        and role = 4
+        and user_code = #{userCode}
+    </select>
+
+<!--店长信息查询-->
+    <select id="selectStore" parameterType="com.xzsd.app.user.entity.User" resultType="com.xzsd.app.user.entity.User" >
+        select u.user_code userCode,
+               u.user_acct userAcct,
+               u.user_picture_url userPictureUrl,
+               s.store_code storeCode,
+               s.store_name storeName,
+               s.invite_code inviteCode,
+               concat(s.province_name, s.downtown_name, s.area_name, s.address) address
+        from t_sys_user as u, t_sys_store as s
+        where u.user_code = s.shopkeeper_code
+        and u.is_delete = 0
+        and u.role = 2
+        and u.user_code = #{userCode}
+    </select>
+
+<!--店铺邀请码修改-->
+    <update id="updateCustomerInvite" parameterType="com.xzsd.app.user.entity.User" >
+        update t_sys_user
+        set invite_code = #{inviteCode},
+            update_user = #{updateUser},
+            update_time = now(),
+            version = version + 1
+        where is_delete = 0
+        and user_code = #{userCode}
+    </update>
+
+<!--用户注册-->
+    <insert id="saveCustomer" parameterType="com.xzsd.app.user.entity.User" >
+        insert into t_sys_user
+                (user_code,
+                 user_acct,
+                 user_password,
+                 user_name,
+                 user_picture_url,
+                 sex,
+                 tel,
+                 mail,
+                 idcard,
+                 role,
+                 invite_code,
+                 is_delete,
+                 create_user,
+                 create_time,
+                 update_user,
+                 update_time,
+                 version
+                 )values
+                (
+                 #{userCode},
+                 #{userAcct},
+                 #{userPassword},
+                 #{userName},
+                 #{userPictureUrl},
+                 #{sex},
+                 #{tel},
+                 #{mail},
+                 #{idcard},
+                 4,
+                 #{inviteCode},
+                 0,
+                 #{createUser},
+                 now(),
+                 #{createUser},
+                 now(),
+                 0
+                 )
+    </insert>
+
+<!--统计用户账号数量-->
+    <select id="countUserAcct" parameterType="com.xzsd.app.user.entity.User" resultType="int" >
+        select count(user_acct)
+        from t_sys_user
+        where user_acct = #{userAcct}
+        and is_delete = 0
+    </select>
+
+<!--用户密码查询-->
+    <select id="selectPassword" parameterType="com.xzsd.app.user.entity.User" resultType="java.lang.String" >
+        select user_password
+        from t_sys_user
+        where user_code = #{userCode}
+        and is_delete = 0
+    </select>
+
+<!--用户密码修改-->
+    <update id="updateUserPassword" parameterType="com.xzsd.app.user.entity.User" >
+        update t_sys_user
+        set user_password = #{userPassword},
+            version = version + 1,
+            update_user = #{updateUser},
+            update_time = now()
+        where is_delete = 0
+        and user_code = #{userCode}
+    </update>
+
+
+</mapper>

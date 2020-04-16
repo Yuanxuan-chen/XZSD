@@ -130,6 +130,32 @@ public class User {
      */
     private String areaName;
 
+    /**
+     * 旧密码
+     */
+    private String oldPassword;
+
+    /**
+     * 新密码
+     */
+    private String newPassword;
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
     public int getPageNum() {
         return pageNum;
     }

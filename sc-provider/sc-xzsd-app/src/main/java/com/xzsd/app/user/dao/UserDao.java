@@ -50,4 +50,18 @@ public interface UserDao {
      */
     int updateCustomerInvite(User user);
 
+    /**
+     * 用户账号数量统计
+     * @param user
+     * @return
+     */
+    int countUserAcct(User user);
+
+    /**
+     * 用户密码查询
+     * @param user
+     * @return
+     */
+    String selectPassword(User user);
+
 }

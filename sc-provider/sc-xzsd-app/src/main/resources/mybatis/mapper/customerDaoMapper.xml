@@ -65,7 +65,7 @@
         update t_sys_user
         set user_password = #{customerPassword},
             version = version + 1,
-            update_user = #{update_user},
+            update_user = #{updateUser},
             update_time = now()
         where is_delete = 0
         and user_code = #{customerCode}

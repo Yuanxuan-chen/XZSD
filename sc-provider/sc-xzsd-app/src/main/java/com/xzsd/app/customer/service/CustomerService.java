@@ -1,7 +1,6 @@
 package com.xzsd.app.customer.service;
 
 import com.neusoft.core.restful.AppResponse;
-import com.neusoft.security.client.utils.SecurityUtils;
 import com.neusoft.util.UUIDUtils;
 import com.xzsd.app.customer.dao.CustomerDao;
 import com.xzsd.app.customer.entity.Customer;
@@ -33,9 +32,9 @@ public class CustomerService {
         if(0 != countUserAcct) {
             return AppResponse.bizError("账号名已存在, 请重新输入!!");
         }
-        //获取当前创建者编号
-        String createUser = SecurityUtils.getCurrentUserId();
-        customer.setCreateUser(createUser);
+//        //获取当前创建者编号
+//        String createUser = SecurityUtils.getCurrentUserId();
+//        customer.setCreateUser(createUser);
         //生成随机用户编号
         customer.setCustomerCode(UUIDUtils.getUUID());
         //密码加密
