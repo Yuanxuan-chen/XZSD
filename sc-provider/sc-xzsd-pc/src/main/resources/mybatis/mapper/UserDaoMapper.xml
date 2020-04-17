@@ -9,6 +9,10 @@
         from t_sys_user
         where is_delete = 0
         and user_acct = #{userAcct}
+        <if test="userCode != null and userCode != '' ">
+            and user_code != #{userCode}
+        </if>
+
     </select>
 
 <!--用户新增-->
