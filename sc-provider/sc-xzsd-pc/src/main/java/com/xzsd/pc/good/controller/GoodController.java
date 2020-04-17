@@ -39,7 +39,7 @@ public class GoodController {
      * 商品选择
      * @return
      */
-    @PostMapping("listGoodOfSlideshow")
+    @PostMapping("listGoodOfSelect")
     public AppResponse listGoodOfSlideshow(Good good) {
         try{
             return goodService.listGoodOfSlideshow(good);
