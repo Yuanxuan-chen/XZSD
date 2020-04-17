@@ -54,8 +54,13 @@
 <!--用户修改-->
     <update id="updateUser" parameterType="com.xzsd.pc.user.entity.User" >
         update t_sys_user
-        set user_acct = #{userAcct},
+        set
+        <if test="userAcct != null and userAcct != '' " >
+            user_acct = #{userAcct},
+        </if>
+        <if test="userPassword != null and userPassword != '' " >
             user_password = #{userPassword},
+        </if>
             user_name = #{userName},
             user_picture_url = #{userPictureUrl},
             sex = #{sex},
@@ -79,7 +84,10 @@
             update_user = #{updateUser},
             update_time = now()
         where is_delete = 0
-        and user_code = #{userCode}
+        and user_code in
+        <foreach item="item" index="index" collection="userCodeList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
     </update>
 
 <!--用户详细信息查询-->

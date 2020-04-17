@@ -1,5 +1,7 @@
 package com.xzsd.pc.user.entity;
 
+import java.util.List;
+
 /**
  * @author Yuanxuan
  * @date 2020-04-14 上午 09:44
@@ -46,9 +48,22 @@ public class User {
     private int version;
 
     /**
-     * 用户编号'
+     * 用户编号
      */
     private String userCode;
+
+    /**
+     * 用户编号集合
+     */
+    private List<String> userCodeList;
+
+    public List<String> getUserCodeList() {
+        return userCodeList;
+    }
+
+    public void setUserCodeList(List<String> userCodeList) {
+        this.userCodeList = userCodeList;
+    }
 
     /**
      * 用户账号'

@@ -59,13 +59,21 @@ public class UserService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse updateUser(User user) {
-        int countUserAcct = userDao.countUserAcct(user);
-        if(0 != countUserAcct){
-            return AppResponse.bizError("用户账号已存在，请重新输入！");
+        //获取修改的用户名
+        String updateAcct = user.getUserAcct();
+        if (null != updateAcct) {
+            int countUserAcct = userDao.countUserAcct(user);
+            if(0 != countUserAcct){
+                return AppResponse.bizError("用户账号已存在，请重新输入！");
+            }
         }
-        //密码加密
-        String password = PasswordUtils.generatePassword(user.getUserPassword());
-        user.setUserPassword(password);
+        //获取修改的密码
+        String updatePassword = user.getUserPassword();
+        if(null != updatePassword){
+            //密码加密
+            String password = PasswordUtils.generatePassword(updatePassword);
+            user.setUserPassword(password);
+        }
         //用户修改
         int count = userDao.updateUser(user);
         if(0 == count) {
