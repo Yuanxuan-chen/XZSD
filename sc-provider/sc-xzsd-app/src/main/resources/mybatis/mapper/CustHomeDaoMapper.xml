@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.app.customer.home.dao.HomeDao">
+
+<!--轮播图商品查询-->
+    <select id="listSlideshow" parameterType="com.xzsd.app.customer.home.entity.Home" resultType="com.xzsd.app.customer.home.entity.Home" >
+        select slideshow_good_code goodCode,
+               slideshow_route slideshowRoute
+        from t_sys_slideshow
+        where is_delete = 0
+        and slideshow_state = 1
+        order by slideshow_sort
+    </select>
+
+<!--热门商品信息查询-->
+    <select id="listHotGood" parameterType="com.xzsd.app.customer.home.entity.Home" resultType="com.xzsd.app.customer.home.entity.Home" >
+        select h.good_code goodCode,
+               h.good_name goodName,
+               g.pictureUrl pictureUrl,
+               g.sell_price sellPrice
+        from t_sys_hot_good as h, t_sys_goods as g
+        where h.good_code = h.good_code
+        and h.is_delete = 0
+        order by h.hot_sort
+    </select>
+
+
+
+</mapper>
