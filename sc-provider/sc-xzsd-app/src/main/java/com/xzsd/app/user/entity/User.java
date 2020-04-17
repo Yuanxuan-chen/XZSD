@@ -140,6 +140,46 @@ public class User {
      */
     private String newPassword;
 
+
+    /**
+     * 门店编号
+     */
+    private String storeCode;
+
+    /**
+     * 门店名称
+     */
+    private String storeName;
+
+    /**
+     * 门店地址
+     */
+    private String address;
+
+    public String getStoreCode() {
+        return storeCode;
+    }
+
+    public void setStoreCode(String storeCode) {
+        this.storeCode = storeCode;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getOldPassword() {
         return oldPassword;
     }
