@@ -59,7 +59,7 @@ public class Good {
     /**
      * 商家名称
      */
-    private int businessName;
+    private String businessName;
 
     /**
      * 库存
@@ -151,13 +151,6 @@ public class Good {
      */
     private int pageSize;
 
-    public int getBusinessName() {
-        return businessName;
-    }
-
-    public void setBusinessName(int businessName) {
-        this.businessName = businessName;
-    }
 
     public int getPageNum() {
         return pageNum;
@@ -191,6 +184,13 @@ public class Good {
         this.goodName = goodName;
     }
 
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
 
     public String getIsbn() {
         return isbn;
