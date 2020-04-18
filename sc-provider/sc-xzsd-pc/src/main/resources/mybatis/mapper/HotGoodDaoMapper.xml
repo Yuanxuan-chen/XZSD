@@ -8,7 +8,6 @@
         insert into t_sys_hot_good
         (hot_good_code,
          good_code,
-         good_name,
          hot_sort,
          is_delete,
          create_user,
@@ -18,7 +17,6 @@
         (
          #{hotGoodCode},
          #{goodCode},
-         #{goodName},
          #{hotSort},
          0,
          #{createUser},
@@ -29,7 +27,7 @@
 <!--热门商品修改-->
     <update id="updateHotGood" parameterType="com.xzsd.pc.hotGood.entity.HotGood" >
         update t_sys_hot_good
-        set good_name = #{goodName},
+        set good_code = #{goodCode},
             hot_sort = #{hotSort},
             update_user = #{updateUser},
             update_time = now(),
@@ -55,7 +53,8 @@
 
 <!--热门商品详细信息查询-->
     <select id="selectHotGood" parameterType="com.xzsd.pc.hotGood.entity.HotGood" resultType="com.xzsd.pc.hotGood.entity.HotGood" >
-        select *
+        select hot_sort hotSort,
+               good_code goodCode
         from t_sys_hot_good
         where is_delete = 0
         and hot_good_code = #{hotGoodCode}
@@ -63,16 +62,41 @@
 
 <!--热门商品分页查询-->
     <select id="listHotGood" parameterType="com.xzsd.pc.hotGood.entity.HotGood" resultType="com.xzsd.pc.hotGood.entity.HotGood" >
-        select *
-        from t_sys_hot_good
-        where is_delete = 0
-        <if test="goodCode != null and  goodCode !='' " >
-            and good_code like concat('%', #{goodCode}, '%')
+        select h.hot_sort,
+               h.hot_good_code,
+               h.good_code,
+               g.good_name,
+               g.sell_price,
+               g.good_introduce,
+               h.version
+        from t_sys_hot_good as h, t_sys_goods as g
+        where h.is_delete = 0
+        and g.good_code = h.good_code
+        <if test="goodCode != null and goodCode != '' " >
+            and g.good_code like concat('%', #{goodCode}, '%')
         </if>
-        <if test="goodName != null and  goodName !='' " >
-            and good_name like concat('%', #{goodName}, '%')
+        <if test="goodName != null and goodName != '' ">
+            and g.good_name like concat('%', #{goodName}, '%')
         </if>
-        order by hot_good_code
+        order by hot_sort
     </select>
+
+<!--热门商品展示数量查询-->
+    <select id="getHotGood" parameterType="com.xzsd.pc.hotGood.entity.HotGood" resultType="com.xzsd.pc.hotGood.entity.HotGood">
+        select dict_value showNumber,
+               version
+        from t_dictionary
+        where dict_code = 'showNumber'
+    </select>
+
+<!--热门商品展示数量设置-->
+    <update id="setHotGood" parameterType="com.xzsd.pc.hotGood.entity.HotGood" >
+        update t_dictionary
+        set dict_value = #{showNumber},
+            version = version + 1
+        where is_delete = 0
+        and dict_code = 'showNumber'
+        and version = #{version}
+    </update>
 
 </mapper>

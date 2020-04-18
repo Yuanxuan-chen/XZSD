@@ -60,7 +60,12 @@
 
 <!--轮播图详细信息查询-->
     <select id="selectSlideshow" parameterType="com.xzsd.pc.slideshow.entity.Slideshow" resultType="com.xzsd.pc.slideshow.entity.Slideshow">
-        select *
+        select slideshow_route slideshowRoute,
+               slideshow_sort slideshowSort,
+               date_start dateStart,
+               date_stop dateStop,
+               slideshow_good_code slideshowGoodCode,
+               version
         from t_sys_slideshow
         where is_delete = 0
         and slideshow_code = #{slideshowCode}
@@ -68,7 +73,13 @@
 
 <!--轮播图分页查询-->
     <select id="listSlideshow" parameterType="com.xzsd.pc.slideshow.entity.Slideshow" resultType="com.xzsd.pc.slideshow.entity.Slideshow">
-        select *
+        select  slideshow_sort slideshowSort,
+                slideshow_route slideshowRoute,
+                slideshow_state slideshowState,
+                slideshow_route slideshowRoute,
+                date_start dateStart,
+                date_stop dateStop,
+                version
         from t_sys_slideshow
         where is_delete = 0
         <if test="slideshowState != 0">

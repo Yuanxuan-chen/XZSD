@@ -97,6 +97,83 @@ public class Order {
      */
     private String payStop;
 
+    /**
+     * 用户编码
+     */
+    private String userCode;
+
+    /**
+     * 订单编码
+     */
+    private String goodCode;
+
+    /**
+     * 商品编码
+     */
+    private String goodName;
+
+    /**
+     * 购买数量
+     */
+    private String totalNumber;
+
+    /**
+     * 总金额
+     */
+    private String totalPrice;
+
+    /**
+     * 售价
+     */
+    private String sellPrice;
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
+    }
+
+    public String getGoodCode() {
+        return goodCode;
+    }
+
+    public void setGoodCode(String goodCode) {
+        this.goodCode = goodCode;
+    }
+
+    public String getGoodName() {
+        return goodName;
+    }
+
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
+    }
+
+    public String getTotalNumber() {
+        return totalNumber;
+    }
+
+    public void setTotalNumber(String totalNumber) {
+        this.totalNumber = totalNumber;
+    }
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(String sellPrice) {
+        this.sellPrice = sellPrice;
+    }
 
     public String getPayStart() {
         return payStart;

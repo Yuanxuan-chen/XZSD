@@ -125,13 +125,13 @@ public class GoodTypeService {
     }
 
     /**
-     * 分类二级菜单查询
+     * 分类一二级菜单查询
      * @param goodType
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse selectLevel(GoodType goodType) {
-        PageHelper.startPage(goodType.getPageNum(), goodType.getPageSize());
+//        PageHelper.startPage(goodType.getPageNum(), goodType.getPageSize());
         List<GoodType> goodTypeInfo = goodTypeDao.selectLevel(goodType);
         if(null == goodTypeInfo) {
             return AppResponse.bizError("分类查询异常");

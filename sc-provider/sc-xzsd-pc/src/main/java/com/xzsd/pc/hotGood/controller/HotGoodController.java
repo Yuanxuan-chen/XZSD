@@ -91,4 +91,32 @@ public class HotGoodController {
         }
     }
 
+    /**
+     * 热门商品展示数量查询
+     * @param hotGood
+     * @return
+     */
+    @PostMapping("getHotGood")
+    public AppResponse getHotGood(HotGood hotGood){
+        try {
+            return hotGoodService.getHotGood(hotGood);
+        }catch (Exception e) {
+            throw e;
+        }
+    }
+
+    /**
+     * 热门商品展示数量设置
+     * @param hotGood
+     * @return
+     */
+    @PostMapping("setHotGood")
+    public AppResponse setHotGood(HotGood hotGood){
+        try {
+            return hotGoodService.setHotGood(hotGood);
+        }catch (Exception e) {
+            throw e;
+        }
+    }
+
 }

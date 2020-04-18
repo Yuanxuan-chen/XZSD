@@ -122,6 +122,8 @@
             t.cost_price costPrice,
             t.sell_price sellPrice,
             t.pictureUrl pictureUrl,
+            t.publish,
+            t.author,
             t.version version
         from t_sys_goods as t
         where good_code = #{goodCode}
@@ -151,6 +153,8 @@
         sell_volume sellVolume,
         get_good_date getGoodDate,
         browse_volume browseVolume,
+        publish,
+        author,
         version version
         from t_sys_goods
         where is_delete = 0

@@ -108,4 +108,33 @@ public class HotGoodService {
         return AppResponse.success("热门商品删除成功");
     }
 
+
+    /**
+     * 热门商品展示数量查询
+     * @param hotGood
+     * @return
+     */
+    public AppResponse getHotGood(HotGood hotGood) {
+        HotGood hotGoodInfo = hotGoodDao.getHotGood(hotGood);
+        if(null == hotGoodInfo){
+            return AppResponse.bizError("热门商品展示数量查询失败");
+        }
+        return AppResponse.success("热门商品展示数量查询成功", hotGoodInfo);
+    }
+
+    /**
+     * 热门商品展示数量设置
+     * @param hotGood
+     * @return
+     */
+    public AppResponse setHotGood(HotGood hotGood) {
+        int hotGoodInfo = hotGoodDao.setHotGood(hotGood);
+        if(0 == hotGoodInfo){
+            return AppResponse.bizError("热门商品展示数量设置失败");
+        }
+        return AppResponse.success("热门商品展示数量设置成功");
+    }
+
+
+
 }

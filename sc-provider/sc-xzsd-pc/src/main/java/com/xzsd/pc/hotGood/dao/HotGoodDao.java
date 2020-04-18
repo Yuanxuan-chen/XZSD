@@ -47,4 +47,18 @@ public interface HotGoodDao {
      */
     int deleteHotGood(HotGood hotGood);
 
+    /**
+     * 热门商品展示数量查询
+     * @param hotGood
+     * @return
+     */
+    HotGood getHotGood(HotGood hotGood);
+
+    /**
+     * 热门商品展示数量设置
+     * @param hotGood
+     * @return
+     */
+    int setHotGood(HotGood hotGood);
+
 }

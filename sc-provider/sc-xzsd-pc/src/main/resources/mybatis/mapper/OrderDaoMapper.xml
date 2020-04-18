@@ -5,7 +5,15 @@
 
 <!--订单分页查询-->
     <select id="listOrder" parameterType="com.xzsd.pc.order.entity.Order" resultType="com.xzsd.pc.order.entity.Order" >
-        select *
+        select order_code orderCode,
+               order_total orderTotal,
+               order_state orderState,
+               is_pay isPay,
+               store_code storeCode,
+               buyer_name buyerName,
+               buyer_tel buyerTel,
+               pay_time payTime,
+               version
         from t_sys_order
         where is_delete = 0
         <if test="buyerName != null and buyerName != '' " >
@@ -31,8 +39,14 @@
 
 <!--订单详细信息查询-->
     <select id="selectOrder" parameterType="com.xzsd.pc.order.entity.Order" resultType="com.xzsd.pc.order.entity.Order" >
-        select *
-        from t_sys_order
+        select order_code orderCode,
+               user_code userCode,
+               good_code goodCode,
+               good_name goodName,
+               total_number totalNumber,
+               total_price totalPrice,
+               sell_price sellPrice
+        from t_sys_order_deta
         where is_delete = 0
         and order_code = #{orderCode}
     </select>
@@ -41,7 +55,7 @@
     <update id="stateOrder" parameterType="com.xzsd.pc.order.entity.Order" >
         update t_sys_order
         set order_state = #{orderState},
-            version = version + 1,U
+            version = version + 1,
             update_user = #{updateser},
             update_time = now()
         where is_delete = 0

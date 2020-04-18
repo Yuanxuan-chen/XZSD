@@ -79,7 +79,16 @@
 
 <!--门店详细信息详情-->
     <select id="selectStore" parameterType="com.xzsd.pc.store.entity.Store" resultType="com.xzsd.pc.store.entity.Store" >
-        select *
+        select store_name storeName,
+               tel,
+               shopkeeper_code shopkeeperCode,
+               licence_code licenceCode,
+               invite_code inviteCode,
+               province_name provinceName,
+               downtown_name downtownName,
+               area_name areaName,
+               address,
+               version
         from t_sys_store
         where is_delete = 0
         and store_code = #{storeCode}
@@ -87,7 +96,15 @@
 
 <!--门店信息分页查询-->
     <select id="listStore" parameterType="com.xzsd.pc.store.entity.Store" resultType="com.xzsd.pc.store.entity.Store" >
-        select *
+        select store_code storeCode,
+        store_name storeName,
+        tel,
+        address,
+        shopkeeper_name shopkeeperName,
+        invite_code inviteCode,
+        store_acct storeAcct,
+        version
+        from t_sys_store
         from t_sys_store
         where is_delete = 0
         <if test="storeCode != null and storeCode != '' " >

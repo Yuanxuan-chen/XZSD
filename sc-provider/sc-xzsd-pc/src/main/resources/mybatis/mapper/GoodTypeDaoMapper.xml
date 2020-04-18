@@ -52,7 +52,11 @@
 
 <!--分类详细信息查询-->
     <select id="selecteGoodType" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType" >
-        select *
+        select type_code typeCode,
+               type_name typeName,
+               remark,
+               parent_code parentCode,
+               version
         from t_sys_good_type
         where is_delete = 0
         and type_code = #{typeCode}
@@ -60,20 +64,23 @@
 
 <!--分类分页查询-->
     <select id="listGoodType" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType" >
-        select *
+        select type_code typeCode,
+               type_name typeName,
+               remark,
+               version
         from t_sys_good_type
         where is_delete = 0
         order by type_code
     </select>
 
 <!--分类一级菜单查询-->
-    <select id="selectLevelOne" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType">
-        select *
-        from t_sys_good_type
-        where is_delete = 0
-        and parent_code = 0
-        order by type_code
-    </select>
+<!--    <select id="selectLevelOne" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType">-->
+<!--        select *-->
+<!--        from t_sys_good_type-->
+<!--        where is_delete = 0-->
+<!--        and parent_code = 0-->
+<!--        order by type_code-->
+<!--    </select>-->
 
 <!--分类一二级菜单查询-->
     <select id="selectLevel" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType">

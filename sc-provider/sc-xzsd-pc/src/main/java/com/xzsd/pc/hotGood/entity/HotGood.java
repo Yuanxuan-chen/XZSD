@@ -72,6 +72,45 @@ public class HotGood {
      */
     private String hotSort;
 
+    /**
+     *商品价格
+     */
+    private String sellPrice;
+
+    /**
+     *商品介绍
+     */
+    private String goodIntroduce;
+
+    /**
+     * 热门商品展示数量
+     */
+    private String showNumber;
+
+    public String getShowNumber() {
+        return showNumber;
+    }
+
+    public void setShowNumber(String showNumber) {
+        this.showNumber = showNumber;
+    }
+
+    public String getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(String sellPrice) {
+        this.sellPrice = sellPrice;
+    }
+
+    public String getGoodIntroduce() {
+        return goodIntroduce;
+    }
+
+    public void setGoodIntroduce(String goodIntroduce) {
+        this.goodIntroduce = goodIntroduce;
+    }
+
     public List<String> getHotGoodCodeList() {
         return hotGoodCodeList;
     }
