@@ -91,5 +91,17 @@ public class StoreController {
         }
     }
 
-
+    /**
+     * 省市区查询
+     * @param store
+     * @return
+     */
+    @PostMapping("listArea")
+    public AppResponse listArea(Store store) {
+        try {
+            return storeService.listArea(store);
+        }catch (Exception e) {
+            throw e;
+        }
+    }
 }

@@ -106,4 +106,18 @@ public class StoreService {
         return AppResponse.success("门店信息删除成功");
     }
 
+
+    /**
+     * 省市区查询
+     * @param store
+     * @return
+     */
+    public AppResponse listArea(Store store) {
+        PageHelper.startPage(store.getPageNum(), store.getPageSize());
+        List<Store> storeInfo = storeDao.listArea(store);
+        if(null == storeInfo) {
+            return AppResponse.bizError("省市区查询失败");
+        }
+        return AppResponse.success("省市区查询成功", new PageInfo<Store>(storeInfo));
+    }
 }

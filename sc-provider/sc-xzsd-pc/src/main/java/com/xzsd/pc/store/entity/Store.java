@@ -133,6 +133,21 @@ public class Store {
      */
     private String driverCode;
 
+
+
+    /**
+     * 父级编号
+     */
+    private String parentCode;
+
+    public String getParentCode() {
+        return parentCode;
+    }
+
+    public void setParentCode(String parentCode) {
+        this.parentCode = parentCode;
+    }
+
     public List<String> getStoreCodeList() {
         return storeCodeList;
     }

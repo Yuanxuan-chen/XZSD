@@ -129,5 +129,14 @@
     </select>
 
 
+    <select id="listArea" parameterType="com.xzsd.pc.store.entity.Store" resultType="com.xzsd.pc.store.entity.Store">
+        select area_code areaCode,
+               area_name areaName
+        from area
+        where parent_code = #{parentCode}
+        order by area_code
+    </select>
+
+
 
 </mapper>

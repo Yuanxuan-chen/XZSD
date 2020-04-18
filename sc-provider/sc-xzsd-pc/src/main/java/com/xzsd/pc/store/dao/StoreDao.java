@@ -44,4 +44,12 @@ public interface StoreDao {
      * @return
      */
     int deleteStore(Store store);
+
+
+    /**
+     * 省市区查询
+     * @param store
+     * @return
+     */
+    List<Store> listArea(Store store);
 }
