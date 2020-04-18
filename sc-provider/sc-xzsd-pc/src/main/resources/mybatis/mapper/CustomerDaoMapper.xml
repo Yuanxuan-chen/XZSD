@@ -3,6 +3,7 @@
 
 <mapper namespace="com.xzsd.pc.customer.dao.CustomerDao">
 
+<!--客户详细信息查询-->
     <select id="selectCustomer" parameterType="com.xzsd.pc.customer.entity.Customer" resultType="com.xzsd.pc.customer.entity.Customer" >
         select
         user_code customerCode,
@@ -19,7 +20,8 @@
         and user_code = #{customerCode}
         and role = 4
     </select>
-    
+
+<!--客户分页查询-->
     <select id="listCustomer" parameterType="com.xzsd.pc.customer.entity.Customer" resultType="com.xzsd.pc.customer.entity.Customer" >
         select
         user_code customerCode,
@@ -34,8 +36,8 @@
         from t_sys_user
         where is_delete = 0
         and role = 4
-        <if test="customerCode != null and customerCode != '' ">
-            and user_code like concat('%', #{customerCode}, '%')
+        <if test="customerAcct != null and customerAcct != '' ">
+            and user_acct like concat('%', #{customerAcct}, '%')
         </if>
         <if test="customerName != null and customerName != '' ">
             and user_name like concat('%', #{customerName}, '%')

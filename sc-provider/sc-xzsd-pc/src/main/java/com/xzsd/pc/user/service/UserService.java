@@ -123,6 +123,9 @@ public class UserService {
      * @return
      */
     public AppResponse topColumn(User user) {
+        //获取当前登陆人信息
+        String loginUser = SecurityUtils.getCurrentUserId();
+        user.setUserCode(loginUser);
         User userInfo = userDao.topColumn(user);
         if(null == userInfo) {
             return AppResponse.bizError("顶部栏查询异常");
