@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.app.customer.goodType.dao.GoodTypeDao">
+
+<!--商品分类一级查询-->
+    <select id="levelOneList" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" resultType="com.xzsd.app.customer.goodType.entity.GoodType">
+        select type_code typeCode,
+               type_name typeName
+        from t_sys_good_type
+        where is_delete = 0
+    </select>
+
+<!--商品分类二级查询-->
+    <select id="levelTwoList" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" resultType="com.xzsd.app.customer.goodType.entity.GoodType">
+
+
+    </select>
+
+<!--商品信息查询-->
+    <select id="selectGood" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" resultType="com.xzsd.app.customer.goodType.entity.GoodType">
+
+
+    </select>
+
+<!--商品评价分页查询-->
+    <select id="listAssess" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" resultType="com.xzsd.app.customer.goodType.entity.GoodType" >
+        select assess_user assessUser,
+               assess_rank assessRank,
+               assess_content assessContent,
+               assess_time assessTime
+        from t_sys_assess
+        where is_delete = 0
+        and good_code = ${goodCode}
+        and assess_rank in 
+        <foreach item="item" index="index" collection="assessRankList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>
