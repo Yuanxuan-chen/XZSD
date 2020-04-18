@@ -39,7 +39,10 @@
             version = version + 1,
             update_time = now(),
             update_user = #{updateUser}
-        where slideshow_code = #{slideshowCode}
+        where slideshow_code in
+        <foreach index="index" item="item" collection="slideshowCodeList"  open="(" separator="," close=")" >
+            #{item}
+        </foreach>
         and is_delete = 0
     </update>
     

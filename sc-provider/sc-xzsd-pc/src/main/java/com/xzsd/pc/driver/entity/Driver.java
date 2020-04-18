@@ -1,5 +1,7 @@
 package com.xzsd.pc.driver.entity;
 
+import java.util.List;
+
 /**
  * @author Yuanxuan
  * @date 2020-04-11 下午 10:12
@@ -82,6 +84,12 @@ public class Driver {
     private String driverCode;
 
     /**
+     * 司机编号集合
+     */
+    private List<String> driverCodeList;
+
+
+    /**
      *司机账号
      */
     private String driverAcct;
@@ -105,6 +113,14 @@ public class Driver {
      *身份证号
      */
     private String idcard;
+
+    public List<String> getDriverCodeList() {
+        return driverCodeList;
+    }
+
+    public void setDriverCodeList(List<String> driverCodeList) {
+        this.driverCodeList = driverCodeList;
+    }
 
     public int getPageNum() {
         return pageNum;

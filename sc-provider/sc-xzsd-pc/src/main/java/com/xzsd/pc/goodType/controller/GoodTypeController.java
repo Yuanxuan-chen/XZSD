@@ -108,10 +108,10 @@ public class GoodTypeController {
      * @param goodType
      * @return
      */
-    @RequestMapping("selectLevelTwo")
-    public AppResponse selectLevelTwo(GoodType goodType) {
+    @RequestMapping("selectLevel")
+    public AppResponse selectLevel(GoodType goodType) {
         try {
-            return goodTypeService.selectLevelTwo(goodType);
+            return goodTypeService.selectLevel(goodType);
         }catch (Exception e) {
             throw e;
         }

@@ -130,13 +130,13 @@ public class GoodTypeService {
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
-    public AppResponse selectLevelTwo(GoodType goodType) {
+    public AppResponse selectLevel(GoodType goodType) {
         PageHelper.startPage(goodType.getPageNum(), goodType.getPageSize());
-        List<GoodType> goodTypeInfo = goodTypeDao.selectLevelTwo(goodType);
+        List<GoodType> goodTypeInfo = goodTypeDao.selectLevel(goodType);
         if(null == goodTypeInfo) {
-            return AppResponse.bizError("分类分页查询异常");
+            return AppResponse.bizError("分类查询异常");
         }
-        return AppResponse.success("分类分页查询成功", new PageInfo<GoodType>(goodTypeInfo));
+        return AppResponse.success("分类查询成功", new PageInfo<GoodType>(goodTypeInfo));
     }
 
 }

@@ -57,6 +57,6 @@ public interface GoodTypeDao {
      * @param goodType
      * @return
      */
-    List<GoodType> selectLevelTwo(GoodType goodType);
+    List<GoodType> selectLevel(GoodType goodType);
 
 }

@@ -75,9 +75,10 @@
         order by type_code
     </select>
 
-<!--分类二级菜单查询-->
-    <select id="selectLevelTwo" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType">
-        select *
+<!--分类一二级菜单查询-->
+    <select id="selectLevel" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType">
+        select type_code typeCode,
+               type_name typeName
         from t_sys_good_type
         where is_delete = 0
         and parent_code = #{parentCode}

@@ -1,5 +1,7 @@
 package com.xzsd.pc.hotGood.entity;
 
+import java.util.List;
+
 /**
  * @author Yuanxuan
  * @date 2020-04-11 下午 05:23
@@ -51,6 +53,11 @@ public class HotGood {
     private String hotGoodCode;
 
     /**
+     * 热门编码集合
+     */
+    private List<String> hotGoodCodeList;
+
+    /**
      * 热门商品编码
      */
     private String goodCode;
@@ -65,6 +72,13 @@ public class HotGood {
      */
     private String hotSort;
 
+    public List<String> getHotGoodCodeList() {
+        return hotGoodCodeList;
+    }
+
+    public void setHotGoodCodeList(List<String> hotGoodCodeList) {
+        this.hotGoodCodeList = hotGoodCodeList;
+    }
 
     public int getPageNum() {
         return pageNum;

@@ -1,5 +1,7 @@
 package com.xzsd.pc.slideshow.entity;
 
+import java.util.List;
+
 /**
  * @author Yuanxuan
  * @date 2020-04-10 下午 07:52
@@ -53,6 +55,10 @@ public class Slideshow {
     private String slideshowCode;
 
     /**
+     * 轮播图片编号集合
+     */
+    private List<String> slideshowCodeList;
+    /**
      * 轮播图片路径
      */
     private String slideshowRoute;
@@ -82,6 +88,13 @@ public class Slideshow {
      */
     private String slideshowState;
 
+    public List<String> getSlideshowCodeList() {
+        return slideshowCodeList;
+    }
+
+    public void setSlideshowCodeList(List<String> slideshowCodeList) {
+        this.slideshowCodeList = slideshowCodeList;
+    }
 
     public int getPageNum() {
         return pageNum;

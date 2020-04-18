@@ -1,5 +1,7 @@
 package com.xzsd.pc.store.entity;
 
+import java.util.List;
+
 /**
  * @author Yuanxuan
  * @date 2020-04-11 下午 09:32
@@ -49,6 +51,11 @@ public class Store {
      * 门店编号
      */
     private String storeCode;
+
+    /**
+     * 门店编号集合
+     */
+    private List<String> storeCodeList;
 
     /**
      * 门店账号
@@ -126,6 +133,13 @@ public class Store {
      */
     private String driverCode;
 
+    public List<String> getStoreCodeList() {
+        return storeCodeList;
+    }
+
+    public void setStoreCodeList(List<String> storeCodeList) {
+        this.storeCodeList = storeCodeList;
+    }
 
     public int getPageNum() {
         return pageNum;

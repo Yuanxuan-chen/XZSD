@@ -24,6 +24,7 @@
              is_delete,
              create_user,
              create_time,
+             good_state,
              version)
             values
             (#{goodCode},
@@ -45,6 +46,7 @@
              0,
              #{createUser},
              now(),
+             3,
              0)
     </insert>
 
@@ -80,8 +82,11 @@
             version = version + 1,
             update_user = #{updateUser},
             update_time = now()
-        where good_code = #{goodCode}
-        and is_delete = 0
+        where is_delete = 0
+        and good_code in
+        <foreach item="item" index="index" collection="goodCodeList" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
     </update>
 
 <!--商品状态更改-->
@@ -125,10 +130,10 @@
         cost_price costPrice,
         sell_price sellPrice,
         sell_volume sellVolume,
-        t.level_one_code levelOneCode,
-        t.level_one_name levelOneName,
-        t.level_two_code levelOneCode,
-        t.level_two_name levelTwoName,
+        level_one_code levelOneCode,
+        level_one_name levelOneName,
+        level_two_code levelOneCode,
+        level_two_name levelTwoName,
         ad ad,
         good_introduce goodIntroduce,
         good_state goodState,

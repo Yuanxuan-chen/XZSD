@@ -1,5 +1,7 @@
 package com.xzsd.pc.good.entity;
 
+import java.util.List;
+
 /**
  * 商品实体类
  * @author Yuanxuan
@@ -10,6 +12,11 @@ public class Good {
      * 商品编号
      */
     private String goodCode;
+
+    /**
+     * 商品编号集合
+     */
+    private List<String> goodCodeList;
 
     /**
      * 商品名称
@@ -151,6 +158,21 @@ public class Good {
      */
     private int pageSize;
 
+    public List<String> getGoodCodeList() {
+        return goodCodeList;
+    }
+
+    public void setGoodCodeList(List<String> goodCodeList) {
+        this.goodCodeList = goodCodeList;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
 
     public int getPageNum() {
         return pageNum;
@@ -184,13 +206,6 @@ public class Good {
         this.goodName = goodName;
     }
 
-    public String getBusinessName() {
-        return businessName;
-    }
-
-    public void setBusinessName(String businessName) {
-        this.businessName = businessName;
-    }
 
     public String getIsbn() {
         return isbn;

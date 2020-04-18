@@ -75,7 +75,10 @@
             update_time = now()
         where is_delete = 0
         and role = 3
-        and user_code = #{driverCode}
+        and user_code in
+        <foreach collection="driverCodeList" item="item" index="index" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
     </update>
 
 <!--司机详细信息-->

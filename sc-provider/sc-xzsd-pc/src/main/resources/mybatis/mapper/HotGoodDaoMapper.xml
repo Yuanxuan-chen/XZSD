@@ -47,7 +47,10 @@
             update_time = now(),
             version = version + 1
         where is_delete = 0
-        and hot_good_code = #{hotGoodCode}
+        and hot_good_code in
+        <foreach item="item" index="index" collection="hotGoodCodeList"  open="(" separator="," close=")" >
+            #{item}
+        </foreach>
     </update>
 
 <!--热门商品详细信息查询-->

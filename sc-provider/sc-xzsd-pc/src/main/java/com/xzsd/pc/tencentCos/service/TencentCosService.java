@@ -38,8 +38,9 @@ public class TencentCosService {
         //上传图片获取其url
         String url = TencentCosUtil.upload(excelFile, "xzsd/" + excelFile.getName());
 
+        String suburl = url.substring(0, url.indexOf("?"));
         //删除临时文件
         deleteFile(excelFile);
-        return AppResponse.success("图片上传成功", url);
+        return AppResponse.success("图片上传成功", suburl);
     }
 }

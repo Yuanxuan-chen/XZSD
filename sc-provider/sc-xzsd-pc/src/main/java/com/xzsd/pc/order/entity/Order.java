@@ -51,6 +51,7 @@ public class Order {
      */
     private String orderCode;
 
+
     /**
      *订单总价
      */
@@ -95,6 +96,7 @@ public class Order {
      * 付款时间止
      */
     private String payStop;
+
 
     public String getPayStart() {
         return payStart;

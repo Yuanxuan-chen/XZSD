@@ -71,7 +71,10 @@
         set is_delete = 1,
             version = version + 1
         where is_delete = 0
-        and store_code = #{storeCode}
+        and store_code in
+        <foreach collection="storeCodeList" item="item" index="index" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
     </update>
 
 <!--门店详细信息详情-->
