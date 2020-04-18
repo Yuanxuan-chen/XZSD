@@ -46,7 +46,7 @@
                total_number totalNumber,
                total_price totalPrice,
                sell_price sellPrice
-        from t_sys_order_deta
+        from t_sys_order_detail
         where is_delete = 0
         and order_code = #{orderCode}
     </select>

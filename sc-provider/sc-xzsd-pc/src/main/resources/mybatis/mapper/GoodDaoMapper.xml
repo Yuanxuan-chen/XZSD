@@ -78,6 +78,7 @@
             t.update_time = now(),
             t.version = version + 1
         where good_code = #{goodCode}
+        and is_delete = 0
         and version = #{version}
     </update>
 
@@ -103,12 +104,14 @@
             t.update_time = now(),
             t.version = version + 1
         where good_code = #{goodCode}
+        and is_delete = 0
         and version = #{version}
     </update>
 
 <!--商品详细信息查询-->
     <select id="selectGood" parameterType="com.xzsd.pc.good.entity.Good" resultType="com.xzsd.pc.good.entity.Good">
         select
+            t.good_code goodCode,
             t.good_name goodName,
             t.isbn isbn,
             t.level_one_code levelOneCode,
