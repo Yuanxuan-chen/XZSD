@@ -25,6 +25,9 @@
              create_user,
              create_time,
              good_state,
+             sell_volume,
+             get_good_date,
+             browse_volume,
              version)
             values
             (#{goodCode},
@@ -47,6 +50,9 @@
              #{createUser},
              now(),
              3,
+             0,
+             now(),
+             0,
              0)
     </insert>
 
@@ -142,6 +148,9 @@
         business_name businessName,
         stock stock,
         isbn isbn,
+        sell_volume sellVolume,
+        get_good_date getGoodDate,
+        browse_volume browseVolume,
         version version
         from t_sys_goods
         where is_delete = 0
