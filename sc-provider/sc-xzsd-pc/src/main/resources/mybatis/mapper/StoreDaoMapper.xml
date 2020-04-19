@@ -96,34 +96,36 @@
 
 <!--门店信息分页查询-->
     <select id="listStore" parameterType="com.xzsd.pc.store.entity.Store" resultType="com.xzsd.pc.store.entity.Store" >
-        select store_code storeCode,
-        store_name storeName,
-        tel,
-        address,
-        shopkeeper_name shopkeeperName,
-        invite_code inviteCode,
-        store_acct storeAcct,
-        version
-        from t_sys_store
-        from t_sys_store
-        where is_delete = 0
+        select  s.store_code storeCode,
+                s.store_name storeName,
+                s.tel,
+                s.address,
+                u.user_name shopkeeperName,
+                s.licence_code licenceCode,
+                s.invite_code inviteCode,
+                u.user_acct storeAcct,
+                s.version
+        from t_sys_store as s, t_sys_user as u
+        where s.is_delete = 0
+        and u.role = 2
+        and s.shopkeeper_code = u.user_code
         <if test="storeCode != null and storeCode != '' " >
-            and store_code like concat('%', #{storeCode}, '%')
+            and s.store_code like concat('%', #{storeCode}, '%')
         </if>
         <if test="storeName != null and storeName != '' " >
-            and store_name like concat('%', #{storeName}, '%')
+            and s.store_name like concat('%', #{storeName}, '%')
         </if>
         <if test="shopkeeperName != null and shopkeeperName != '' " >
-            and shopkeeper_name like concat('%', #{shopkeeperName}, '%')
+            and u.user_name like concat('%', #{shopkeeperName}, '%')
         </if>
         <if test="provinceCode != null and provinceCode != '' " >
-            and province_code = #{provinceCode}
+            and s.province_code = #{provinceCode}
         </if>
         <if test="downtownCode != null and downtownCode != '' " >
-            and downtown_code = #{downtownCode}
+            and s.downtown_code = #{downtownCode}
         </if>
         <if test="areaCode != null and areaCode != '' " >
-            and area_code = #{areaCode}
+            and s.area_code = #{areaCode}
         </if>
         order by store_code
     </select>

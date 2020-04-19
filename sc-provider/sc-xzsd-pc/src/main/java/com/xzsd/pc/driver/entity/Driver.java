@@ -114,6 +114,19 @@ public class Driver {
      */
     private String idcard;
 
+    /**
+     * 图片链接
+     */
+    private String userPictureUrl;
+
+    public String getUserPictureUrl() {
+        return userPictureUrl;
+    }
+
+    public void setUserPictureUrl(String userPictureUrl) {
+        this.userPictureUrl = userPictureUrl;
+    }
+
     public List<String> getDriverCodeList() {
         return driverCodeList;
     }

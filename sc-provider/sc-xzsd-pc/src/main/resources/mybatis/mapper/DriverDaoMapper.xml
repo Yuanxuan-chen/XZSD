@@ -7,6 +7,7 @@
         insert into t_sys_user
         (user_code,
          user_name,
+         user_picture_url,
          tel,
          user_acct,
          user_password,
@@ -26,6 +27,7 @@
         values
         (#{driverCode},
          #{driverName},
+         #{userPictureUrl},
          #{tel},
          #{driverAcct},
          #{driverPassword},
@@ -48,6 +50,7 @@
         update t_sys_user
         set user_name = #{driverName},
             tel = #{tel},
+            user_picture_url = #{userPictureUrl},
             user_acct = #{driverAcct},
             user_password =  #{driverPassword},
             idcard =  #{idcard},
@@ -87,6 +90,7 @@
             user_name driverName,
             tel,
             user_acct driverAcct,
+            user_picture_url userPictureUrl,
             user_password driverPassword,
             idcard,
             province_name,
@@ -104,6 +108,7 @@
         select
             user_code driverCode,
             user_name driverName,
+            user_picture_url userPictureUrl,
             tel,
             idcard,
             user_acct driverAcct,

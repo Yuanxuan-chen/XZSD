@@ -7,6 +7,7 @@ import com.neusoft.security.client.utils.SecurityUtils;
 import com.neusoft.util.UUIDUtils;
 import com.xzsd.pc.driver.dao.DriverDao;
 import com.xzsd.pc.driver.entity.Driver;
+import com.xzsd.pc.util.PasswordUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -62,6 +63,8 @@ public class DriverService {
         driver.setCreateUser(createUser);
         //随机司机编码产生
         driver.setDriverCode(UUIDUtils.getUUID());
+        String password = PasswordUtils.generatePassword(driver.getDriverPassword());
+        driver.setDriverPassword(password);
         //司机信息新增
         int driverInfo = driverDao.saveDriver(driver);
         if(0 == driverInfo) {
