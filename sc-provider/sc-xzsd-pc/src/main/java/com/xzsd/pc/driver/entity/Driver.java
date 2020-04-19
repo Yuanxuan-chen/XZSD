@@ -88,6 +88,15 @@ public class Driver {
      */
     private List<String> driverCodeList;
 
+    /**
+     * 邮箱
+     */
+    private String mail;
+
+    /**
+     * 性别, 1男, 2女
+     */
+    private int sex;
 
     /**
      *司机账号
@@ -118,6 +127,22 @@ public class Driver {
      * 图片链接
      */
     private String userPictureUrl;
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
 
     public String getUserPictureUrl() {
         return userPictureUrl;

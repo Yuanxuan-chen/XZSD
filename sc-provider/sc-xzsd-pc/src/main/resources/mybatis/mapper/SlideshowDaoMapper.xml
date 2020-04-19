@@ -21,7 +21,7 @@
                                            #{slideshowCode},
                                            #{slideshowRoute},
                                            #{slideshowSort},
-                                           1,
+                                           2,
                                            #{dateStart},
                                            #{dateStop},
                                            #{slideshowGoodCode},
@@ -53,14 +53,20 @@
             version = version + 1,
             update_time = now(),
             update_user = #{updateUser}
-        where slideshow_code = #{slideshowCode}
-        and version = #{version}
+        where slideshow_code in
+        <foreach index="index" item="item" collection="slideshowCodeList"  open="(" separator="," close=")" >
+            #{item}
+        </foreach>
+        and version in
+        <foreach index="indexVer" item="itemVer" collection="versionList"  open="(" separator="," close=")" >
+            #{itemVer}
+        </foreach>
         and is_delete = 0
     </update>
 
 <!--轮播图详细信息查询-->
     <select id="selectSlideshow" parameterType="com.xzsd.pc.slideshow.entity.Slideshow" resultType="com.xzsd.pc.slideshow.entity.Slideshow">
-        select slideshow_sort slideshowSort,
+        select slideshow_code slideshowCode,
                slideshow_route slideshowRoute,
                slideshow_sort slideshowSort,
                date_start dateStart,
@@ -75,6 +81,7 @@
 <!--轮播图分页查询-->
     <select id="listSlideshow" parameterType="com.xzsd.pc.slideshow.entity.Slideshow" resultType="com.xzsd.pc.slideshow.entity.Slideshow">
         select  slideshow_sort slideshowSort,
+                slideshow_code slideshowCode,
                 slideshow_route slideshowRoute,
                 slideshow_state slideshowState,
                 slideshow_route slideshowRoute,

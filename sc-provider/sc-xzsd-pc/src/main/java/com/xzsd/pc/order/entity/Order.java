@@ -1,5 +1,7 @@
 package com.xzsd.pc.order.entity;
 
+import java.util.List;
+
 /**
  * @author Yuanxuan
  * @date 2020-04-11 下午 01:58
@@ -47,9 +49,19 @@ public class Order {
     private int version;
 
     /**
+     * 版本号集合
+     */
+    private List<Integer> versionList;
+
+    /**
      * 订单编码
      */
     private String orderCode;
+
+    /**
+     * 订单编码集合
+     */
+    private List<String> orderCodeList;
 
 
     /**
@@ -126,6 +138,22 @@ public class Order {
      * 售价
      */
     private String sellPrice;
+
+    public List<Integer> getVersionList() {
+        return versionList;
+    }
+
+    public void setVersionList(List<Integer> versionList) {
+        this.versionList = versionList;
+    }
+
+    public List<String> getOrderCodeList() {
+        return orderCodeList;
+    }
+
+    public void setOrderCodeList(List<String> orderCodeList) {
+        this.orderCodeList = orderCodeList;
+    }
 
     public String getUserCode() {
         return userCode;

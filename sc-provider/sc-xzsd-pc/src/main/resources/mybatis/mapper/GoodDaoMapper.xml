@@ -103,9 +103,15 @@
             t.update_user = #{updateUser},
             t.update_time = now(),
             t.version = version + 1
-        where good_code = #{goodCode}
+        where good_code in
+        <foreach item="item" index="index" collection="goodCodeList" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
         and is_delete = 0
-        and version = #{version}
+        and version in
+        <foreach index="indexVer" item="itemVer" collection="versionList"  open="(" separator="," close=")" >
+            #{itemVer}
+        </foreach>
     </update>
 
 <!--商品详细信息查询-->

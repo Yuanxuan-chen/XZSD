@@ -119,6 +119,11 @@ public class Good {
     private int version ;
 
     /**
+     * 版本号集合
+     */
+    private List<Integer> versionList ;
+
+    /**
      * 上价时间
      */
     private String getGoodDate;
@@ -157,6 +162,14 @@ public class Good {
      * 页面大小
      */
     private int pageSize;
+
+    public List<Integer> getVersionList() {
+        return versionList;
+    }
+
+    public void setVersionList(List<Integer> versionList) {
+        this.versionList = versionList;
+    }
 
     public List<String> getGoodCodeList() {
         return goodCodeList;

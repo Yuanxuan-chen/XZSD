@@ -48,6 +48,10 @@ public class Slideshow {
      */
     private int version;
 
+    /**
+     * 版本号集合
+     */
+    private List<Integer> versionList;
 
     /**
      * 轮播图片编号
@@ -58,6 +62,7 @@ public class Slideshow {
      * 轮播图片编号集合
      */
     private List<String> slideshowCodeList;
+
     /**
      * 轮播图片路径
      */
@@ -87,6 +92,14 @@ public class Slideshow {
      *轮播图片状态, 0启用, 1禁用
      */
     private String slideshowState;
+
+    public List<Integer> getVersionList() {
+        return versionList;
+    }
+
+    public void setVersionList(List<Integer> versionList) {
+        this.versionList = versionList;
+    }
 
     public List<String> getSlideshowCodeList() {
         return slideshowCodeList;

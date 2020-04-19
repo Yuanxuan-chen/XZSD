@@ -59,8 +59,14 @@
             update_user = #{updateser},
             update_time = now()
         where is_delete = 0
-        and order_code = #{orderCode}
-        and version = #{version}
+        and order_code in
+        <foreach index="index" item="item" collection="orderCodeList"  open="(" separator="," close=")" >
+            #{item}
+        </foreach>
+        and version in
+        <foreach index="indexVer" item="itemVer" collection="versionList"  open="(" separator="," close=")" >
+            #{itemVer}
+        </foreach>
     </update>
     
 </mapper>

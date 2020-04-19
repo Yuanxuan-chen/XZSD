@@ -19,7 +19,8 @@
 <!--客户信息查询-->
     <select id="selecteCustomer" parameterType="com.xzsd.app.user.entity.User" resultType="com.xzsd.app.user.entity.User" >
         select user_acct userAcct,
-               user_picture_url userPictureUrl
+               user_picture_url userPictureUrl,
+               invite_code inviteCode
         from t_sys_user
         where is_delete = 0
         and role = 4
