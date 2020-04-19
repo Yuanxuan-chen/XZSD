@@ -60,7 +60,8 @@
 
 <!--轮播图详细信息查询-->
     <select id="selectSlideshow" parameterType="com.xzsd.pc.slideshow.entity.Slideshow" resultType="com.xzsd.pc.slideshow.entity.Slideshow">
-        select slideshow_route slideshowRoute,
+        select slideshow_sort slideshowSort,
+               slideshow_route slideshowRoute,
                slideshow_sort slideshowSort,
                date_start dateStart,
                date_stop dateStop,
@@ -83,7 +84,7 @@
         from t_sys_slideshow
         where is_delete = 0
         <if test="slideshowState != 0">
-            and slideshow_state = 1
+            and slideshow_state = #{slideshowState}
         </if>
         order by slideshow_sort
     </select>
