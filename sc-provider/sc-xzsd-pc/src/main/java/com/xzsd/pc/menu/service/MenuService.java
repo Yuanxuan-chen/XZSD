@@ -1,6 +1,5 @@
 package com.xzsd.pc.menu.service;
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.neusoft.core.restful.AppResponse;
 import com.neusoft.security.client.utils.SecurityUtils;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -93,13 +93,26 @@ public class MenuService {
         return AppResponse.success("菜单详细信息查询成功", menuInfo);
     }
 
+
     /**
      * 菜单列表查询
      * @param menu
      * @return
      */
     public AppResponse listMenu(Menu menu) {
-        PageHelper.startPage(1, 10);
+        //获取当前登录人编码
+        String userCode = SecurityUtils.getCurrentUserId();
+        //获取登录人角色代码
+        int role = menuDao.getUserRole(userCode);
+        if(1 > role || 2 < role){
+            return AppResponse.notFound("查询无结果");
+        }else if(2 == role){
+            //设置店长查询到的菜单: 订单管理, 商品管理
+            List<String> menuList = new ArrayList<String>();
+            menuList.add("订单管理");
+            menuList.add("商品管理");
+            menu.setMenuNameList(menuList);
+        }
         List<Menu> menuInfo = menuDao.listMenu(menu);
         if (null == menuInfo){
             return AppResponse.bizError("菜单分页查询失败");
@@ -107,18 +120,30 @@ public class MenuService {
         return AppResponse.success("菜单分页查询成功", new PageInfo<Menu>(menuInfo));
     }
 
-
     /**
-     * 首页菜单列表查询
+     * 侧边栏菜单列表查询
      * @param menu
      * @return
      */
     public AppResponse listMenuHome(Menu menu) {
+        //获取当前登录人编码
+        String userCode = SecurityUtils.getCurrentUserId();
+        //获取登录人角色代码
+        int role = menuDao.getUserRole(userCode);
+        if(1 > role || 2 < role){
+            return AppResponse.notFound("查询无结果");
+        }else if(2 == role){
+            //设置店长查询到的菜单: 订单管理, 商品管理
+            List<String> menuList = new ArrayList<String>();
+            menuList.add("订单管理");
+            menuList.add("商品管理");
+            menu.setMenuNameList(menuList);
+        }
         List<Menu> menuInfo = menuDao.listMenuHome(menu);
         if (null == menuInfo){
             return AppResponse.bizError("菜单分页查询失败");
         }
-        return AppResponse.success("菜单分页查询成功", menuInfo);
+        return AppResponse.success("菜单分页查询成功", new PageInfo<Menu>(menuInfo));
     }
 
 }

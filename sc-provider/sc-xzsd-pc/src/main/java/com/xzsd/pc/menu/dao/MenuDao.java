@@ -53,4 +53,7 @@ public interface MenuDao {
      * @return
      */
     List<Menu> listMenuHome(Menu menu);
+
+
+    int getUserRole(String userCode);
 }

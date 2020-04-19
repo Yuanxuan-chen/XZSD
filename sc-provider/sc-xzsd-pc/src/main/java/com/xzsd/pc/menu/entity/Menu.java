@@ -1,5 +1,7 @@
 package com.xzsd.pc.menu.entity;
 
+import java.util.List;
+
 /**
  * @author Yuanxuan
  * @date 2020-04-14 下午 05:42
@@ -56,9 +58,10 @@ public class Menu {
     private String menuName;
 
     /**
-     *'是否菜单, 0菜单, 1目录'
+     * '
      */
-    private int isMenu;
+    private List<String> menuNameList;
+
 
     /**
      *'菜单路由'
@@ -75,19 +78,15 @@ public class Menu {
      */
     private String parentode;
 
-    /**
-     * 角色编号
-     * @return
-     */
-    private int role;
 
-    public int getRole() {
-        return role;
+    public List<String> getMenuNameList() {
+        return menuNameList;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setMenuNameList(List<String> menuNameList) {
+        this.menuNameList = menuNameList;
     }
+
 
     public int getPageNum() {
         return pageNum;
@@ -169,13 +168,7 @@ public class Menu {
         this.menuName = menuName;
     }
 
-    public int getIsMenu() {
-        return isMenu;
-    }
 
-    public void setIsMenu(int isMenu) {
-        this.isMenu = isMenu;
-    }
 
     public String getRoute() {
         return route;

@@ -91,7 +91,7 @@ public class MenuController {
     }
 
     /**
-     * 首页菜单列表查询
+     * 侧边栏菜单列表查询
      * @param menu
      * @return
      */
@@ -103,4 +103,5 @@ public class MenuController {
             throw e;
         }
     }
+
 }

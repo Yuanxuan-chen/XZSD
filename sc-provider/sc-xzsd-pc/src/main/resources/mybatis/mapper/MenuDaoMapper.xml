@@ -77,6 +77,12 @@
                version
         from t_sys_menu
         where is_delete = 0
+        <if test="menuNameList != null and  menuNameList.size() > 0 ">
+            and menu_name in
+            <foreach collection="menuNameList" item="item" index="index" open="(" separator="," close=")" >
+                #{item}
+            </foreach>
+        </if>
     </select>
 
 <!--首页菜单列表查询-->
@@ -85,12 +91,20 @@
                menu_name
         from t_sys_menu
         where is_delete = 0
-        <if test="role = 2 ">
-            and (menu_name = '订单管理' or menu_name = '商品管理')
+        <if test="menuNameList != null and  menuNameList.size() > 0 ">
+            and menu_name in
+            <foreach collection="menuNameList" item="item" index="index" open="(" separator="," close=")" >
+                #{item}
+            </foreach>
         </if>
-        <if test="role = 3 or role = 4">
-            and menu_name = ''
-        </if>
+    </select>
+
+<!--获取当前登陆人的角色编号-->
+    <select id="getUserRole" parameterType="java.lang.String" resultType="int" >
+        select role
+        from t_sys_user
+        where is_delete = 0
+        and user_code = #{userCode}
     </select>
 
 
