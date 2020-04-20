@@ -62,16 +62,17 @@
 
 <!--热门商品分页查询-->
     <select id="listHotGood" parameterType="com.xzsd.pc.hotGood.entity.HotGood" resultType="com.xzsd.pc.hotGood.entity.HotGood" >
-        select h.hot_sort,
-               h.hot_good_code,
-               h.good_code,
-               g.good_name,
-               g.sell_price,
-               g.good_introduce,
-               h.version
-        from t_sys_hot_good as h, t_sys_goods as g
-        where h.is_delete = 0
-        and g.good_code = h.good_code
+        select  h.hot_sort,
+                h.hot_good_code,
+                h.good_code,
+                g.good_name,
+                g.sell_price,
+                g.good_introduce,
+                h.version
+        from t_sys_hot_good as h  left join t_sys_goods as g
+        on g.good_code = h.good_code
+        and h.is_delete = 0
+--         and g.is_delete = 0 todo 商品被删除了怎么处理
         <if test="goodCode != null and goodCode != '' " >
             and g.good_code like concat('%', #{goodCode}, '%')
         </if>
