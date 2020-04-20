@@ -46,14 +46,14 @@ public interface GoodTypeDao {
     List<GoodType> listGoodType(GoodType goodType);
 
     /**
-     * 分类一级菜单查询
+     * 分类一二级菜单查询
      * @param goodType
      * @return
      */
     List<GoodType> selectLevelOne(GoodType goodType);
 
     /**
-     * 分类二级菜单查询
+     * 商品分类选择下拉框
      * @param goodType
      * @return
      */

@@ -1,5 +1,7 @@
 package com.xzsd.pc.goodType.entity;
 
+import java.util.List;
+
 /**
  * @author Yuanxuan
  * @date 2020-04-11 上午 07:27
@@ -65,6 +67,15 @@ public class GoodType {
      */
     private String parentCode;
 
+    private List<GoodType> typeList;
+
+    public List<GoodType> getTypeList() {
+        return typeList;
+    }
+
+    public void setTypeList(List<GoodType> typeList) {
+        this.typeList = typeList;
+    }
 
     public int getPageNum() {
         return pageNum;

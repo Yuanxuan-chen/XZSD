@@ -99,16 +99,16 @@
         select  s.store_code storeCode,
                 s.store_name storeName,
                 s.tel,
-                s.address,
+                concat(s.province_name, s.downtown_name, s.area_name, s.address) address,
                 u.user_name shopkeeperName,
                 s.licence_code licenceCode,
                 s.invite_code inviteCode,
                 u.user_acct storeAcct,
                 s.version
-        from t_sys_store as s, t_sys_user as u
+        from t_sys_store as s LEFT JOIN t_sys_user as u
+        on s.shopkeeper_code = u.user_code
         where s.is_delete = 0
         and u.role = 2
-        and s.shopkeeper_code = u.user_code
         <if test="storeCode != null and storeCode != '' " >
             and s.store_code like concat('%', #{storeCode}, '%')
         </if>
@@ -130,7 +130,7 @@
         order by store_code
     </select>
 
-
+<!--省市区-->
     <select id="listArea" parameterType="com.xzsd.pc.store.entity.Store" resultType="com.xzsd.pc.store.entity.Store">
         select area_code areaCode,
                area_name areaName

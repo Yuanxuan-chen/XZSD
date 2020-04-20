@@ -73,16 +73,32 @@
         order by type_code
     </select>
 
-<!--分类一级菜单查询-->
-<!--    <select id="selectLevelOne" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType">-->
-<!--        select *-->
-<!--        from t_sys_good_type-->
-<!--        where is_delete = 0-->
-<!--        and parent_code = 0-->
-<!--        order by type_code-->
-<!--    </select>-->
-
 <!--分类一二级菜单查询-->
+    <resultMap id="selectLevelOneMap" type="com.xzsd.pc.goodType.entity.GoodType">
+        <!--一级菜单-->
+        <id property="typeCode" column="type_code" />
+        <result property="typeName" column="type_name"  />
+        <!--二级菜单-->
+        <collection property="typeList" ofType="com.xzsd.pc.goodType.entity.GoodType" >
+            <id property="typeCode" column="twoCode"  />
+            <result property="typeName" column="twoName"  />
+        </collection>
+    </resultMap>
+
+    <select id="selectLevelOne" resultMap="selectLevelOneMap">
+        select a.type_code,
+               a.type_name,
+               b.type_code twoCode,
+               b.type_name twoName
+        from t_sys_good_type a left join t_sys_good_type b
+            on a.type_code = b.parent_code
+        where a.parent_code = 0
+        and a.is_delete = 0
+        and b.is_delete = 0
+        order by a.type_code
+    </select>
+
+<!--商品分类选择下拉框-->
     <select id="selectLevel" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType">
         select type_code typeCode,
                type_name typeName

@@ -85,13 +85,13 @@ public class HotGood {
     /**
      * 热门商品展示数量
      */
-    private String showNumber;
+    private int showNumber;
 
-    public String getShowNumber() {
+    public int getShowNumber() {
         return showNumber;
     }
 
-    public void setShowNumber(String showNumber) {
+    public void setShowNumber(int showNumber) {
         this.showNumber = showNumber;
     }
 
