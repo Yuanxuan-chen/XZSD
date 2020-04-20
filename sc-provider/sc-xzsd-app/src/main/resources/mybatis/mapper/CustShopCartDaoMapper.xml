@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.app.customer.shopCart.dao.ShopCartDao">
+
+<!--购物车新增商品-->
+    <insert id="saveShopCart" parameterType="com.xzsd.app.customer.shopCart.entity.ShopCart" >
+        insert into t_sys_shop_cart
+        (cart_code,
+         user_code,
+         good_code,
+         good_number,
+         is_delete,
+         create_user,
+         create_time,
+         update_user,
+         update_time,
+         version)
+        values
+        (
+         #{cartCode},
+         #{userCode},
+         #{goodCode},
+         <choose>
+            <when test="goodNumber > 0">
+                #{goodNumber},
+            </when>
+            <otherwise>
+                1,
+            </otherwise>
+         </choose>
+         0,
+         #{createUser},
+         now(),
+         #{createUser},
+         now(),
+         0
+        )
+    </insert>
+
+<!--购物车修改商品-->
+    <update id="stateShopCart" parameterType="com.xzsd.app.customer.shopCart.entity.ShopCart" >
+        update t_sys_shop_cart
+        set good_number = #{goodNumber},
+            update_user = #{updateUser},
+            update_time = now(),
+            version = version + 1
+        where cart_code = #{cartCode}
+        and is_delete = 0
+    </update>
+
+<!--购物车删除商品-->
+    <update id="deleteShopCart" parameterType="com.xzsd.app.customer.shopCart.entity.ShopCart" >
+        update t_sys_shop_cart
+        set is_delete = 1,
+            update_user = #{updateUser},
+            update_time = now(),
+            version = version + 1
+        where cart_code in
+        <foreach collection="cartCodeList" item="item" index="index" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
+        and is_delete = 0
+    </update>
+
+<!--购物车查询商品-->
+    <select id="listShopCart" parameterType="com.xzsd.app.customer.shopCart.entity.ShopCart" resultType="com.xzsd.app.customer.shopCart.entity.ShopCart" >
+        select s.cart_code cartCode,
+               s.good_code goodCode,
+               g.good_name goodName,
+               s.good_number goodNumber,
+               g.sell_price sellPrice,
+               g.pictureUrl pictureUrl
+        from t_sys_shop_cart as s left join t_sys_goods as g
+        on s.good_code = g.good_code
+        where s.is_delete = 0
+        and g.is_delete = 0
+    </select>
+
+</mapper>
