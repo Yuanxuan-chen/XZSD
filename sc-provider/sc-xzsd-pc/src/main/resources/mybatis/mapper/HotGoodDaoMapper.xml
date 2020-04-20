@@ -71,8 +71,8 @@
                 h.version
         from t_sys_hot_good as h  left join t_sys_goods as g
         on g.good_code = h.good_code
-        and h.is_delete = 0
---         and g.is_delete = 0 todo 商品被删除了怎么处理
+        where h.is_delete = 0
+        and g.is_delete = 0
         <if test="goodCode != null and goodCode != '' " >
             and g.good_code like concat('%', #{goodCode}, '%')
         </if>
