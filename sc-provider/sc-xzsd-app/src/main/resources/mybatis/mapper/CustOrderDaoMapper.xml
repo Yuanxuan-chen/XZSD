@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xzsd.app.customer.order.dao.OrderDao">
+
+<!--订单详情表-->
+    <insert id="saveOrderDetail" parameterType="com.xzsd.app.customer.order.entity.Order" >
+        insert into t_sys_order_detail
+        (order_detail_code,
+         order_code,
+         sell_price,
+         good_code,
+         total_number,
+         is_delete,
+         create_user,
+         create_time,
+         update_user,
+         update_time,
+         version)
+         values
+        (
+         #{orderDetailCode},
+         #{orderCode},
+         #{sellPrice},
+         #{goodCode},
+         #{totalNumber},
+         0,
+         #{createUser},
+         now(),
+         #{createUser},
+         now(),
+         0
+        )
+    </insert>
+
+<!--获取用户信息-->
+    <select id="getUserInfo" parameterType="com.xzsd.app.customer.order.entity.Order" resultType="com.xzsd.app.customer.order.entity.Order" >
+        select s.store_code storeCode,
+               u.user_name buyerName,
+               u.tel buyerTel
+        from t_sys_store as s left join t_sys_user as u
+            on s.invite_code = u.invite_code
+            and u.role = 4
+            and u.is_delete = 0
+        where s.is_delete = 0
+        and s.invite_code = #{inviteCode}
+    </select>
+
+<!--订单表汇总-->
+    <insert id="saveOrder" parameterType="com.xzsd.app.customer.order.entity.Order" >
+    insert into  t_sys_order
+        (order_code,
+         order_state,
+         store_code,
+         buyer_tel,
+         buyer_name,
+         is_pay,
+         pay_time,
+         is_delete,
+         create_user,
+         create_time,
+         update_user,
+         update_time,
+         version)
+         values
+        (
+         #{orderCode},
+         #{orderState},
+         #{storeCode},
+         #{buyerTel},
+         #{buyerName},
+         2,
+         now(),
+         0,
+         #{createUser},
+         now(),
+         #{createUser},
+         now(),
+         0
+        )
+    </insert>
+
+<!--订单状态修改-->
+    <update id="stateOrder" parameterType="com.xzsd.app.customer.order.entity.Order" >
+        update t_sys_order
+        set order_state = #{orderState},
+            version = version + 1,
+            update_user = #{updateUser},
+            update_time = now()
+        where is_delete = 0
+        and order_code = #{orderCode}
+        and version = #{version}
+    </update>
+
+<!-- 订单详情查询-->
+    <select id="selectOrder" parameterMap="" >
+        select s.store_name  storeName,
+               concat(s.province_name, s.downtown_name, s.area_name, s.address) address,
+               o.order_code  orderCode,
+               o.create_time createTime,
+               o.order_state orderState,
+               g.good_name   goodName,
+               g.sell_price  sellPrice,
+               g.good_introduce goodIntroduce,
+               d.total_number   totalNumber,
+               g.pictureUrl,
+               o.version
+        from t_sys_order as o left join t_sys_store as s
+            on o.store_code = s.store_code
+            left join t_sys_order_detail as d
+            on o.order_code = d.order_code
+            left join t_sys_goods g
+            on d.good_code = g.good_code
+        where o.is_delete = 0
+        and  o.order_code = #{order_code}
+    </select>
+
+<!--订单列表查询-->
+    <select id="listOrder" parameterMap=" ">
+        select o.order_code orderCode,
+               o.order_state orderState,
+               g.good_code goodCode,
+               g.good_name goodName,
+               g.sell_price sellPrice,
+               g.good_introduce goodIntroduce,
+               d.total_number totalNumber,
+               g.pictureUrl,
+               o.version
+        from t_sys_order as o left join t_sys_order_detail d
+            on o.order_code = d.order_code
+            left join t_sys_goods as g
+            on d.good_code = g.good_code
+        where o.is_delete = 0
+        and o.order_state = #{orderState}
+    </select>
+
+<!--查询订单评价商品信息列表接口-->
+    <select id="listtAssess" parameterType="com.xzsd.app.customer.order.entity.Order" resultType="com.xzsd.app.customer.order.entity.Order" >
+        select g.good_code goodCode,
+               g.pictureUrl
+        from t_sys_order as o left join t_sys_order_detail as d
+            on o.order_code = d.order_code
+            left join t_sys_goods as g
+            on d.good_code = g.good_code
+        where o.is_delete = 0
+        and o.order_code = #{orderode}
+    </select>
+    
+</mapper>
