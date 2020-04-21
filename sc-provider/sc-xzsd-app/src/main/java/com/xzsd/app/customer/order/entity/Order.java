@@ -1,5 +1,7 @@
 package com.xzsd.app.customer.order.entity;
 
+import java.util.List;
+
 /**
  * @author Yuanxuan
  * @date 2020-04-21 上午 09:27
@@ -28,7 +30,7 @@ public class Order {
     /**
      * 创建时间
      */
-    private String creatTime;
+    private String createTime;
 
     /**
      * 修改者
@@ -51,6 +53,11 @@ public class Order {
     private String orderDetailCode;
 
     /**
+     * 商品详情编号集合
+     */
+    private List<String> orderDetailCodeList;
+
+    /**
      *订单编码
      */
     private String orderCode;
@@ -61,19 +68,50 @@ public class Order {
     private String sellPrice;
 
     /**
+     *商品价格集合
+     */
+    private List<String> sellPriceList;
+
+    /**
+     * 商品总数量
+     * @return
+     */
+    private int allNumber;
+
+    /**
+     * 商品总价格
+     * @return
+     */
+    private String allPrice;
+    /**
      *商品编号
      */
     private String goodCode;
 
     /**
+     *商品编号集合
+     */
+    private List<String> goodCodeList;
+
+    /**
      *客户选择的商品数量
      */
-    private String totalNumber;
+    private int totalNumber;
+
+    /**
+     *客户选择的商品数量集合
+     */
+    private List<Integer> totalNumberList;
 
     /**
      *门店编号
      */
     private String storeCode;
+
+    /**
+     *取货门店名称
+     */
+    private String storeName;
 
     /**
      *用户名字
@@ -93,12 +131,9 @@ public class Order {
     /**
      *订单状态
      */
-    private String orderState;
+    private int orderState;
 
-    /**
-     *取货门店名称
-     */
-    private String storeName;
+
 
     /**
      *省市区+取货门店地址
@@ -120,6 +155,70 @@ public class Order {
      */
     private String pictureUrl;
 
+    /**
+     * 商品集合
+     */
+    private List<Order> goodList;
+
+
+
+
+
+    public int getAllNumber() {
+        return allNumber;
+    }
+
+    public void setAllNumber(int allNumber) {
+        this.allNumber = allNumber;
+    }
+
+    public String getAllPrice() {
+        return allPrice;
+    }
+
+    public void setAllPrice(String allPrice) {
+        this.allPrice = allPrice;
+    }
+
+    public List<Order> getGoodList() {
+        return goodList;
+    }
+
+    public void setGoodList(List<Order> goodList) {
+        this.goodList = goodList;
+    }
+
+    public List<String> getOrderDetailCodeList() {
+        return orderDetailCodeList;
+    }
+
+    public void setOrderDetailCodeList(List<String> orderDetailCodeList) {
+        this.orderDetailCodeList = orderDetailCodeList;
+    }
+
+    public List<String> getSellPriceList() {
+        return sellPriceList;
+    }
+
+    public void setSellPriceList(List<String> sellPriceList) {
+        this.sellPriceList = sellPriceList;
+    }
+
+    public List<String> getGoodCodeList() {
+        return goodCodeList;
+    }
+
+    public void setGoodCodeList(List<String> goodCodeList) {
+        this.goodCodeList = goodCodeList;
+    }
+
+    public List<Integer> getTotalNumberList() {
+        return totalNumberList;
+    }
+
+    public void setTotalNumberList(List<Integer> totalNumberList) {
+        this.totalNumberList = totalNumberList;
+    }
 
     public int getPageNum() {
         return pageNum;
@@ -153,12 +252,12 @@ public class Order {
         this.createUser = createUser;
     }
 
-    public String getCreatTime() {
-        return creatTime;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(String creatTime) {
-        this.creatTime = creatTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public String getUpdateUser() {
@@ -217,11 +316,11 @@ public class Order {
         this.goodCode = goodCode;
     }
 
-    public String getTotalNumber() {
+    public int getTotalNumber() {
         return totalNumber;
     }
 
-    public void setTotalNumber(String totalNumber) {
+    public void setTotalNumber(int totalNumber) {
         this.totalNumber = totalNumber;
     }
 
@@ -257,11 +356,11 @@ public class Order {
         this.inviteCode = inviteCode;
     }
 
-    public String getOrderState() {
+    public int getOrderState() {
         return orderState;
     }
 
-    public void setOrderState(String orderState) {
+    public void setOrderState(int orderState) {
         this.orderState = orderState;
     }
 

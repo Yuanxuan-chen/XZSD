@@ -2,15 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.xzsd.app.store.dao.StoreDao">
-<!--订单列表查询-->
-    <resultMap id="listOrderMap" type="com.xzsd.app.store.entity.Store">
-<!--        订单信息-->
+
+    <resultMap id="orderMap" type="com.xzsd.app.store.entity.Store">
+        <!--订单信息-->
         <id property="orderCode" column="order_code"/>
         <result property="orderState" column="order_state"/>
         <result property="buyerTel" column="buyer_tel"/>
-        <result property="buyerName" column="buyer_name" />
-        <result property="version" column="version" />
-<!--        商品集合-->
+        <result property="buyerName" column="buyer_name"/>
+        <result property="allPrice" column="all_price"/>
+        <result property="allNumber" column="all_number"/>
+        <result property="version" column="version"/>
+        <result property="createTime" column="create_time"/>
+        <result property="storeName" column="store_name"/>
+        <result property="address" column="address"/>
+        <!--商品集合-->
         <collection property="goodList" ofType="com.xzsd.app.store.entity.Store">
             <id property="goodCode" column="good_code"/>
             <result property="goodName" column="good_name"/>
@@ -22,10 +27,13 @@
     </resultMap>
 
 
-    <select id="listOrder" resultMap="listOrderMap">
+<!--订单列表查询-->
+    <select id="listOrder" resultMap="orderMap">
         select o.order_code,
                o.order_state,
                o.buyer_tel,
+               o.all_number,
+               o.all_price,
                o.buyer_name,
                o.version,
                g.good_code,
@@ -47,34 +55,17 @@
 
 
 <!--订单详情查询-->
-    <resultMap id="selectOrderMap" type="com.xzsd.app.store.entity.Store">
-        <!--订单信息-->
-        <id property="orderCode" column="order_code"/>
-        <result property="orderState" column="order_state"/>
-        <result property="buyerTel" column="buyer_tel"/>
-        <result property="buyerName" column="buyer_name" />
-        <result property="version" column="version" />
-        <result property="createTime" column="create_time"  />
-        <result property="storeName" column="store_name" />
-        <result property="address" column="address" />
-        <!--商品集合-->
-        <collection property="goodList" ofType="com.xzsd.app.store.entity.Store">
-            <id property="goodCode" column="good_code"/>
-            <result property="goodName" column="good_name"/>
-            <result property="sellPrice" column="sell_price"/>
-            <result property="goodIntroduce" column="good_introduce"/>
-            <result property="totalNumber" column="total_number"/>
-            <result property="pictureUrl" column="pictureUrl"/>
-        </collection>
-    </resultMap>
-    <select id="selectOrder" resultMap="selectOrderMap" >
+    <select id="selectOrder" resultMap="orderMap" >
         select s.store_name,
                concat(s.province_name, s.downtown_name, s.area_name, s.address) address,
                o.order_code,
+               o.all_number,
+               o.all_price,
                o.buyer_tel,
                o.buyer_name,
                o.create_time,
                o.order_state,
+               g.good_code,
                g.good_name,
                g.sell_price,
                g.good_introduce,

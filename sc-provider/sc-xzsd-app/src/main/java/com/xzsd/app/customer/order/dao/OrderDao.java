@@ -15,7 +15,7 @@ public interface OrderDao {
      * @param order
      * @return
      */
-    int saveOrderDetail(Order order);
+    int saveOrderDetail(List<Order> order);
 
     /**
      * 获取用户信息

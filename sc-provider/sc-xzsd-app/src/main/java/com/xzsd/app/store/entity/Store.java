@@ -78,6 +78,34 @@ public class Store {
     private String storeCode;
 
     /**
+     * 商品总数量
+     * @return
+     */
+    private int allNumber;
+
+    /**
+     * 商品总价格
+     * @return
+     */
+    private String allPrice;
+
+    public int getAllNumber() {
+        return allNumber;
+    }
+
+    public void setAllNumber(int allNumber) {
+        this.allNumber = allNumber;
+    }
+
+    public String getAllPrice() {
+        return allPrice;
+    }
+
+    public void setAllPrice(String allPrice) {
+        this.allPrice = allPrice;
+    }
+
+    /**
      *用户名字
      */
     private String buyerName;
@@ -126,6 +154,8 @@ public class Store {
      * 商品集合
      */
     private List<Store> goodList;
+
+
 
     public List<Store> getGoodList() {
         return goodList;

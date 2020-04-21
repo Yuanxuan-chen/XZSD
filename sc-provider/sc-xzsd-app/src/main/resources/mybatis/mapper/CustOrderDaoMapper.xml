@@ -3,8 +3,8 @@
 
 <mapper namespace="com.xzsd.app.customer.order.dao.OrderDao">
 
-<!--订单详情表-->
-    <insert id="saveOrderDetail" parameterType="com.xzsd.app.customer.order.entity.Order" >
+<!--添加订单详情表-->
+    <insert id="saveOrderDetail" parameterType="java.util.List">
         insert into t_sys_order_detail
         (order_detail_code,
          order_code,
@@ -18,19 +18,21 @@
          update_time,
          version)
          values
-        (
-         #{orderDetailCode},
-         #{orderCode},
-         #{sellPrice},
-         #{goodCode},
-         #{totalNumber},
-         0,
-         #{createUser},
-         now(),
-         #{createUser},
-         now(),
-         0
-        )
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.orderDetailCode},
+            #{item.orderCode},
+            #{item.sellPrice},
+            #{item.goodCode},
+            #{item.totalNumber},
+            0,
+            #{item.createUser},
+            now(),
+            #{item.createUser},
+            now(),
+            0
+            )
+        </foreach>
     </insert>
 
 <!--获取用户信息-->
@@ -43,10 +45,10 @@
             and u.role = 4
             and u.is_delete = 0
         where s.is_delete = 0
-        and s.invite_code = #{inviteCode}
+        and u.user_code = #{createUser}
     </select>
 
-<!--订单表汇总-->
+<!--添加订单表汇总-->
     <insert id="saveOrder" parameterType="com.xzsd.app.customer.order.entity.Order" >
     insert into  t_sys_order
         (order_code,
@@ -54,6 +56,8 @@
          store_code,
          buyer_tel,
          buyer_name,
+         all_number,
+         all_price,
          is_pay,
          pay_time,
          is_delete,
@@ -65,10 +69,12 @@
          values
         (
          #{orderCode},
-         #{orderState},
+         1,
          #{storeCode},
          #{buyerTel},
          #{buyerName},
+         #{allNumber},
+         #{allPrice},
          2,
          now(),
          0,
@@ -92,19 +98,43 @@
         and version = #{version}
     </update>
 
+    <resultMap id="orderMap" type="com.xzsd.app.customer.order.entity.Order">
+        <!--订单信息-->
+        <id property="orderCode" column="order_code"/>
+        <result property="orderState" column="order_state"/>
+        <result property="version" column="version"/>
+        <result property="allPrice" column="all_price"/>
+        <result property="allNumber" column="all_number"/>
+        <result property="createTime" column="create_time" />
+        <result property="storeName" column="store_name"/>
+        <result property="address" column="address" />
+        <!--商品集合-->
+        <collection property="goodList" ofType="com.xzsd.app.customer.order.entity.Order">
+            <id property="goodCode" column="good_code"/>
+            <result property="goodName" column="good_name"/>
+            <result property="sellPrice" column="sell_price"/>
+            <result property="goodIntroduce" column="good_introduce"/>
+            <result property="totalNumber" column="total_number"/>
+            <result property="pictureUrl" column="pictureUrl"/>
+        </collection>
+    </resultMap>
+
 <!-- 订单详情查询-->
-    <select id="selectOrder" parameterMap="" >
-        select s.store_name  storeName,
+    <select id="selectOrder" resultMap="orderMap" >
+        select s.store_name,
                concat(s.province_name, s.downtown_name, s.area_name, s.address) address,
-               o.order_code  orderCode,
-               o.create_time createTime,
-               o.order_state orderState,
-               g.good_name   goodName,
-               g.sell_price  sellPrice,
-               g.good_introduce goodIntroduce,
-               d.total_number   totalNumber,
-               g.pictureUrl,
-               o.version
+               o.order_code,
+               o.all_number,
+               o.all_price,
+               o.create_time,
+               o.order_state,
+               o.version,
+               g.good_code,
+               g.good_name,
+               g.sell_price,
+               g.good_introduce,
+               d.total_number,
+               g.pictureUrl
         from t_sys_order as o left join t_sys_store as s
             on o.store_code = s.store_code
             left join t_sys_order_detail as d
@@ -112,18 +142,20 @@
             left join t_sys_goods g
             on d.good_code = g.good_code
         where o.is_delete = 0
-        and  o.order_code = #{order_code}
+        and  o.order_code = #{orderCode}
     </select>
 
 <!--订单列表查询-->
-    <select id="listOrder" parameterMap=" ">
-        select o.order_code orderCode,
-               o.order_state orderState,
-               g.good_code goodCode,
-               g.good_name goodName,
-               g.sell_price sellPrice,
-               g.good_introduce goodIntroduce,
-               d.total_number totalNumber,
+    <select id="listOrder" resultMap="orderMap">
+        select o.order_code,
+               o.all_number,
+               o.all_price,
+               o.order_state,
+               g.good_code,
+               g.good_name,
+               g.sell_price,
+               g.good_introduce,
+               d.total_number,
                g.pictureUrl,
                o.version
         from t_sys_order as o left join t_sys_order_detail d
@@ -131,7 +163,9 @@
             left join t_sys_goods as g
             on d.good_code = g.good_code
         where o.is_delete = 0
-        and o.order_state = #{orderState}
+        <if test="orderState != 0" >
+            and o.order_state = #{orderState}
+        </if>
     </select>
 
 <!--查询订单评价商品信息列表接口-->
@@ -143,7 +177,7 @@
             left join t_sys_goods as g
             on d.good_code = g.good_code
         where o.is_delete = 0
-        and o.order_code = #{orderode}
+        and o.order_code = #{orderCode}
     </select>
-    
+
 </mapper>
