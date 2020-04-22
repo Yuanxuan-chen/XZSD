@@ -141,4 +141,16 @@
         </if>
         order by user_code
     </select>
+
+    <!--统计用户账户数量-->
+    <select id="countDriverAcct" parameterType="com.xzsd.pc.driver.entity.Driver" resultType="int">
+        select count(user_acct)
+        from t_sys_user
+        where is_delete = 0
+        and user_acct = #{driverAcct}
+        <if test="driverCode != null and driverCode != '' ">
+            and user_code != #{driverCode}
+        </if>
+
+    </select>
 </mapper>

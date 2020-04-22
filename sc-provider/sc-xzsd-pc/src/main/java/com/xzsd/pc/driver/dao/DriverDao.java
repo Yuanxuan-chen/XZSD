@@ -44,4 +44,11 @@ public interface DriverDao {
      */
     int deleteDriver(Driver driver);
 
+    /**
+     * 统计司机账户
+     * @param driver
+     * @return
+     */
+    int countDriverAcct(Driver driver);
+
 }

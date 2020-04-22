@@ -58,6 +58,11 @@ public class DriverService {
      * @return
      */
     public AppResponse saveDriver(Driver driver) {
+        int countUserAcct = driverDao.countDriverAcct(driver);
+        if(0 != countUserAcct){
+            return AppResponse.bizError("司机账号已存在，请重新输入！");
+        }
+
         //创建者信息
         String createUser = SecurityUtils.getCurrentUserId();
         driver.setCreateUser(createUser);
@@ -79,6 +84,10 @@ public class DriverService {
      * @return
      */
     public AppResponse updateDriver(Driver driver) {
+        int countUserAcct = driverDao.countDriverAcct(driver);
+        if(0 != countUserAcct){
+            return AppResponse.bizError("司机账号已存在，请重新输入！");
+        }
         //修改者信息
         String updateUser = SecurityUtils.getCurrentUserId();
         driver.setUpdateUser(updateUser);
