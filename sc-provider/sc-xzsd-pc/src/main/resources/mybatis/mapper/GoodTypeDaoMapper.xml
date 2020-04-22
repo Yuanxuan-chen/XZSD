@@ -96,9 +96,9 @@
                b.remark twoRemark
         from t_sys_good_type a left join t_sys_good_type b
             on a.type_code = b.parent_code
+            and b.is_delete = 0
         where a.parent_code = 0
         and a.is_delete = 0
---         and b.is_delete = 0
         order by a.type_code
     </select>
 

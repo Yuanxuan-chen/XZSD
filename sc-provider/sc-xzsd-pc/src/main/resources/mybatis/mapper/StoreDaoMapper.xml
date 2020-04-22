@@ -79,11 +79,15 @@
 
 <!--门店详细信息详情-->
     <select id="selectStore" parameterType="com.xzsd.pc.store.entity.Store" resultType="com.xzsd.pc.store.entity.Store" >
-        select store_name storeName,
+        select store_code storeCode,
+               store_name storeName,
                tel,
                shopkeeper_code shopkeeperCode,
                licence_code licenceCode,
                invite_code inviteCode,
+               province_code provinceCode,
+               downtown_code downtownCode,
+               area_code areaCode,
                province_name provinceName,
                downtown_name downtownName,
                area_name areaName,
@@ -138,6 +142,23 @@
         where parent_code = #{parentCode}
         order by area_code
     </select>
+
+<!--省市区生成-->
+    <insert id="saveArea" parameterType="com.xzsd.pc.store.entity.Store" >
+        insert into area
+        (id,
+         area_code,
+         area_name,
+         parent_code,
+         target
+         )values(
+                 #{updateUser},
+                 #{areaCode},
+                 #{areaName},
+                 #{parentCode},
+                 now()
+                )
+    </insert>
 
 
 

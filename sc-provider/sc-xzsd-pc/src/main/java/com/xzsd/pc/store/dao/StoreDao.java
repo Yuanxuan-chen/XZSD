@@ -52,4 +52,11 @@ public interface StoreDao {
      * @return
      */
     List<Store> listArea(Store store);
+
+    /**
+     * 省市区生成
+     * @param store
+     * @return
+     */
+    int saveArea(Store store);
 }

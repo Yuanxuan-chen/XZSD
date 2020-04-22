@@ -104,4 +104,18 @@ public class StoreController {
             throw e;
         }
     }
+
+    /**
+     * 省市区生成
+     * @param store
+     * @return
+     */
+    @PostMapping("saveArea")
+    public AppResponse saveArea(Store store) {
+        try {
+            return storeService.saveArea(store);
+        }catch (Exception e) {
+            throw e;
+        }
+    }
 }
