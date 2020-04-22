@@ -119,6 +119,29 @@ public class GoodType {
      */
     private String userCode;
 
+    /**
+     * 父级编号
+     */
+    private String parentCode;
+
+    private List<GoodType> goodList;
+
+    public List<GoodType> getGoodList() {
+        return goodList;
+    }
+
+    public void setGoodList(List<GoodType> goodList) {
+        this.goodList = goodList;
+    }
+
+    public String getParentCode() {
+        return parentCode;
+    }
+
+    public void setParentCode(String parentCode) {
+        this.parentCode = parentCode;
+    }
+
     public List<Integer> getAssessRankList() {
         return assessRankList;
     }

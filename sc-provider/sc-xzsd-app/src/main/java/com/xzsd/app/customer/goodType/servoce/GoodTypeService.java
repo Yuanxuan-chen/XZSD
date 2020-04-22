@@ -3,6 +3,7 @@ package com.xzsd.app.customer.goodType.servoce;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.neusoft.core.restful.AppResponse;
+import com.neusoft.security.client.utils.SecurityUtils;
 import com.xzsd.app.customer.goodType.dao.GoodTypeDao;
 import com.xzsd.app.customer.goodType.entity.GoodType;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,9 @@ public class GoodTypeService {
      * @return
      */
     public AppResponse selectGood(GoodType goodType) {
+        //获取登录人编号
+        String createUser = SecurityUtils.getCurrentUserId();
+        goodType.setCreateUser(createUser);
         GoodType goodTypeInfo = goodTypeDao.selectGood(goodType);
         if(null == goodTypeInfo) {
             return AppResponse.bizError("商品信息查询异常");

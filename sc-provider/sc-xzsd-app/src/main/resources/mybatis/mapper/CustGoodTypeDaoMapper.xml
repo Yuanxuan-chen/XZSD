@@ -3,24 +3,66 @@
 
 <mapper namespace="com.xzsd.app.customer.goodType.dao.GoodTypeDao">
 
-<!--商品分类一级查询-->
+<!--商品分类级查询-->
     <select id="levelOneList" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" resultType="com.xzsd.app.customer.goodType.entity.GoodType">
         select type_code typeCode,
                type_name typeName
         from t_sys_good_type
         where is_delete = 0
+        and parent_code = 0
+        order by type_code
     </select>
+    
+    <resultMap id="levelTwoListMap" type="com.xzsd.app.customer.goodType.entity.GoodType">
+    <!--二级分类集合-->
+        <id property="typeCode" column="type_code" />
+        <result property="typeName" column="type_name"/>
+        <collection property="goodList" ofType="com.xzsd.app.customer.goodType.entity.GoodType">
+        <!--商品集合-->
+            <id property="goodCode" column="good_code" />
+            <result property="goodName" column="good_name"/>
+            <result property="sellPrice" column="sell_price"/>
+            <result property="pictureUrl" column="pictureUrl"/>
+        </collection>
+    </resultMap>
 
 <!--商品分类二级查询-->
-    <select id="levelTwoList" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" resultType="com.xzsd.app.customer.goodType.entity.GoodType">
-
-
+    <select id="levelTwoList" resultMap="levelTwoListMap">
+        select t.type_code,
+               t.type_name,
+               g.good_code,
+               g.good_name,
+               g.sell_price,
+               g.pictureUrl
+        from t_sys_good_type as t left join t_sys_goods as g
+            on t.parent_code = g.level_one_code
+            and t.type_code = g.level_two_code
+        where parent_code = #{typeCode}
+        and t.is_delete = 0
+        and g.is_delete = 0
+        order by type_code
     </select>
 
 <!--商品信息查询-->
     <select id="selectGood" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" resultType="com.xzsd.app.customer.goodType.entity.GoodType">
-
-
+        select good_code,
+               good_name,
+               good_introduce,
+               (
+               select s.store_name
+                from t_sys_store as s left join t_sys_user as u
+                        on s.invite_code = u.invite_code
+                        and u.role = 4
+                        and u.is_delete = 0
+                where s.is_delete = 0
+                and u.user_code = #{createUser}
+                        ) storeName,
+               sell_price,
+               pictureUrl
+        from t_sys_goods
+        where is_delete = 0
+        and good_code = #{goodCode}
+        order by good_code
     </select>
 
 <!--商品评价分页查询-->
@@ -31,7 +73,7 @@
                assess_time assessTime
         from t_sys_assess
         where is_delete = 0
-        and good_code = ${goodCode}
+        and good_code = #{goodCode}
         and assess_rank in 
         <foreach item="item" index="index" collection="assessRankList" open="(" separator="," close=")">
             #{item}

@@ -21,8 +21,8 @@ public class GoodTypeController {
     private GoodTypeService goodTypeService;
 
     /**
-     * 商品分类一级查询
-     * @param goodType
+     * 商品分类查询
+     * @param
      * @return
      */
     @PostMapping("levelOneList")
