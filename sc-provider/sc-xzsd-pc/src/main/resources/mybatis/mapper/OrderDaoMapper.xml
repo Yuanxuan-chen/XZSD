@@ -5,15 +5,15 @@
 
 <!--订单分页查询-->
     <select id="listOrder" parameterType="com.xzsd.pc.order.entity.Order" resultType="com.xzsd.pc.order.entity.Order" >
-        select order_code orderCode,
-               order_total orderTotal,
-               order_state orderState,
-               is_pay isPay,
-               store_code storeCode,
-               buyer_name buyerName,
-               buyer_tel buyerTel,
-               pay_time payTime,
-               version
+         select order_code,
+                order_state,
+                is_pay,
+                pay_time,
+                store_code,
+                version,
+                buyer_name,
+                buyer_tel,
+                all_price
         from t_sys_order
         where is_delete = 0
         <if test="buyerName != null and buyerName != '' " >
@@ -39,16 +39,20 @@
 
 <!--订单详细信息查询-->
     <select id="selectOrder" parameterType="com.xzsd.pc.order.entity.Order" resultType="com.xzsd.pc.order.entity.Order" >
-        select order_code orderCode,
-               user_code userCode,
-               good_code goodCode,
-               good_name goodName,
-               total_number totalNumber,
-               total_price totalPrice,
-               sell_price sellPrice
-        from t_sys_order_detail
-        where is_delete = 0
-        and order_code = #{orderCode}
+        select d.order_detail_code,
+               d.create_user userCode,
+               d.order_code,
+               d.good_code,
+               g.good_name,
+               d.total_number,
+               concat(cast(d.sell_price as decimal(9, 2) ) * d.total_number) totalPrice,
+               d.sell_price,
+               d.version
+        from t_sys_order_detail d left join t_sys_goods g
+            on d.good_code = g.good_code
+        where d.is_delete = 0
+        and d.order_code = #{orderCode}
+        order by d.order_detail_code
     </select>
 
 <!--订单物流状态修改-->

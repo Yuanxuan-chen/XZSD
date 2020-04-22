@@ -108,7 +108,7 @@
         from t_sys_store as s LEFT JOIN t_sys_user as u
         on s.shopkeeper_code = u.user_code
         where s.is_delete = 0
-        and u.role = 2
+--         and u.role = 2
         <if test="storeCode != null and storeCode != '' " >
             and s.store_code like concat('%', #{storeCode}, '%')
         </if>

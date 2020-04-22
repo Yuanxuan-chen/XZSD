@@ -63,6 +63,33 @@ public class Order {
      */
     private List<String> orderCodeList;
 
+    /**
+     * 商品总数量
+     * @return
+     */
+    private int allNumber;
+
+    /**
+     * 商品总价格
+     * @return
+     */
+    private String allPrice;
+
+    public int getAllNumber() {
+        return allNumber;
+    }
+
+    public void setAllNumber(int allNumber) {
+        this.allNumber = allNumber;
+    }
+
+    public String getAllPrice() {
+        return allPrice;
+    }
+
+    public void setAllPrice(String allPrice) {
+        this.allPrice = allPrice;
+    }
 
     /**
      *订单总价

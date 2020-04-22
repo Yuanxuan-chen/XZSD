@@ -22,7 +22,7 @@ public interface OrderDao {
      * @param order
      * @return
      */
-    Order selectOrder(Order order);
+    List<Order> selectOrder(Order order);
 
     /**
      * 订单物流状态

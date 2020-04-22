@@ -78,23 +78,27 @@
         <!--一级菜单-->
         <id property="typeCode" column="type_code" />
         <result property="typeName" column="type_name"  />
+        <result property="remark" column="remark"  />
         <!--二级菜单-->
         <collection property="typeList" ofType="com.xzsd.pc.goodType.entity.GoodType" >
             <id property="typeCode" column="twoCode"  />
             <result property="typeName" column="twoName"  />
+            <result property="remark" column="twoRemark"  />
         </collection>
     </resultMap>
 
     <select id="selectLevelOne" resultMap="selectLevelOneMap">
         select a.type_code,
                a.type_name,
+               a.remark,
                b.type_code twoCode,
-               b.type_name twoName
+               b.type_name twoName,
+               b.remark twoRemark
         from t_sys_good_type a left join t_sys_good_type b
             on a.type_code = b.parent_code
         where a.parent_code = 0
         and a.is_delete = 0
-        and b.is_delete = 0
+--         and b.is_delete = 0
         order by a.type_code
     </select>
 

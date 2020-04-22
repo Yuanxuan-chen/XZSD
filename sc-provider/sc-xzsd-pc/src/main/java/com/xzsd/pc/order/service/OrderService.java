@@ -31,22 +31,23 @@ public class OrderService {
         PageHelper.startPage(order.getPageNum(), order.getPageSize());
         List<Order> orderInfo = orderDao.listOrder(order);
         if(null == orderInfo) {
-            return AppResponse.bizError("失败");
+            return AppResponse.bizError("订单分页查询失败");
         }
-        return AppResponse.success("成功", new PageInfo<Order>(orderInfo));
+        return AppResponse.success("订单分页查询成功", new PageInfo<Order>(orderInfo));
     }
 
     /**
-     * 订单详细信息查询
+     * 订单详细信息分页查询
      * @param order
      * @return
      */
     public AppResponse selectOrder(Order order) {
-        Order orderInfo = orderDao.selectOrder(order);
+        PageHelper.startPage(order.getPageNum(), order.getPageSize());
+        List<Order> orderInfo = orderDao.selectOrder(order);
         if(null == orderInfo) {
-            return AppResponse.bizError("失败");
+            return AppResponse.bizError("订单详细信息分页查询失败");
         }
-        return AppResponse.success("成功", orderInfo);
+        return AppResponse.success("订单详细信息分页查询成功", new PageInfo<Order>(orderInfo));
     }
 
     /**
@@ -61,9 +62,9 @@ public class OrderService {
         //订单物流状态修改
         int count = orderDao.stateOrder(order);
         if(0 == count) {
-            return AppResponse.bizError("失败");
+            return AppResponse.bizError("订单物流状态修改失败");
         }
-        return AppResponse.success("成功");
+        return AppResponse.success("订单物流状态修改成功");
     }
 
 }
