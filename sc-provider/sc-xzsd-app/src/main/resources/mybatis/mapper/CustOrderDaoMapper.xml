@@ -48,6 +48,38 @@
         and u.user_code = #{createUser}
     </select>
 
+<!--销量加一-->
+    <update id="addSellVolume" parameterType="com.xzsd.app.customer.order.entity.Order">
+        update t_sys_goods
+        set sell_volume = sell_volume + 1,
+            update_user = #{createUser},
+            update_time = now(),
+            version = version + 1
+        where good_code in
+        <foreach collection="goodCodeList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and is_delete = 0
+    </update>
+
+<!--购物车商品删除-->
+    <update id="deleteShopCart" parameterType="com.xzsd.app.customer.order.entity.Order">
+        update t_sys_shop_cart
+        set is_delete = 1,
+            update_user = #{createUser},
+            update_time = now(),
+            version = version + 1
+        where good_code in
+        <foreach collection="goodCodeList" item="item" index="index" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
+        and sell_price in
+        <foreach collection="sellPriceList" item="item" index="index" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
+        and is_delete = 0
+    </update>
+
 <!--添加订单表汇总-->
     <insert id="saveOrder" parameterType="com.xzsd.app.customer.order.entity.Order" >
     insert into  t_sys_order

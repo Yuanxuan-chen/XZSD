@@ -88,7 +88,8 @@
 <!--首页菜单列表查询-->
     <select id="listMenuHome" parameterType="com.xzsd.pc.menu.entity.Menu" resultType="com.xzsd.pc.menu.entity.Menu" >
         select menu_code,
-               menu_name
+               menu_name,
+               route
         from t_sys_menu
         where is_delete = 0
         <if test="menuNameList != null and  menuNameList.size() > 0 ">

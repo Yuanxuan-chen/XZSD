@@ -70,6 +70,10 @@ public class OrderService {
         }
         //创建订单详情表
         int countDetail = orderDao.saveOrderDetail(orderList);
+        //各商品销量加一
+        orderDao.addSellVolume(order);
+        //从购物车删除各商品
+        orderDao.deleteShopCart(order);
         //创建订单汇总表
         order.setAllPrice(String.valueOf(allPrice));
         order.setAllNumber(allNumber);

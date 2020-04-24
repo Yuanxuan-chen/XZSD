@@ -18,6 +18,21 @@ public interface OrderDao {
     int saveOrderDetail(List<Order> order);
 
     /**
+     * 销量加一
+     * @param order
+     * @return
+     */
+    void addSellVolume(Order order);
+
+    /**
+     * 从购物车删除各商品
+     * @param order
+     * @return
+     */
+    void deleteShopCart(Order order);
+
+
+    /**
      * 获取用户信息
      * @param order
      * @return

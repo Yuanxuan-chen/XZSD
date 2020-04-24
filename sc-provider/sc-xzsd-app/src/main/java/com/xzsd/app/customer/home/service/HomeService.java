@@ -25,6 +25,7 @@ public class HomeService {
      * @return
      */
     public AppResponse listSlideshow(Home home){
+        //获取轮播图
 //        PageHelper.startPage(home.getPageNum(), home.getPageSize());
         List<Home> homeInfo = homeDao.listSlideshow(home);
         if(null == homeInfo) {
