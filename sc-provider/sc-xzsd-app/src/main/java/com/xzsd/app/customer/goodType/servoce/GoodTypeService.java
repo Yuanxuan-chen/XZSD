@@ -60,6 +60,9 @@ public class GoodTypeService {
         //获取登录人编号
         String createUser = SecurityUtils.getCurrentUserId();
         goodType.setCreateUser(createUser);
+        //浏览量加一
+        goodTypeDao.browseVolumeOnePlus(goodType);
+        //商品信息查询
         GoodType goodTypeInfo = goodTypeDao.selectGood(goodType);
         if(null == goodTypeInfo) {
             return AppResponse.bizError("商品信息查询异常");

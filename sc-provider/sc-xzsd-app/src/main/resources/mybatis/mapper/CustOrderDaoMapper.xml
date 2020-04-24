@@ -49,7 +49,7 @@
     </select>
 
 <!--销量加一-->
-    <update id="addSellVolume" parameterType="com.xzsd.app.customer.order.entity.Order">
+    <update id="sellVolumeOnePlus" parameterType="com.xzsd.app.customer.order.entity.Order">
         update t_sys_goods
         set sell_volume = sell_volume + 1,
             update_user = #{createUser},

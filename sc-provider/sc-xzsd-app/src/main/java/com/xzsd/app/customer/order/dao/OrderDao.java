@@ -22,7 +22,7 @@ public interface OrderDao {
      * @param order
      * @return
      */
-    void addSellVolume(Order order);
+    void sellVolumeOnePlus(Order order);
 
     /**
      * 从购物车删除各商品

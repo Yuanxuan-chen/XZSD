@@ -65,6 +65,17 @@
         order by good_code
     </select>
 
+<!--浏览量加一-->
+    <update id="browseVolumeOnePlus" parameterType="com.xzsd.app.customer.goodType.entity.GoodType">
+        update t_sys_goods
+        set browse_volume = browse_volume + 1,
+        update_user = #{createUser},
+        update_time = now(),
+        version = version + 1
+        where good_code = #{goodCode}
+        and is_delete = 0
+    </update>
+
 <!--商品评价分页查询-->
     <select id="listAssess" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" resultType="com.xzsd.app.customer.goodType.entity.GoodType" >
         select assess_user assessUser,

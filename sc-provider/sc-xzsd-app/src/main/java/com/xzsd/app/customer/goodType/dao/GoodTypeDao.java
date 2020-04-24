@@ -31,6 +31,13 @@ public interface GoodTypeDao {
      */
     GoodType selectGood(GoodType goodType);
 
+
+    /**
+     * 浏览量加一
+     * @param goodType
+     */
+    void browseVolumeOnePlus(GoodType goodType);
+
     /**
      * 商品评价分页查询
      * @param goodType
