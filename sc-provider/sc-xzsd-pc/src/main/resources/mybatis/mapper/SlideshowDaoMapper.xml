@@ -5,31 +5,30 @@
 <!--轮播图新增-->
     <insert id="saveSlideshow" parameterType="com.xzsd.pc.slideshow.entity.Slideshow">
         insert into t_sys_slideshow(
-                                    slideshow_code,
-                                    slideshow_route,
-                                    slideshow_sort,
-                                    slideshow_state,
-                                    date_start,
-                                    date_stop,
-                                    slideshow_good_code,
-                                    is_delete,
-                                    version,
-                                    create_user,
-                                    create_time
-                                    )
-                                    values (
-                                           #{slideshowCode},
-                                           #{slideshowRoute},
-                                           #{slideshowSort},
-                                           2,
-                                           #{dateStart},
-                                           #{dateStop},
-                                           #{slideshowGoodCode},
-                                           0,
-                                           0,
-                                           #{createUser},
-                                           now()
-                                          )
+            slideshow_code,
+            slideshow_route,
+            slideshow_sort,
+            slideshow_state,
+            date_start,
+            date_stop,
+            slideshow_good_code,
+            is_delete,
+            version,
+            create_user,
+            create_time)
+            values (
+            #{slideshowCode},
+            #{slideshowRoute},
+            #{slideshowSort},
+            2,
+            #{dateStart},
+            #{dateStop},
+            #{slideshowGoodCode},
+            0,
+            0,
+            #{createUser},
+            now()
+            )
     </insert>
     
 <!--轮播图删除-->

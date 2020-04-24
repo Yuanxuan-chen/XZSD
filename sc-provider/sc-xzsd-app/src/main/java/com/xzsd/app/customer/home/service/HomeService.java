@@ -1,5 +1,6 @@
 package com.xzsd.app.customer.home.service;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.neusoft.core.restful.AppResponse;
 import com.xzsd.app.customer.home.dao.HomeDao;
@@ -25,7 +26,6 @@ public class HomeService {
      * @return
      */
     public AppResponse listSlideshow(Home home){
-        //获取轮播图
 //        PageHelper.startPage(home.getPageNum(), home.getPageSize());
         List<Home> homeInfo = homeDao.listSlideshow(home);
         if(null == homeInfo) {
@@ -41,7 +41,10 @@ public class HomeService {
      * @return
      */
     public AppResponse listHotGood(Home home){
-//        PageHelper.startPage(home.getPageNum(), home.getPageSize());
+        //获取热门商品展示数量
+        int count = homeDao.getHotGoodNumber();
+//        热门商品信息查询
+        PageHelper.startPage(1, count);
         List<Home> homeInfo = homeDao.listHotGood(home);
         if(null == homeInfo) {
             return AppResponse.bizError("轮播图商品查询异常");

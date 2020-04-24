@@ -6,25 +6,34 @@
 <!--轮播图商品查询-->
     <select id="listSlideshow" parameterType="com.xzsd.app.customer.home.entity.Home" resultType="com.xzsd.app.customer.home.entity.Home" >
         select slideshow_good_code goodCode,
-               slideshow_route slideshowRoute
+        slideshow_route slideshowRoute
         from t_sys_slideshow
         where is_delete = 0
         and slideshow_state = 1
+        and str_to_date(now(),'%Y-%m-%d') >= date_start
+        and date_stop >= str_to_date(now(),'%Y-%m-%d')
         order by slideshow_sort
     </select>
 
 <!--热门商品信息查询-->
     <select id="listHotGood" parameterType="com.xzsd.app.customer.home.entity.Home" resultType="com.xzsd.app.customer.home.entity.Home" >
-        select h.good_code goodCode,
-               h.good_name goodName,
-               g.pictureUrl pictureUrl,
-               g.sell_price sellPrice
-        from t_sys_hot_good as h, t_sys_goods as g
-        where h.good_code = h.good_code
+        select h.good_code,
+               g.good_name,
+               g.pictureUrl,
+               g.sell_price,
+               h.hot_sort
+        from t_sys_hot_good h left join t_sys_goods g
+            on h.good_code = g.good_code
+        where g.is_delete = 0
         and h.is_delete = 0
         order by h.hot_sort
     </select>
 
-
+<!--热门商品展示数量查询-->
+    <select id="getHotGoodNumber" resultType="int">
+        select dict_value
+        from t_dictionary
+        where dict_code = 'showNumber'
+    </select>
 
 </mapper>

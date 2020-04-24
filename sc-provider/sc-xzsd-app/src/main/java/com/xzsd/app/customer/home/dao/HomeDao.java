@@ -23,4 +23,10 @@ public interface HomeDao {
      * @return
      */
     List<Home> listHotGood(Home home);
+
+    /**
+     * 获取热门商品展示数量
+     * @return
+     */
+    int getHotGoodNumber();
 }
