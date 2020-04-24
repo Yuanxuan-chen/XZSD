@@ -74,10 +74,12 @@
         from t_sys_assess
         where is_delete = 0
         and good_code = #{goodCode}
-        and assess_rank in 
-        <foreach item="item" index="index" collection="assessRankList" open="(" separator="," close=")">
-            #{item}
-        </foreach>
+        <if test="assessRankList != null and assessRankList.size() > 0 ">
+            and assess_rank in
+            <foreach item="item" index="index" collection="assessRankList" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
     </select>
 
 <!-- 商品评价-->
