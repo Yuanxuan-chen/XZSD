@@ -64,4 +64,11 @@ public interface UserDao {
      */
     String selectPassword(User user);
 
+    /**
+     * 用户密码查询
+     * @param user
+     * @return
+     */
+    int getRole(User user);
+
 }

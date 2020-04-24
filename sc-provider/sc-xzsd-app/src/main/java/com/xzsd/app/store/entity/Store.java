@@ -106,6 +106,16 @@ public class Store {
     }
 
     /**
+     * 司机名字
+     */
+    private String driverName;
+
+    /**
+     *司机电话
+     */
+    private String tel;
+
+    /**
      *用户名字
      */
     private String buyerName;
@@ -124,6 +134,19 @@ public class Store {
      *订单状态
      */
     private int orderState;
+
+    /**
+     *店长名字
+     */
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     /**
      *取货门店名称
@@ -156,6 +179,21 @@ public class Store {
     private List<Store> goodList;
 
 
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
     public List<Store> getGoodList() {
         return goodList;

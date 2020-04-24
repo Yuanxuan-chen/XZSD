@@ -71,6 +71,42 @@ public class StoreService {
     }
 
 
+    /**
+     * 门店店长查询司机信息
+     * @param store
+     * @return
+     */
+    public AppResponse listDriver(Store store){
+        //获取登陆人信息
+        String updateUser = SecurityUtils.getCurrentUserId();
+        store.setUpdateUser(updateUser);
+        //门店店长查询司机信息
+        PageHelper.startPage(store.getPageNum(), store.getPageSize() );
+        List<Store> storeInfo = storeDao.listDriver(store);
+        if(null == storeInfo) {
+            return AppResponse.bizError("门店店长查询司机信息异常");
+        }
+        return AppResponse.success("门店店长查询司机信息成功", new PageInfo<Store>(storeInfo));
+    }
+
+    /**
+     * 司机负责门店信息查询
+     * @param store
+     * @return
+     */
+    public AppResponse listStore(Store store){
+        //获取登陆人信息
+        String updateUser = SecurityUtils.getCurrentUserId();
+        store.setUpdateUser(updateUser);
+        //司机负责门店信息查询
+        PageHelper.startPage(store.getPageNum(), store.getPageSize() );
+        List<Store> storeInfo = storeDao.listStore(store);
+        if(null == storeInfo) {
+            return AppResponse.bizError("司机负责门店信息查询异常");
+        }
+        return AppResponse.success("司机负责门店信息查询成功", new PageInfo<Store>(storeInfo));
+    }
+
 
 
 }

@@ -93,6 +93,7 @@
 <!--司机详细信息-->
     <select id="selectDriver" parameterType="com.xzsd.pc.driver.entity.Driver" resultType="com.xzsd.pc.driver.entity.Driver" >
         select
+            user_code driverCode,
             user_name driverName,
             tel,
             sex,
@@ -108,7 +109,10 @@
         from t_sys_user
         where is_delete = 0
         and role = 3
-        and user_code = #{driverCode};
+        and user_code in
+        <foreach collection="driverCodeList" item="item" index="index" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
     </select>
 
 <!--司机信息分页查询-->
@@ -118,6 +122,7 @@
             user_name driverName,
             user_picture_url userPictureUrl,
             tel,
+            sex,
             idcard,
             user_acct driverAcct,
             version

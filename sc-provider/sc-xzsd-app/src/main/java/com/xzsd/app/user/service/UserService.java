@@ -134,4 +134,23 @@ public class UserService {
         return AppResponse.success("用户店铺邀请码修改成功");
     }
 
+    /**
+     * 获取登录人角色编码
+     * @date 2020-04-23
+     * @author Yuanxuan-chen
+     * @param user
+     * @return
+     */
+    public AppResponse getRole(User user) {
+        //获取当前登录人编码
+        String userCode = SecurityUtils.getCurrentUserId();
+        user.setUpdateUser(userCode);
+        //获取登录人角色编码
+        int userInfo = userDao.getRole(user);
+        if (0 == userInfo) {
+            return AppResponse.bizError("用获取登录人角色编码异常");
+        }
+        return AppResponse.success("获取登录人角色编码成功", userInfo);
+    }
+
 }

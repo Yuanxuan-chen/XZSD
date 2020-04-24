@@ -93,10 +93,18 @@ public class GoodType {
     private String storeName;
 
     /**
+     * 评价编号
+     */
+    private String assessCode;
+
+    /**
      *评价等级(0-1差评,2-4中评,5好评)
      */
     private int assessRank;
 
+    /**
+     * 评价等级集合(0-5表示0-5颗星)
+     */
     private List<Integer> assessRankList;
 
     /**
@@ -124,7 +132,55 @@ public class GoodType {
      */
     private String parentCode;
 
+    /**
+     * 订单编号
+     */
+    private String orderCode;
+
+    /**
+     * 商品编号集合
+     */
+    private List<String> goodCodeList;
+
+    /**
+     * 评价内容集合
+     */
+    private List<String> assessContentList;
+
     private List<GoodType> goodList;
+
+
+    public String getAssessCode() {
+        return assessCode;
+    }
+
+    public void setAssessCode(String assessCode) {
+        this.assessCode = assessCode;
+    }
+
+    public String getOrderCode() {
+        return orderCode;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public List<String> getGoodCodeList() {
+        return goodCodeList;
+    }
+
+    public void setGoodCodeList(List<String> goodCodeList) {
+        this.goodCodeList = goodCodeList;
+    }
+
+    public List<String> getAssessContentList() {
+        return assessContentList;
+    }
+
+    public void setAssessContentList(List<String> assessContentList) {
+        this.assessContentList = assessContentList;
+    }
 
     public List<GoodType> getGoodList() {
         return goodList;

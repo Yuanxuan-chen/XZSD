@@ -122,6 +122,13 @@
         where is_delete = 0
         and user_code = #{userCode}
     </update>
+    
+    <select id="getRole" parameterType="com.xzsd.app.user.entity.User" resultType="int" >
+        select role
+        from t_sys_user
+        where user_code = #{updateUser}
+        and is_delete = 0
+    </select>
 
 
 </mapper>

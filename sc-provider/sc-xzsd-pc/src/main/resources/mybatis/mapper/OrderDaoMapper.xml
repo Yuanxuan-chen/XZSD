@@ -60,7 +60,7 @@
         update t_sys_order
         set order_state = #{orderState},
             version = version + 1,
-            update_user = #{updateser},
+            update_user = #{updateUser},
             update_time = now()
         where is_delete = 0
         and order_code in

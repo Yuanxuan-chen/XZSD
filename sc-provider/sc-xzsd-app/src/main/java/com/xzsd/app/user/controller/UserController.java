@@ -103,4 +103,18 @@ public class UserController {
             throw e;
         }
     }
+
+    /**
+     * 获取登录人角色编码
+     * @param user
+     * @return
+     */
+    @PostMapping("getRole")
+    public AppResponse getRole(User user) {
+        try {
+            return userService.getRole(user);
+        }catch (Exception e) {
+            throw e;
+        }
+    }
 }

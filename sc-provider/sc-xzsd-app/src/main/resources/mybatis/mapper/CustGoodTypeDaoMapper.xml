@@ -80,4 +80,45 @@
         </foreach>
     </select>
 
+<!-- 商品评价-->
+    <insert id="saveAssess" parameterType="java.util.List" >
+         insert into t_sys_assess
+            (assess_code,
+             assess_user,
+             assess_rank,
+             assess_content,
+             assess_time,
+             good_code,
+             is_delete,
+             create_user,
+             create_time,
+             update_user,
+             update_time,
+             version)
+             values
+             <foreach collection="list" item="item" separator=",">
+                (
+                 #{item.assessCode},
+                 #{item.createUser},
+                 #{item.assessRank},
+                 #{item.assessContent},
+                 now(),
+                 #{item.goodCode},
+                 0,
+                 #{item.createUser},
+                 now(),
+                 #{item.createUser},
+                 now(),
+                 0
+                )
+            </foreach>
+    </insert>
+
+    <update id="orderSate" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" >
+        update t_sys_order
+        set order_state = 4
+        where order_code = #{orderCode}
+        and is_delete = 0
+    </update>
+
 </mapper>

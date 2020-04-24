@@ -79,23 +79,29 @@
 
 <!--门店详细信息详情-->
     <select id="selectStore" parameterType="com.xzsd.pc.store.entity.Store" resultType="com.xzsd.pc.store.entity.Store" >
-        select store_code storeCode,
-               store_name storeName,
-               tel,
-               shopkeeper_code shopkeeperCode,
-               licence_code licenceCode,
-               invite_code inviteCode,
-               province_code provinceCode,
-               downtown_code downtownCode,
-               area_code areaCode,
-               province_name provinceName,
-               downtown_name downtownName,
-               area_name areaName,
-               address,
-               version
-        from t_sys_store
-        where is_delete = 0
-        and store_code = #{storeCode}
+        select  s.store_code storeCode,
+                s.store_name storeName,
+                s.tel,
+                s.shopkeeper_code shopkeeperCode,
+                s.licence_code licenceCode,
+                s.invite_code inviteCode,
+                s.province_code provinceCode,
+                s.downtown_code downtownCode,
+                s.area_code areaCode,
+                s.province_name provinceName,
+                s.downtown_name downtownName,
+                s.area_name areaName,
+                s.address,
+                u.user_acct storeAcct,
+                u.user_name shopkeeperName,
+        s.version
+        from t_sys_store as s LEFT JOIN t_sys_user as u
+        on s.shopkeeper_code = u.user_code
+        where s.is_delete = 0
+        and s.store_code in
+        <foreach collection="storeCodeList" item="item" index="index" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
     </select>
 
 <!--门店信息分页查询-->
@@ -142,24 +148,5 @@
         where parent_code = #{parentCode}
         order by area_code
     </select>
-
-<!--省市区生成-->
-    <insert id="saveArea" parameterType="com.xzsd.pc.store.entity.Store" >
-        insert into area
-        (id,
-         area_code,
-         area_name,
-         parent_code,
-         target
-         )values(
-                 #{updateUser},
-                 #{areaCode},
-                 #{areaName},
-                 #{parentCode},
-                 now()
-                )
-    </insert>
-
-
 
 </mapper>

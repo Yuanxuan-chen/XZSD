@@ -76,4 +76,18 @@ public class GoodTypeController {
         }
     }
 
+    /**
+     * 商品评价
+     * @param goodType
+     * @return
+     */
+    @PostMapping("saveAssess")
+    public AppResponse saveAssess(GoodType goodType) {
+        try {
+            return goodTypeService.saveAssess(goodType);
+        }catch (Exception e) {
+            throw e;
+        }
+    }
+
 }

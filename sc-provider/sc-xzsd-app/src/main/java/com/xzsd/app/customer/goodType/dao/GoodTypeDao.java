@@ -38,4 +38,19 @@ public interface GoodTypeDao {
      */
     List<GoodType> listAssess(GoodType goodType);
 
+
+    /**
+     * 订单评价
+     * @param goodType
+     * @return
+     */
+    int saveAssess(List<GoodType> goodType);
+
+    /**
+     * 订单评价
+     * @param goodType
+     * @return
+     */
+    int orderSate(GoodType goodType);
+
 }

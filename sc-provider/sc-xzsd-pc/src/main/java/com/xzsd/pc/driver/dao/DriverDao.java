@@ -21,7 +21,7 @@ public interface DriverDao {
      * @param driver
      * @return
      */
-    Driver selectDriver(Driver driver);
+    List<Driver> selectDriver(Driver driver);
 
     /**
      * 司机信息新增

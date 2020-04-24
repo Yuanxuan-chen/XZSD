@@ -4,11 +4,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.neusoft.core.restful.AppResponse;
 import com.neusoft.security.client.utils.SecurityUtils;
+import com.neusoft.util.UUIDUtils;
 import com.xzsd.app.customer.goodType.dao.GoodTypeDao;
 import com.xzsd.app.customer.goodType.entity.GoodType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,5 +82,44 @@ public class GoodTypeService {
     }
 
 
+    /**
+     * 商品评价
+     * @param goodType
+     * @return
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public AppResponse saveAssess(GoodType goodType) {
+        //变更订单状态
+        int state = goodTypeDao.orderSate(goodType);
+        if (0 == state) {
+            return AppResponse.bizError("订单状态修改失败");
+        }
+        //获取当前登录人的userCode
+        String createUser = SecurityUtils.getCurrentUserId();
+        //商品评价
+        List<GoodType> assessList = new ArrayList<>();
+        for (int i = 0; i < goodType.getGoodCodeList().size(); i++){
+            GoodType assess = new GoodType();
+            //set评价编码
+            assess.setAssessCode(UUIDUtils.getUUID());
+            //set评价人
+            assess.setCreateUser(createUser);
+            assess.setCreateUser(createUser);
+            //set商品编号
+            assess.setGoodCode(goodType.getGoodCodeList().get(i));
+            //set评价等级
+            assess.setAssessRank(goodType.getAssessRankList().get(i));
+            //set评价内容
+            assess.setAssessContent(goodType.getAssessContentList().get(i));
+            //add商品评价汇总
+            assessList.add(assess);
+        }
+        //商品评价
+        int count = goodTypeDao.saveAssess(assessList);
+        if(0 == count) {
+            return AppResponse.bizError("商品评价异常");
+        }
+        return AppResponse.success("商品评价成功, 数量为: " + count);
+    }
 
 }

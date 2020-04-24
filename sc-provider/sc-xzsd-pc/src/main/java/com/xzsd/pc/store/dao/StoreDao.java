@@ -22,7 +22,7 @@ public interface StoreDao {
      * @param store
      * @return
      */
-    Store selectStore(Store store);
+    List<Store> selectStore(Store store);
 
     /**
      * 门店信息新增

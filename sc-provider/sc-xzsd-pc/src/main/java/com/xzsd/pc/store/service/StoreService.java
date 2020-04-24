@@ -43,11 +43,12 @@ public class StoreService {
      * @return
      */
     public AppResponse selectStore(Store store) {
-        Store storeInfo = storeDao.selectStore(store);
+        PageHelper.startPage(store.getPageNum(), store.getPageSize());
+        List<Store> storeInfo = storeDao.selectStore(store);
         if(null == storeInfo) {
             return AppResponse.bizError("门店详细信息详情失败");
         }
-        return AppResponse.success("门店详细信息详情成功", storeInfo);
+        return AppResponse.success("门店详细信息详情成功", new PageInfo<Store>(storeInfo));
     }
 
     /**
@@ -121,20 +122,4 @@ public class StoreService {
         return AppResponse.success("省市区查询成功", new PageInfo<Store>(storeInfo));
     }
 
-    /**
-     * 省市区生成
-     * @param store
-     * @return
-     */
-    @Transactional(rollbackFor = Exception.class)
-    public AppResponse saveArea(Store store) {
-        //生成随机门店编号
-        store.setUpdateUser(UUIDUtils.getUUID());
-        //省市区生成
-        int storeInfo = storeDao.saveArea(store);
-        if(0 == storeInfo) {
-            return AppResponse.bizError("省市区生成失败");
-        }
-        return AppResponse.success("省市区生成成功");
-    }
 }

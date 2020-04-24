@@ -43,11 +43,12 @@ public class DriverService {
      * @return
      */
     public AppResponse selectDriver(Driver driver) {
-        Driver driverInfo = driverDao.selectDriver(driver);
+        PageHelper.startPage(driver.getPageNum(), driver.getPageSize());
+        List<Driver> driverInfo = driverDao.selectDriver(driver);
         if(null == driverInfo) {
             return AppResponse.bizError("司机详细信息失败");
         }
-        return AppResponse.success("司机详细信息成功", driverInfo);
+        return AppResponse.success("司机详细信息成功", new PageInfo<Driver>(driverInfo));
     }
 
     /**
