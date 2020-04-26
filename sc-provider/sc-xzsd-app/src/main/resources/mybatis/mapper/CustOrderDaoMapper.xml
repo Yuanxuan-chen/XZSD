@@ -69,12 +69,8 @@
             update_user = #{createUser},
             update_time = now(),
             version = version + 1
-        where good_code in
-        <foreach collection="goodCodeList" item="item" index="index" open="(" separator="," close=")" >
-            #{item}
-        </foreach>
-        and sell_price in
-        <foreach collection="sellPriceList" item="item" index="index" open="(" separator="," close=")" >
+        where cart_code in
+        <foreach collection="cartCodeList" item="item" index="index" open="(" separator="," close=")" >
             #{item}
         </foreach>
         and is_delete = 0

@@ -44,7 +44,7 @@
     <update id="stateShopCart" parameterType="com.xzsd.app.customer.shopCart.entity.ShopCart" >
         update t_sys_shop_cart
         set good_number = #{goodNumber},
-            sell_price  = #{sellPrice},
+--             sell_price  = #{sellPrice},
             update_user = #{updateUser},
             update_time = now(),
             version = version + 1

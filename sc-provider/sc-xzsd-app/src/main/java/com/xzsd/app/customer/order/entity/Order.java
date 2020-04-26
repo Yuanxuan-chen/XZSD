@@ -160,9 +160,18 @@ public class Order {
      */
     private List<Order> goodList;
 
+    /**
+     * 购物车编号集合
+     */
+    private List<String> cartCodeList;
 
+    public List<String> getCartCodeList() {
+        return cartCodeList;
+    }
 
-
+    public void setCartCodeList(List<String> cartCodeList) {
+        this.cartCodeList = cartCodeList;
+    }
 
     public int getAllNumber() {
         return allNumber;
