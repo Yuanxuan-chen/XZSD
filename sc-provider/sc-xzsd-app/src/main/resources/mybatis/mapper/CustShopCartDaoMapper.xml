@@ -30,7 +30,7 @@
                 1,
             </otherwise>
          </choose>
-         sellPrice,
+         #{sellPrice},
          0,
          #{createUser},
          now(),
@@ -40,11 +40,22 @@
         )
     </insert>
 
+<!--    统计购物车列表相同的商品-->
+    <select id="getGoodInfo" parameterType="com.xzsd.app.customer.shopCart.entity.ShopCart" resultType="com.xzsd.app.customer.shopCart.entity.ShopCart">
+        select cart_code,
+               good_code,
+               good_number,
+               sell_price
+        from t_sys_shop_cart
+        where good_code = #{goodCode}
+        and sell_price = #{sellPrice}
+        and is_delete = 0
+    </select>
+
 <!--购物车修改商品-->
     <update id="stateShopCart" parameterType="com.xzsd.app.customer.shopCart.entity.ShopCart" >
         update t_sys_shop_cart
         set good_number = #{goodNumber},
---             sell_price  = #{sellPrice},
             update_user = #{updateUser},
             update_time = now(),
             version = version + 1
@@ -76,8 +87,10 @@
                g.pictureUrl pictureUrl
         from t_sys_shop_cart as s left join t_sys_goods as g
         on s.good_code = g.good_code
-        where s.is_delete = 0
         and g.is_delete = 0
+        where s.is_delete = 0
+        and s.user_code = #{updateUser}
+        order by s.create_time;
     </select>
 
 </mapper>

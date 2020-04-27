@@ -149,4 +149,15 @@
         order by area_code
     </select>
 
+<!--统计邀请码的个数-->
+    <select id="countInviteCode" parameterType="com.xzsd.pc.store.entity.Store" resultType="int">
+        select count(invite_code)
+        from t_sys_store
+        where is_delete = 0
+        and invite_code = #{inviteCode}
+        <if test="storeCode != null and storeCode != '' " >
+            and store_code != #{storeCode}
+        </if>
+    </select>
+
 </mapper>

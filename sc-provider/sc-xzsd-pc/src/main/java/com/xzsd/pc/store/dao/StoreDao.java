@@ -53,10 +53,12 @@ public interface StoreDao {
      */
     List<Store> listArea(Store store);
 
+
     /**
-     * 省市区生成
+     * 统计邀请码的个数
      * @param store
      * @return
      */
-    int saveArea(Store store);
+    int countInviteCode(Store store);
+
 }

@@ -35,6 +35,8 @@
         </foreach>
     </insert>
 
+    <select id=""
+
 <!--获取用户信息-->
     <select id="getUserInfo" parameterType="com.xzsd.app.customer.order.entity.Order" resultType="com.xzsd.app.customer.order.entity.Order" >
         select s.store_code storeCode,
@@ -191,6 +193,7 @@
             left join t_sys_goods as g
             on d.good_code = g.good_code
         where o.is_delete = 0
+        and o.create_user = #{updateUser}
         <if test="orderState != 0" >
             and o.order_state = #{orderState}
         </if>
@@ -206,6 +209,14 @@
             on d.good_code = g.good_code
         where o.is_delete = 0
         and o.order_code = #{orderCode}
+    </select>
+
+    <select id="getInviteCode" parameterType="com.xzsd.app.customer.order.entity.Order" resultType="java.lang.String" >
+        select invite_code
+        from t_sys_user
+        where is_delete = 0
+        and role = 4
+        and user_code = #{createUser}
     </select>
 
 </mapper>

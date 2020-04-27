@@ -31,18 +31,34 @@ public class ShopCartService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse saveShopCart(ShopCart shopCart) {
-        //生成随机购物车编号
-        shopCart.setCartCode(UUIDUtils.getUUID());
-        //获取添加商品的用户编号
-        String createUser = SecurityUtils.getCurrentUserId();
-        shopCart.setUserCode(createUser);
-        shopCart.setCreateUser(createUser);
-        //购物车新增商品
-        int count = shopCartDao.saveShopCart(shopCart);
+        //判断商品是否存在购物车
+        ShopCart shopGoodInfo = shopCartDao.getGoodInfo(shopCart);
+        int count = 0;
+        if(null != shopGoodInfo) {
+            //直接在存在的购物车上叠加
+            shopCart.setCartCode(shopGoodInfo.getCartCode());
+            shopCart.setGoodNumber(shopGoodInfo.getGoodNumber() + shopCart.getGoodNumber());
+            //获取添加商品的用户编号
+            String updateUser = SecurityUtils.getCurrentUserId();
+            shopCart.setUpdateUser(updateUser);
+            //商品叠加
+            count = shopCartDao.stateShopCart(shopCart);
+        }else{
+            //生成随机购物车编号
+            shopCart.setCartCode(UUIDUtils.getUUID());
+            //获取添加商品的用户编号
+            String createUser = SecurityUtils.getCurrentUserId();
+            shopCart.setUserCode(createUser);
+            shopCart.setCreateUser(createUser);
+            //购物车新增商品
+            count = shopCartDao.saveShopCart(shopCart);
+
+        }
         if (0 == count) {
             return AppResponse.bizError("购物车新增商品异常");
         }
         return AppResponse.success("购物车新增商品成功");
+
     }
 
     /**
@@ -82,10 +98,16 @@ public class ShopCartService {
 
     /**
      * 购物车查询商品
+     * @author Yuanxuan-chen
+     * @date 2020-04-27
      * @param shopCart
      * @return
      */
     public AppResponse listShopCart(ShopCart shopCart) {
+        //获取添加商品的用户编号
+        String updateUser = SecurityUtils.getCurrentUserId();
+        shopCart.setUpdateUser(updateUser);
+        //购物车查询商品
         PageHelper.startPage(shopCart.getPageNum(), shopCart.getPageSize());
         List<ShopCart> shopCartInfo = shopCartDao.listShopCart(shopCart);
         if (null == shopCartInfo) {

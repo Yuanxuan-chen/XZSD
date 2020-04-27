@@ -58,6 +58,13 @@ public interface UserDao {
     int countUserAcct(User user);
 
     /**
+     * 校验店铺邀请码是否存在
+     * @param user
+     * @return
+     */
+    int countInviteCode(User user);
+
+    /**
      * 用户密码查询
      * @param user
      * @return

@@ -38,4 +38,11 @@ public interface ShopCartDao {
      */
     List<ShopCart> listShopCart(ShopCart shopCart);
 
+    /**
+     * 统计购物车列表相同的商品
+     * @param shopCart
+     * @return
+     */
+    ShopCart getGoodInfo(ShopCart shopCart);
+
 }

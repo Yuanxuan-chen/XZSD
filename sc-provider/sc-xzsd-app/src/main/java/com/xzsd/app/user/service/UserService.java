@@ -28,6 +28,9 @@ public class UserService {
      * @return
      */
     public AppResponse selectdriver(User user) {
+        //获取当前登陆人编号
+        String userCode = SecurityUtils.getCurrentUserId();
+        user.setUserCode(userCode);
         User userInfo = userDao.selectdriver(user);
         if (null == userInfo) {
             return AppResponse.bizError("司机信息查询异常");
@@ -41,6 +44,9 @@ public class UserService {
      * @return
      */
     public AppResponse selecteCustomer(User user) {
+        //获取当前登陆人编号
+        String userCode = SecurityUtils.getCurrentUserId();
+        user.setUserCode(userCode);
         User userInfo = userDao.selecteCustomer(user);
         if (null == userInfo) {
             return AppResponse.bizError("客户信息查询异常");
@@ -54,6 +60,9 @@ public class UserService {
      * @return
      */
     public AppResponse selectStore(User user) {
+        //获取当前登陆人编号
+        String userCode = SecurityUtils.getCurrentUserId();
+        user.setUserCode(userCode);
         User userInfo = userDao.selectStore(user);
         if (null == userInfo) {
             return AppResponse.bizError("店长信息查询异常");
@@ -69,6 +78,9 @@ public class UserService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse updateUserPassword(User user) {
+        //获取当前登陆人编号
+        String userCode = SecurityUtils.getCurrentUserId();
+        user.setUserCode(userCode);
         //获取数据库里的密码
         String nowPassword = userDao.selectPassword(user);
         //获取旧密码
@@ -102,6 +114,11 @@ public class UserService {
         if(0 != countUserAcct) {
             return AppResponse.bizError("账号名已存在, 请重新输入!!");
         }
+        //校验店铺邀请码是否存在
+        int countInviteCode = userDao.countInviteCode(user);
+        if(0 == countInviteCode){
+            return AppResponse.bizError("店铺邀请码不存在，请重新输入！");
+        }
         //生成随机用户编号
         user.setUserCode(UUIDUtils.getUUID());
         user.setCreateUser(user.getUserCode());
@@ -123,9 +140,15 @@ public class UserService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse updateCustomerInvite(User user) {
-        //获取当前修改者编号
-        String updateUser = SecurityUtils.getCurrentUserId();
-        user.setUpdateUser(updateUser);
+        //校验店铺邀请码是否存在
+        int countInviteCode = userDao.countInviteCode(user);
+        if(0 == countInviteCode){
+            return AppResponse.bizError("店铺邀请码不存在，请重新输入！");
+        }
+        //获取当前登陆人编号
+        String userCode = SecurityUtils.getCurrentUserId();
+        user.setUserCode(userCode);
+        user.setUpdateUser(userCode);
         //用户店铺邀请码修改
         int userInfo = userDao.updateCustomerInvite(user);
         if (0 == userInfo) {

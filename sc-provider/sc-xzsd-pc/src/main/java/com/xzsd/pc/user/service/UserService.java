@@ -31,6 +31,7 @@ public class UserService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse saveUser(User user) {
+        //校验用户账号是否存在
         int countUserAcct = userDao.countUserAcct(user);
         if(0 != countUserAcct){
             return AppResponse.bizError("用户账号已存在，请重新输入！");

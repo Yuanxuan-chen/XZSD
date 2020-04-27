@@ -74,4 +74,13 @@ public interface OrderDao {
      */
     List<Order> listtAssess(Order order);
 
+    /**
+     * 查询客户门店邀请码
+     * @author Yuanxuan-chen
+     * @date 2020-04-27
+     * @param order
+     * @return
+     */
+    String getInviteCode(Order order);
+
 }

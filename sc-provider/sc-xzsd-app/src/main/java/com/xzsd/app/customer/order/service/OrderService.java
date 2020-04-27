@@ -26,17 +26,24 @@ public class OrderService {
 
     /**
      * 创建订单表汇总
+     * @author Yuanxuan-chen
+     * @date 2020-04-27
      * @param order
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse saveOrder(Order order){
-        //生成订单汇总表编号
-        String orderCode = UUIDUtils.getUUID();
-        order.setOrderCode(orderCode);
         //获取当前用户编号
         String createUser = SecurityUtils.getCurrentUserId();
         order.setCreateUser(createUser);
+        //判断客户门店邀请码是否填写
+        String inviteCode = orderDao.getInviteCode(order);
+        if (null == inviteCode) {
+            return AppResponse.bizError("门店邀请码未填写");
+        }
+        //生成订单汇总表编号
+        String orderCode = UUIDUtils.getUUID();
+        order.setOrderCode(orderCode);
         //获取用户信息
         Order userInfo = orderDao.getUserInfo(order);
         order.setStoreCode(userInfo.getStoreCode());
@@ -114,10 +121,15 @@ public class OrderService {
 
     /**
      * 订单列表查询
+     * @author Yuanxuan-chen
+     * @date 2020-04-27
      * @param order
      * @return
      */
     public AppResponse listOrder(Order order){
+        //获取当前登录人信息
+        order.setUpdateUser(SecurityUtils.getCurrentUserId());
+        //订单列表查询
         PageHelper.startPage(order.getPageNum(), order.getPageSize() );
         List<Order> orderInfo = orderDao.listOrder(order);
         if(null == orderInfo) {
