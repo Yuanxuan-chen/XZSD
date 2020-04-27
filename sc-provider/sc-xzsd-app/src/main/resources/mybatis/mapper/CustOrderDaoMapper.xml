@@ -35,7 +35,6 @@
         </foreach>
     </insert>
 
-    <select id=""
 
 <!--获取用户信息-->
     <select id="getUserInfo" parameterType="com.xzsd.app.customer.order.entity.Order" resultType="com.xzsd.app.customer.order.entity.Order" >
@@ -99,7 +98,7 @@
          values
         (
          #{orderCode},
-         1,
+         3,
          #{storeCode},
          #{buyerTel},
          #{buyerName},
