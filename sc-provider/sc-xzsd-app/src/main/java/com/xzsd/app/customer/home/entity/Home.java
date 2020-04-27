@@ -41,6 +41,11 @@ public class Home {
     private String updateTime;
 
     /**
+     * 限制数量显示
+     */
+    private int hotLimit;
+
+    /**
      * 版本号
      */
     private int version;
@@ -69,6 +74,14 @@ public class Home {
      * 商品价格
      */
     private String sellPrice;
+
+    public int getHotLimit() {
+        return hotLimit;
+    }
+
+    public void setHotLimit(int hotLimit) {
+        this.hotLimit = hotLimit;
+    }
 
     public String getGoodCode() {
         return goodCode;

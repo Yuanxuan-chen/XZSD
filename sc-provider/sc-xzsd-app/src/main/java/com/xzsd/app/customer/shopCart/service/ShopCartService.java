@@ -1,7 +1,5 @@
 package com.xzsd.app.customer.shopCart.service;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.neusoft.core.restful.AppResponse;
 import com.neusoft.security.client.utils.SecurityUtils;
 import com.neusoft.util.UUIDUtils;
@@ -105,12 +103,11 @@ public class ShopCartService {
         String updateUser = SecurityUtils.getCurrentUserId();
         shopCart.setUpdateUser(updateUser);
         //购物车查询商品
-        PageHelper.startPage(shopCart.getPageNum(), shopCart.getPageSize());
         List<ShopCart> shopCartInfo = shopCartDao.listShopCart(shopCart);
         if (null == shopCartInfo) {
             return AppResponse.bizError("购物车查询商品异常");
         }
-        return AppResponse.success("购物车查询商品成功", new PageInfo<ShopCart>(shopCartInfo));
+        return AppResponse.success("购物车查询商品成功", shopCartInfo);
     }
 
 }

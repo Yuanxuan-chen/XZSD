@@ -27,6 +27,7 @@
         where g.is_delete = 0
         and h.is_delete = 0
         order by h.hot_sort
+        limit #{hotLimit}
     </select>
 
 <!--热门商品展示数量查询-->
