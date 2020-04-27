@@ -1,7 +1,5 @@
 package com.xzsd.app.customer.goodType.servoce;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.neusoft.core.restful.AppResponse;
 import com.neusoft.security.client.utils.SecurityUtils;
 import com.neusoft.util.UUIDUtils;
@@ -35,7 +33,7 @@ public class GoodTypeService {
         if(null == goodTypeInfo) {
             return AppResponse.bizError("商品分类一级查询异常");
         }
-        return AppResponse.success("商品分类一级查询成功", new PageInfo<GoodType>(goodTypeInfo));
+        return AppResponse.success("商品分类一级查询成功", goodTypeInfo);
     }
 
     /**
@@ -48,7 +46,7 @@ public class GoodTypeService {
         if(null == goodTypeInfo) {
             return AppResponse.bizError("商品分类二级查询异常");
         }
-        return AppResponse.success("商品分类二级查询成功", new PageInfo<GoodType>(goodTypeInfo));
+        return AppResponse.success("商品分类二级查询成功", goodTypeInfo);
     }
 
     /**
@@ -76,12 +74,11 @@ public class GoodTypeService {
      * @return
      */
     public AppResponse listAssess(GoodType goodType) {
-        PageHelper.startPage(goodType.getPageNum(), goodType.getPageSize());
         List<GoodType> goodTypeInfo = goodTypeDao.listAssess(goodType);
         if(null == goodTypeInfo) {
             return AppResponse.bizError("商品评价分页查询异常");
         }
-        return AppResponse.success("商品评价分页查询成功", new PageInfo<GoodType>(goodTypeInfo));
+        return AppResponse.success("商品评价分页查询成功", goodTypeInfo);
     }
 
 

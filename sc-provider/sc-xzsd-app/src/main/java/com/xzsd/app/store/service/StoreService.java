@@ -1,7 +1,5 @@
 package com.xzsd.app.store.service;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.neusoft.core.restful.AppResponse;
 import com.neusoft.security.client.utils.SecurityUtils;
 import com.xzsd.app.store.dao.StoreDao;
@@ -67,12 +65,11 @@ public class StoreService {
         //获取当前登陆人信息
         store.setUpdateUser(SecurityUtils.getCurrentUserId());
         //订单列表查询
-        PageHelper.startPage(store.getPageNum(), store.getPageSize() );
         List<Store> storeInfo = storeDao.listOrder(store);
         if(null == storeInfo) {
             return AppResponse.bizError("订单列表查询异常");
         }
-        return AppResponse.success("订单列表查询成功", new PageInfo<Store>(storeInfo));
+        return AppResponse.success("订单列表查询成功", storeInfo);
     }
 
 
@@ -86,12 +83,11 @@ public class StoreService {
         String updateUser = SecurityUtils.getCurrentUserId();
         store.setUpdateUser(updateUser);
         //门店店长查询司机信息
-        PageHelper.startPage(store.getPageNum(), store.getPageSize() );
         List<Store> storeInfo = storeDao.listDriver(store);
         if(null == storeInfo) {
             return AppResponse.bizError("门店店长查询司机信息异常");
         }
-        return AppResponse.success("门店店长查询司机信息成功", new PageInfo<Store>(storeInfo));
+        return AppResponse.success("门店店长查询司机信息成功", storeInfo);
     }
 
     /**
@@ -104,12 +100,11 @@ public class StoreService {
         String updateUser = SecurityUtils.getCurrentUserId();
         store.setUpdateUser(updateUser);
         //司机负责门店信息查询
-        PageHelper.startPage(store.getPageNum(), store.getPageSize() );
         List<Store> storeInfo = storeDao.listStore(store);
         if(null == storeInfo) {
             return AppResponse.bizError("司机负责门店信息查询异常");
         }
-        return AppResponse.success("司机负责门店信息查询成功", new PageInfo<Store>(storeInfo));
+        return AppResponse.success("司机负责门店信息查询成功", storeInfo);
     }
 
 

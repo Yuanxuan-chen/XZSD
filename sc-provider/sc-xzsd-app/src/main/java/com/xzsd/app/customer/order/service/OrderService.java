@@ -1,7 +1,5 @@
 package com.xzsd.app.customer.order.service;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.neusoft.core.restful.AppResponse;
 import com.neusoft.security.client.utils.SecurityUtils;
 import com.neusoft.util.UUIDUtils;
@@ -130,12 +128,11 @@ public class OrderService {
         //获取当前登录人信息
         order.setUpdateUser(SecurityUtils.getCurrentUserId());
         //订单列表查询
-        PageHelper.startPage(order.getPageNum(), order.getPageSize() );
         List<Order> orderInfo = orderDao.listOrder(order);
         if(null == orderInfo) {
             return AppResponse.bizError("订单列表查询异常");
         }
-        return AppResponse.success("订单列表查询成功", new PageInfo<Order>(orderInfo));
+        return AppResponse.success("订单列表查询成功", orderInfo);
     }
 
 
@@ -145,12 +142,11 @@ public class OrderService {
      * @return
      */
     public AppResponse listtAssess(Order order){
-        PageHelper.startPage(order.getPageNum(), order.getPageSize() );
         List<Order> orderInfo = orderDao.listtAssess(order);
         if(null == orderInfo) {
             return AppResponse.bizError("查询订单评价商品信息列表异常");
         }
-        return AppResponse.success("查询订单评价商品信息列表成功", new PageInfo<Order>(orderInfo));
+        return AppResponse.success("查询订单评价商品信息列表成功", orderInfo);
     }
 
 
