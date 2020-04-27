@@ -61,4 +61,15 @@ public interface StoreDao {
      */
     int countInviteCode(Store store);
 
+
+
+    /**
+     * 统计店长数量
+     * @author Yuanxuan-chen
+     * @date 2020-04-27
+     * @param store
+     * @return
+     */
+    int countShopKeeperCode(Store store);
+
 }

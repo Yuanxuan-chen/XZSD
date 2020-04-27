@@ -49,6 +49,7 @@
         from t_sys_shop_cart
         where good_code = #{goodCode}
         and sell_price = #{sellPrice}
+        and user_code = #{updateUser}
         and is_delete = 0
     </select>
 

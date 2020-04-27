@@ -123,4 +123,12 @@
         where du.user_code = #{updateUser};
     </select>
 
+    <select id="countShopKeeperCode" parameterType="com.xzsd.app.store.entity.Store" resultType="int">
+        select count(user_code)
+        from t_sys_user
+        where is_delete = 0
+        and role = 2
+        and user_code = #{shopkeeperCode}
+    </select>
+
 </mapper>

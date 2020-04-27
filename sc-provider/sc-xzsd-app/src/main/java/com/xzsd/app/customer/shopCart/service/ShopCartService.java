@@ -31,6 +31,11 @@ public class ShopCartService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse saveShopCart(ShopCart shopCart) {
+        //获取添加商品的用户编号
+        String createUser = SecurityUtils.getCurrentUserId();
+        shopCart.setUserCode(createUser);
+        shopCart.setCreateUser(createUser);
+        shopCart.setUpdateUser(createUser);
         //判断商品是否存在购物车
         ShopCart shopGoodInfo = shopCartDao.getGoodInfo(shopCart);
         int count = 0;
@@ -38,21 +43,13 @@ public class ShopCartService {
             //直接在存在的购物车上叠加
             shopCart.setCartCode(shopGoodInfo.getCartCode());
             shopCart.setGoodNumber(shopGoodInfo.getGoodNumber() + shopCart.getGoodNumber());
-            //获取添加商品的用户编号
-            String updateUser = SecurityUtils.getCurrentUserId();
-            shopCart.setUpdateUser(updateUser);
             //商品叠加
             count = shopCartDao.stateShopCart(shopCart);
         }else{
             //生成随机购物车编号
             shopCart.setCartCode(UUIDUtils.getUUID());
-            //获取添加商品的用户编号
-            String createUser = SecurityUtils.getCurrentUserId();
-            shopCart.setUserCode(createUser);
-            shopCart.setCreateUser(createUser);
             //购物车新增商品
             count = shopCartDao.saveShopCart(shopCart);
-
         }
         if (0 == count) {
             return AppResponse.bizError("购物车新增商品异常");

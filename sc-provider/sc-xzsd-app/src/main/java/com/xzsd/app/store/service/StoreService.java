@@ -58,10 +58,15 @@ public class StoreService {
 
     /**
      * 订单列表查询
+     * @author Yuanxuan-chen
+     * @date 2020-04-27
      * @param store
      * @return
      */
     public AppResponse listOrder(Store store){
+        //获取当前登陆人信息
+        store.setUpdateUser(SecurityUtils.getCurrentUserId());
+        //订单列表查询
         PageHelper.startPage(store.getPageNum(), store.getPageSize() );
         List<Store> storeInfo = storeDao.listOrder(store);
         if(null == storeInfo) {

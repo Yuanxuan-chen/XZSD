@@ -53,11 +53,17 @@ public class StoreService {
 
     /**
      * 门店信息新增
+     * @author Yuanxuan-chen
+     * @date 2020-04-27
      * @param store
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse saveStore(Store store) {
+        //判断门店店长账号是否存在
+        if (0 == storeDao.countShopKeeperCode(store)){
+            return AppResponse.bizError("店长编号不存在, 请重新输入");
+        }
         //判断门店邀请码是否存在
         int countInviteCode = storeDao.countInviteCode(store);
         if(countInviteCode != 0){
