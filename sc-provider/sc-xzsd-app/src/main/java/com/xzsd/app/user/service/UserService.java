@@ -175,5 +175,4 @@ public class UserService {
         }
         return AppResponse.success("获取登录人角色编码成功", userInfo);
     }
-
 }
