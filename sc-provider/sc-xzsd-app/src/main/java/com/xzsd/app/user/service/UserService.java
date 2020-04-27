@@ -24,14 +24,12 @@ public class UserService {
 
     /**
      * 司机信息查询
-     * @param user
      * @return
      */
-    public AppResponse selectdriver(User user) {
+    public AppResponse selectdriver() {
         //获取当前登陆人编号
         String userCode = SecurityUtils.getCurrentUserId();
-        user.setUserCode(userCode);
-        User userInfo = userDao.selectdriver(user);
+        User userInfo = userDao.selectdriver(userCode);
         if (null == userInfo) {
             return AppResponse.bizError("司机信息查询异常");
         }
@@ -40,14 +38,12 @@ public class UserService {
 
     /**
      * 客户信息查询
-     * @param user
      * @return
      */
-    public AppResponse selecteCustomer(User user) {
+    public AppResponse selecteCustomer() {
         //获取当前登陆人编号
         String userCode = SecurityUtils.getCurrentUserId();
-        user.setUserCode(userCode);
-        User userInfo = userDao.selecteCustomer(user);
+        User userInfo = userDao.selecteCustomer(userCode);
         if (null == userInfo) {
             return AppResponse.bizError("客户信息查询异常");
         }
@@ -56,14 +52,12 @@ public class UserService {
 
     /**
      * 店长信息查询
-     * @param user
      * @return
      */
-    public AppResponse selectStore(User user) {
+    public AppResponse selectStore() {
         //获取当前登陆人编号
         String userCode = SecurityUtils.getCurrentUserId();
-        user.setUserCode(userCode);
-        User userInfo = userDao.selectStore(user);
+        User userInfo = userDao.selectStore(userCode);
         if (null == userInfo) {
             return AppResponse.bizError("店长信息查询异常");
         }
@@ -161,15 +155,13 @@ public class UserService {
      * 获取登录人角色编码
      * @date 2020-04-23
      * @author Yuanxuan-chen
-     * @param user
      * @return
      */
-    public AppResponse getRole(User user) {
+    public AppResponse getRole() {
         //获取当前登录人编码
         String userCode = SecurityUtils.getCurrentUserId();
-        user.setUpdateUser(userCode);
         //获取登录人角色编码
-        int userInfo = userDao.getRole(user);
+        int userInfo = userDao.getRole(userCode);
         if (0 == userInfo) {
             return AppResponse.bizError("用获取登录人角色编码异常");
         }

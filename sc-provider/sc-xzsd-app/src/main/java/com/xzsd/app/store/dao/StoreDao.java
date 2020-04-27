@@ -35,16 +35,14 @@ public interface StoreDao {
 
     /**
      * 店长查询司机信息
-     * @param store
      * @return
      */
-    List<Store> listDriver(Store store);
+    List<Store> listDriver(String userCode);
 
     /**
      * 司机负责门店信息查询
-     * @param store
      * @return
      */
-    List<Store> listStore(Store store);
+    List<Store> listStore(String userCode);
 
 }

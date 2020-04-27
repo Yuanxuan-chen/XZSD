@@ -28,8 +28,8 @@ public class GoodTypeService {
      * @param goodType
      * @return
      */
-    public AppResponse levelOneList(GoodType goodType) {
-        List<GoodType> goodTypeInfo = goodTypeDao.levelOneList(goodType);
+    public AppResponse levelOneList() {
+        List<GoodType> goodTypeInfo = goodTypeDao.levelOneList();
         if(null == goodTypeInfo) {
             return AppResponse.bizError("商品分类一级查询异常");
         }

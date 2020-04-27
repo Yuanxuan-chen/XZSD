@@ -31,7 +31,7 @@ public class Order {
     /**
      * 创建时间
      */
-    private String creatTime;
+    private String createTime;
 
     /**
      * 修改者
@@ -278,12 +278,12 @@ public class Order {
         this.createUser = createUser;
     }
 
-    public String getCreatTime() {
-        return creatTime;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(String creatTime) {
-        this.creatTime = creatTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public String getUpdateUser() {

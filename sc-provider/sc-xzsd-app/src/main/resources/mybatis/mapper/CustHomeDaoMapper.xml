@@ -4,7 +4,7 @@
 <mapper namespace="com.xzsd.app.customer.home.dao.HomeDao">
 
 <!--轮播图商品查询-->
-    <select id="listSlideshow" parameterType="com.xzsd.app.customer.home.entity.Home" resultType="com.xzsd.app.customer.home.entity.Home" >
+    <select id="listSlideshow" resultType="com.xzsd.app.customer.home.entity.Home" >
         select slideshow_good_code goodCode,
         slideshow_route slideshowRoute
         from t_sys_slideshow
@@ -16,7 +16,7 @@
     </select>
 
 <!--热门商品信息查询-->
-    <select id="listHotGood" parameterType="com.xzsd.app.customer.home.entity.Home" resultType="com.xzsd.app.customer.home.entity.Home" >
+    <select id="listHotGood" parameterType="int" resultType="com.xzsd.app.customer.home.entity.Home" >
         select h.good_code,
                g.good_name,
                g.pictureUrl,
@@ -27,7 +27,7 @@
         where g.is_delete = 0
         and h.is_delete = 0
         order by h.hot_sort
-        limit #{hotLimit}
+        limit #{showNumber}
     </select>
 
 <!--热门商品展示数量查询-->

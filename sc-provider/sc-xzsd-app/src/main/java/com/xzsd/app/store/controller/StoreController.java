@@ -65,13 +65,13 @@ public class StoreController {
 
     /**
      * 门店店长查询司机信息
-     * @param store
+
      * @return
      */
     @PostMapping("listDriver")
-    public AppResponse listDriver(Store store){
+    public AppResponse listDriver(){
         try{
-            return storeService.listDriver(store);
+            return storeService.listDriver();
         }catch (Exception e){
             throw e;
         }
@@ -79,13 +79,12 @@ public class StoreController {
 
     /**
      * 司机负责门店信息查询
-     * @param store
      * @return
      */
     @PostMapping("listStore")
-    public AppResponse listStore(Store store){
+    public AppResponse listStore(){
         try{
-            return storeService.listStore(store);
+            return storeService.listStore();
         }catch (Exception e){
             throw e;
         }

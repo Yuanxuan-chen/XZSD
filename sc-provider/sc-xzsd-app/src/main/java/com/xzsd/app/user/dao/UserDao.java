@@ -10,24 +10,22 @@ public interface UserDao {
 
     /**
      * 司机信息查询
-     * @param user
      * @return
      */
-    User selectdriver(User user);
+    User selectdriver(String userCode);
 
     /**
      * 客户信息查询
-     * @param user
      * @return
      */
-    User selecteCustomer(User user);
+    User selecteCustomer(String userCode);
 
     /**
      * 店长信息查询
-     * @param user
+     * @param userCode
      * @return
      */
-    User selectStore(User user);
+    User selectStore(String userCode);
 
     /**
      * 用户密码修改
@@ -72,10 +70,9 @@ public interface UserDao {
     String selectPassword(User user);
 
     /**
-     * 用户密码查询
-     * @param user
+     * 获取登录人角色编码
      * @return
      */
-    int getRole(User user);
+    int getRole(String userCode);
 
 }

@@ -1,7 +1,6 @@
 package com.xzsd.app.customer.home.controller;
 
 import com.neusoft.core.restful.AppResponse;
-import com.xzsd.app.customer.home.entity.Home;
 import com.xzsd.app.customer.home.service.HomeService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +21,12 @@ public class HomeController {
 
     /**
      * 轮播图商品查询
-     * @param home
      * @return
      */
     @PostMapping("listSlideshow")
-    public AppResponse listSlideshow(Home home) {
+    public AppResponse listSlideshow() {
         try {
-            return homeService.listSlideshow(home);
+            return homeService.listSlideshow();
         }catch (Exception e) {
             throw e;
         }
@@ -36,13 +34,12 @@ public class HomeController {
 
     /**
      * 热门商品信息查询
-     * @param home
      * @return
      */
     @PostMapping("listHotGood")
-    public AppResponse listHotGood(Home home) {
+    public AppResponse listHotGood() {
         try {
-            return homeService.listHotGood(home);
+            return homeService.listHotGood();
         }catch (Exception e) {
             throw e;
         }

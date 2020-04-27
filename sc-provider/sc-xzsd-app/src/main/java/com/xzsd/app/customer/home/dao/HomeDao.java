@@ -12,17 +12,15 @@ public interface HomeDao {
 
     /**
      * 轮播图商品查询
-     * @param home
      * @return
      */
-    List<Home> listSlideshow(Home home);
+    List<Home> listSlideshow();
 
     /**
      * 热门商品信息查询
-     * @param home
      * @return
      */
-    List<Home> listHotGood(Home home);
+    List<Home> listHotGood(int showNumber);
 
     /**
      * 获取热门商品展示数量

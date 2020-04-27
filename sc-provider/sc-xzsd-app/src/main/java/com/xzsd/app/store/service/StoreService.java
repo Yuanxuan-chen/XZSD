@@ -75,15 +75,13 @@ public class StoreService {
 
     /**
      * 门店店长查询司机信息
-     * @param store
      * @return
      */
-    public AppResponse listDriver(Store store){
+    public AppResponse listDriver(){
         //获取登陆人信息
-        String updateUser = SecurityUtils.getCurrentUserId();
-        store.setUpdateUser(updateUser);
+        String userCode = SecurityUtils.getCurrentUserId();
         //门店店长查询司机信息
-        List<Store> storeInfo = storeDao.listDriver(store);
+        List<Store> storeInfo = storeDao.listDriver(userCode);
         if(null == storeInfo) {
             return AppResponse.bizError("门店店长查询司机信息异常");
         }
@@ -92,15 +90,13 @@ public class StoreService {
 
     /**
      * 司机负责门店信息查询
-     * @param store
      * @return
      */
-    public AppResponse listStore(Store store){
+    public AppResponse listStore(){
         //获取登陆人信息
-        String updateUser = SecurityUtils.getCurrentUserId();
-        store.setUpdateUser(updateUser);
+        String userCode = SecurityUtils.getCurrentUserId();
         //司机负责门店信息查询
-        List<Store> storeInfo = storeDao.listStore(store);
+        List<Store> storeInfo = storeDao.listStore(userCode);
         if(null == storeInfo) {
             return AppResponse.bizError("司机负责门店信息查询异常");
         }

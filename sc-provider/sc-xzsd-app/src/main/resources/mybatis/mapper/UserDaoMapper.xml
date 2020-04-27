@@ -4,7 +4,7 @@
 <mapper namespace="com.xzsd.app.user.dao.UserDao">
 
 <!--司机信息查询-->
-    <select id="selectdriver" parameterType="com.xzsd.app.user.entity.User" resultType="com.xzsd.app.user.entity.User" >
+    <select id="selectdriver" parameterType="java.lang.String" resultType="com.xzsd.app.user.entity.User" >
         select user_code userCode,
                user_picture_url userPictureUrl,
                user_acct userAcct,
@@ -17,7 +17,7 @@
     </select>
 
 <!--客户信息查询-->
-    <select id="selecteCustomer" parameterType="com.xzsd.app.user.entity.User" resultType="com.xzsd.app.user.entity.User" >
+    <select id="selecteCustomer" parameterType="java.lang.String" resultType="com.xzsd.app.user.entity.User" >
         select user_acct userAcct,
                user_picture_url userPictureUrl,
                invite_code inviteCode
@@ -28,7 +28,7 @@
     </select>
 
 <!--店长信息查询-->
-    <select id="selectStore" parameterType="com.xzsd.app.user.entity.User" resultType="com.xzsd.app.user.entity.User" >
+    <select id="selectStore" parameterType="java.lang.String" resultType="com.xzsd.app.user.entity.User" >
         select u.user_code userCode,
                u.user_acct userAcct,
                u.user_picture_url userPictureUrl,
@@ -134,10 +134,10 @@
     </update>
 
 <!-- 获取登录人角色编码-->
-    <select id="getRole" parameterType="com.xzsd.app.user.entity.User" resultType="int" >
+    <select id="getRole" parameterType="java.lang.String" resultType="int" >
         select role
         from t_sys_user
-        where user_code = #{updateUser}
+        where user_code = #{userCode}
         and is_delete = 0
     </select>
 

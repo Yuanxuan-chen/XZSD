@@ -22,13 +22,12 @@ public class UserController {
 
     /**
      * 司机信息查询
-     * @param user
      * @return
      */
     @PostMapping("selectdriver")
-    public AppResponse selectdriver(User user) {
+    public AppResponse selectdriver() {
         try {
-            return userService.selectdriver(user);
+            return userService.selectdriver();
         }catch (Exception e) {
             throw e;
         }
@@ -36,13 +35,12 @@ public class UserController {
 
     /**
      * 客户信息查询
-     * @param user
      * @return
      */
     @PostMapping("selecteCustomer")
-    public AppResponse selecteCustomer(User user) {
+    public AppResponse selecteCustomer() {
         try {
-            return userService.selecteCustomer(user);
+            return userService.selecteCustomer();
         }catch (Exception e) {
             throw e;
         }
@@ -50,13 +48,12 @@ public class UserController {
 
     /**
      * 店长信息查询
-     * @param user
      * @return
      */
     @PostMapping("selectStore")
-    public AppResponse selectStore(User user) {
+    public AppResponse selectStore() {
         try {
-            return userService.selectStore(user);
+            return userService.selectStore();
         }catch (Exception e) {
             throw e;
         }
@@ -106,13 +103,12 @@ public class UserController {
 
     /**
      * 获取登录人角色编码
-     * @param user
      * @return
      */
     @PostMapping("getRole")
-    public AppResponse getRole(User user) {
+    public AppResponse getRole() {
         try {
-            return userService.getRole(user);
+            return userService.getRole();
         }catch (Exception e) {
             throw e;
         }

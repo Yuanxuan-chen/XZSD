@@ -28,7 +28,7 @@ public class User {
     /**
      * 创建时间
      */
-    private String creatTime;
+    private String createTime;
 
     /**
      * 修改者
@@ -228,13 +228,7 @@ public class User {
         this.createUser = createUser;
     }
 
-    public String getCreatTime() {
-        return creatTime;
-    }
 
-    public void setCreatTime(String creatTime) {
-        this.creatTime = creatTime;
-    }
 
     public String getUpdateUser() {
         return updateUser;

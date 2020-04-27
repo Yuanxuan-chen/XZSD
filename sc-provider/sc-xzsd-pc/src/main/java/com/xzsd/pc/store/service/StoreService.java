@@ -66,7 +66,7 @@ public class StoreService {
         }
         //判断门店邀请码是否存在
         int countInviteCode = storeDao.countInviteCode(store);
-        if(countInviteCode != 0){
+        if(0 != countInviteCode  ){
             return AppResponse.bizError("门店邀请码已存在, 请重新输入");
         }
         //创建者编号

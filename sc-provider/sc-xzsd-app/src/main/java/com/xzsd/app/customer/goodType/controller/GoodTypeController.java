@@ -26,9 +26,9 @@ public class GoodTypeController {
      * @return
      */
     @PostMapping("levelOneList")
-    public AppResponse levelOneList(GoodType goodType) {
+    public AppResponse levelOneList() {
         try {
-            return goodTypeService.levelOneList(goodType);
+            return goodTypeService.levelOneList();
         }catch (Exception e) {
             throw e;
         }

@@ -20,11 +20,10 @@ public class HomeService {
 
     /**
      * 轮播图商品查询
-     * @param home
      * @return
      */
-    public AppResponse listSlideshow(Home home){
-        List<Home> homeInfo = homeDao.listSlideshow(home);
+    public AppResponse listSlideshow(){
+        List<Home> homeInfo = homeDao.listSlideshow();
         if(null == homeInfo) {
             return AppResponse.bizError("轮播图商品查询异常");
         }
@@ -34,14 +33,12 @@ public class HomeService {
 
     /**
      * 热门商品信息查询
-     * @param home
      * @return
      */
-    public AppResponse listHotGood(Home home){
+    public AppResponse listHotGood(){
         //获取热门商品展示数量
         int showNumber = homeDao.getHotGoodNumber();
-        home.setHotLimit(showNumber);
-        List<Home> homeInfo = homeDao.listHotGood(home);
+        List<Home> homeInfo = homeDao.listHotGood(showNumber);
         if(null == homeInfo) {
             return AppResponse.bizError("热门商品信息查询异常");
         }

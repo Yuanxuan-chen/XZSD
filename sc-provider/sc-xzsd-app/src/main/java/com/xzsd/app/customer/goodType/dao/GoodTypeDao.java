@@ -12,10 +12,9 @@ public interface GoodTypeDao {
 
     /**
      * 商品分类一级查询
-     * @param goodType
      * @return
      */
-    List<GoodType> levelOneList(GoodType goodType);
+    List<GoodType> levelOneList();
 
     /**
      * 商品分类二级查询

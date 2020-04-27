@@ -96,7 +96,7 @@
     </update>
 
 <!--    门店店长查询司机信息-->
-    <select id="listDriver" parameterType="com.xzsd.app.store.entity.Store" resultType="com.xzsd.app.store.entity.Store" >
+    <select id="listDriver" parameterType="java.lang.String" resultType="com.xzsd.app.store.entity.Store" >
         select u.user_name driverName,
                u.tel
         from t_sys_store as s left join t_sys_user as u
@@ -104,11 +104,11 @@
             and s.downtown_code = u.downtown_code
             and s.area_code = u.area_code
             and u.is_delete = 0
-        where s.shopkeeper_code = #{updateUser}
+        where s.shopkeeper_code = #{userCode}
     </select>
 
 <!--    司机负责门店信息查询-->
-    <select id="listStore" parameterType="com.xzsd.app.store.entity.Store" resultType="com.xzsd.app.store.entity.Store" >
+    <select id="listStore" parameterType="java.lang.String" resultType="com.xzsd.app.store.entity.Store" >
         select s.store_code,
                s.store_name,
                concat(s.province_name, s.downtown_name, s.area_name, s.address) address,
@@ -120,7 +120,7 @@
             and s.area_code = du.area_code
             left join t_sys_user as su
             on s.shopkeeper_code = su.user_code
-        where du.user_code = #{updateUser};
+        where du.user_code = #{userCode};
     </select>
 
     <select id="countShopKeeperCode" parameterType="com.xzsd.app.store.entity.Store" resultType="int">
