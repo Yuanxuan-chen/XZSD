@@ -75,10 +75,16 @@ public class OrderService {
         }
         //创建订单详情表
         int countDetail = orderDao.saveOrderDetail(orderList);
-        //各商品销量加一
-        orderDao.sellVolumeOnePlus(order);
+        //各商品销量累加
+        int countSellPrice =  orderDao.sellVolumeOnePlus(orderList);
+        if(0 == countSellPrice){
+            return AppResponse.bizError("各商品销量累加异常");
+        }
         //从购物车删除各商品
-        orderDao.deleteShopCart(order);
+        int countDelete = orderDao.deleteShopCart(order);
+        if(0 == countDelete){
+            return AppResponse.bizError("购物车删除各商品异常");
+        }
         //创建订单汇总表
         order.setAllPrice(String.valueOf(allPrice));
         order.setAllNumber(allNumber);
@@ -141,8 +147,8 @@ public class OrderService {
      * @param order
      * @return
      */
-    public AppResponse listtAssess(Order order){
-        List<Order> orderInfo = orderDao.listtAssess(order);
+    public AppResponse listAssess(Order order){
+        List<Order> orderInfo = orderDao.listAssess(order);
         if(null == orderInfo) {
             return AppResponse.bizError("查询订单评价商品信息列表异常");
         }

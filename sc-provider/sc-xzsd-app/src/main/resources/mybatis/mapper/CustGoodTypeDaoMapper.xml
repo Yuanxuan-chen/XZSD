@@ -49,15 +49,21 @@
                good_name,
                good_introduce,
                (
-               select s.store_name
-                from t_sys_store as s left join t_sys_user as u
+                    select s.store_name
+                    from t_sys_store as s left join t_sys_user as u
                         on s.invite_code = u.invite_code
                         and u.role = 4
                         and u.is_delete = 0
-                where s.is_delete = 0
-                and u.user_code = #{createUser}
-                        ) storeName,
+                    where s.is_delete = 0
+                    and u.user_code = #{createUser}
+                    ) storeName,
                sell_price,
+               (
+                    select format(sum(assess_rank)/count(assess_rank), 1)
+                    from t_sys_assess
+                    where good_code = #{goodCode}
+                    group by good_code
+                    ) goodRank,
                pictureUrl
         from t_sys_goods
         where is_delete = 0
@@ -127,9 +133,10 @@
             </foreach>
     </insert>
 
+<!--修改已评价的商品的订单状态-->
     <update id="orderSate" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" >
         update t_sys_order
-        set order_state = 4
+        set order_state = 8
         where order_code = #{orderCode}
         and is_delete = 0
     </update>

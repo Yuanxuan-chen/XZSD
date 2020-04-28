@@ -25,7 +25,6 @@ public class GoodTypeService {
 
     /**
      * 商品分类一级查询
-     * @param goodType
      * @return
      */
     public AppResponse levelOneList() {
@@ -103,7 +102,6 @@ public class GoodTypeService {
             //set评价编码
             assess.setAssessCode(UUIDUtils.getUUID());
             //set评价人
-            assess.setCreateUser(createUser);
             assess.setCreateUser(createUser);
             //set商品编号
             assess.setGoodCode(goodType.getGoodCodeList().get(i));

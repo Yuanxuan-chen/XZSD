@@ -62,7 +62,7 @@ public class StoreService {
         //判断当前店长用户是否开店
         String storeCode = storeDao.getStoreCode(SecurityUtils.getCurrentUserId());
         if (null ==  storeCode){
-            return AppResponse.bizError("账号未绑定门店");
+            return AppResponse.bizError("店长账号未绑定门店");
         }
         store.setStoreCode(storeCode);
         //订单列表查询

@@ -22,14 +22,14 @@ public interface OrderDao {
      * @param order
      * @return
      */
-    void sellVolumeOnePlus(Order order);
+    int sellVolumeOnePlus(List<Order> order);
 
     /**
      * 从购物车删除各商品
      * @param order
      * @return
      */
-    void deleteShopCart(Order order);
+    int deleteShopCart(Order order);
 
 
     /**
@@ -72,7 +72,7 @@ public interface OrderDao {
      * @param order
      * @return
      */
-    List<Order> listtAssess(Order order);
+    List<Order> listAssess(Order order);
 
     /**
      * 查询客户门店邀请码

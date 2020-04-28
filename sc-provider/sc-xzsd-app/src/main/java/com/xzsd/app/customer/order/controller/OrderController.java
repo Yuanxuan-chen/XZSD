@@ -81,10 +81,10 @@ public class OrderController {
      * @param order
      * @return
      */
-    @PostMapping("listtAssess")
-    public AppResponse listtAssess(Order order){
+    @PostMapping("listAssess")
+    public AppResponse listAssess(Order order){
         try{
-            return orderService.listtAssess(order);
+            return orderService.listAssess(order);
         }catch (Exception e){
             throw e;
         }

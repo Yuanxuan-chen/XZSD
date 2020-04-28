@@ -49,18 +49,17 @@
         and u.user_code = #{createUser}
     </select>
 
-<!--销量加一-->
-    <update id="sellVolumeOnePlus" parameterType="com.xzsd.app.customer.order.entity.Order">
-        update t_sys_goods
-        set sell_volume = sell_volume + 1,
-            update_user = #{createUser},
-            update_time = now(),
-            version = version + 1
-        where good_code in
-        <foreach collection="goodCodeList" item="item" index="index" open="(" separator="," close=")">
-            #{item}
+<!--销量累加-->
+    <update id="sellVolumeOnePlus" parameterType="java.util.List">
+        <foreach collection="list" index="index" item="item" separator=";" >
+            update t_sys_goods
+            set sell_volume = sell_volume + #{item.totalNumber},
+                update_user = #{item.createUser},
+                update_time = now(),
+                version = version + 1
+            where good_code = #{item.goodCode}
+            and is_delete = 0
         </foreach>
-        and is_delete = 0
     </update>
 
 <!--购物车商品删除-->
@@ -193,16 +192,17 @@
             on d.good_code = g.good_code
         where o.is_delete = 0
         and o.create_user = #{updateUser}
-        <if test="orderState != 0" >
+        <if test="orderStateList != null and orderStateList.size() > 0 and orderStateList.get(0) != 0" >
             and o.order_state in
             <foreach collection="orderStateList" item="item" index="index" open="(" separator="," close=")" >
                 #{item}
             </foreach>
         </if>
+        order by o.create_time DESC
     </select>
 
 <!--查询订单评价商品信息列表接口-->
-    <select id="listtAssess" parameterType="com.xzsd.app.customer.order.entity.Order" resultType="com.xzsd.app.customer.order.entity.Order" >
+    <select id="listAssess" parameterType="com.xzsd.app.customer.order.entity.Order" resultType="com.xzsd.app.customer.order.entity.Order" >
         select g.good_code goodCode,
                g.pictureUrl
         from t_sys_order as o left join t_sys_order_detail as d

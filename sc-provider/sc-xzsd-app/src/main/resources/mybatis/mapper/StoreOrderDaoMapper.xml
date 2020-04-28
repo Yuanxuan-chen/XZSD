@@ -48,7 +48,7 @@
             on d.good_code = g.good_code
         where o.is_delete = 0
         and o.store_code = #{storeCode}
-        <if test="orderState != 0" >
+        <if test="orderStateList != null and orderStateList.size() > 0 and orderStateList.get(0) != 0" >
             and o.order_state in
             <foreach collection="orderStateList" item="item" index="index" open="(" separator="," close=")" >
                 #{item}
@@ -84,7 +84,7 @@
             on d.good_code = g.good_code
         where o.is_delete = 0
         and  o.order_code = #{orderCode}
-        order by o.order_code
+        order by o.create_time DESC
     </select>
 
 <!--    订单完成取货-->

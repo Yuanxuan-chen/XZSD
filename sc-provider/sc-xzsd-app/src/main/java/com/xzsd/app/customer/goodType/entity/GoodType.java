@@ -143,12 +143,24 @@ public class GoodType {
     private List<String> goodCodeList;
 
     /**
+     * 商品星级
+     */
+    private String goodRank;
+
+    /**
      * 评价内容集合
      */
     private List<String> assessContentList;
 
     private List<GoodType> goodList;
 
+    public String getGoodRank() {
+        return goodRank;
+    }
+
+    public void setGoodRank(String goodRank) {
+        this.goodRank = goodRank;
+    }
 
     public String getAssessCode() {
         return assessCode;
