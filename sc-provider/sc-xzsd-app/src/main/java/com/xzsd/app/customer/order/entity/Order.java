@@ -133,7 +133,10 @@ public class Order {
      */
     private int orderState;
 
-
+    /**
+     *订单状态集合
+     */
+    private List<Integer> orderStateList;
 
     /**
      *省市区+取货门店地址
@@ -164,6 +167,15 @@ public class Order {
      * 购物车编号集合
      */
     private List<String> cartCodeList;
+
+
+    public List<Integer> getOrderStateList() {
+        return orderStateList;
+    }
+
+    public void setOrderStateList(List<Integer> orderStateList) {
+        this.orderStateList = orderStateList;
+    }
 
     public List<String> getCartCodeList() {
         return cartCodeList;

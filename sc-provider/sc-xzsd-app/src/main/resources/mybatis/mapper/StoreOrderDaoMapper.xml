@@ -39,7 +39,7 @@
                g.good_code,
                g.good_name,
                g.sell_price,
-               g.good_introduce,
+               g.good_introduce,in
                d.total_number,
                g.pictureUrl
         from t_sys_order as o left join t_sys_order_detail d
@@ -48,7 +48,10 @@
             on d.good_code = g.good_code
         where o.is_delete = 0
         <if test="orderState != 0" >
-            and o.order_state = #{orderState}
+            and o.order_state in
+            <foreach collection="orderStateList" item="item" index="index" open="(" separator="," close=")" >
+                #{item}
+            </foreach>
         </if>
         order by o.order_code
     </select>

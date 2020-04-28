@@ -89,21 +89,6 @@ public class Store {
      */
     private String allPrice;
 
-    public int getAllNumber() {
-        return allNumber;
-    }
-
-    public void setAllNumber(int allNumber) {
-        this.allNumber = allNumber;
-    }
-
-    public String getAllPrice() {
-        return allPrice;
-    }
-
-    public void setAllPrice(String allPrice) {
-        this.allPrice = allPrice;
-    }
 
     /**
      * 司机名字
@@ -136,17 +121,15 @@ public class Store {
     private int orderState;
 
     /**
+     *订单状态集合
+     */
+    private List<Integer> orderStateList;
+
+    /**
      *店长名字
      */
     private String userName;
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     /**
      *取货门店名称
@@ -178,6 +161,37 @@ public class Store {
      */
     private List<Store> goodList;
 
+    public int getAllNumber() {
+        return allNumber;
+    }
+
+    public void setAllNumber(int allNumber) {
+        this.allNumber = allNumber;
+    }
+
+    public String getAllPrice() {
+        return allPrice;
+    }
+
+    public void setAllPrice(String allPrice) {
+        this.allPrice = allPrice;
+    }
+
+    public List<Integer> getOrderStateList() {
+        return orderStateList;
+    }
+
+    public void setOrderStateList(List<Integer> orderStateList) {
+        this.orderStateList = orderStateList;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getDriverName() {
         return driverName;

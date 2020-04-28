@@ -194,7 +194,10 @@
         where o.is_delete = 0
         and o.create_user = #{updateUser}
         <if test="orderState != 0" >
-            and o.order_state = #{orderState}
+            and o.order_state in
+            <foreach collection="orderStateList" item="item" index="index" open="(" separator="," close=")" >
+                #{item}
+            </foreach>
         </if>
     </select>
 
