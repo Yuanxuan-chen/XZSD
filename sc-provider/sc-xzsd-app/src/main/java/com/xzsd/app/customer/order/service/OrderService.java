@@ -81,10 +81,13 @@ public class OrderService {
             return AppResponse.bizError("各商品销量累加异常");
         }
         //从购物车删除各商品
-        int countDelete = orderDao.deleteShopCart(order);
-        if(0 == countDelete){
-            return AppResponse.bizError("购物车删除各商品异常");
+        if (!"0".equals(order.getCartCodeList().get(0))){
+            int countDelete = orderDao.deleteShopCart(order);
+            if(0 == countDelete){
+                return AppResponse.bizError("购物车删除各商品异常");
+            }
         }
+
         //创建订单汇总表
         order.setAllPrice(String.valueOf(allPrice));
         order.setAllNumber(allNumber);
