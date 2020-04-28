@@ -39,7 +39,7 @@
                g.good_code,
                g.good_name,
                g.sell_price,
-               g.good_introduce,in
+               g.good_introduce,
                d.total_number,
                g.pictureUrl
         from t_sys_order as o left join t_sys_order_detail d
@@ -47,6 +47,7 @@
             left join t_sys_goods as g
             on d.good_code = g.good_code
         where o.is_delete = 0
+        and o.store_code = #{storeCode}
         <if test="orderState != 0" >
             and o.order_state in
             <foreach collection="orderStateList" item="item" index="index" open="(" separator="," close=")" >
@@ -126,12 +127,12 @@
         where du.user_code = #{userCode};
     </select>
 
-    <select id="countShopKeeperCode" parameterType="com.xzsd.app.store.entity.Store" resultType="int">
-        select count(user_code)
-        from t_sys_user
+<!--获取登录的门店店长的门店编号-->
+    <select id="getStoreCode" parameterType="java.lang.String" resultType="java.lang.String" >
+        select store_code
+        from t_sys_store
         where is_delete = 0
-        and role = 2
-        and user_code = #{shopkeeperCode}
+        and shopkeeper_code = #{userCode}
     </select>
 
 </mapper>

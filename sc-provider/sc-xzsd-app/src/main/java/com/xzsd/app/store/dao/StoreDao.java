@@ -10,8 +10,6 @@ import java.util.List;
  */
 public interface StoreDao {
 
-
-
     /**
      * 订单状态修改
      * @param store
@@ -25,6 +23,15 @@ public interface StoreDao {
      * @return
      */
     List<Store> selectOrder(Store store);
+
+    /**
+     * 获取登录的门店店长的门店编号
+     * @author Yuanxuan-chen
+     * @date 2020-04-28
+     * @param userCode
+     * @return
+     */
+    String getStoreCode(String userCode);
 
     /**
      * 订单列表查询

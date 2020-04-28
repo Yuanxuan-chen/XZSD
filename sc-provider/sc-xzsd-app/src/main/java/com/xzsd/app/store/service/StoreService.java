@@ -20,8 +20,6 @@ public class StoreService {
     @Resource
     private StoreDao storeDao;
 
-
-
     /**
      * 订单状态修改
      * @param store
@@ -40,7 +38,6 @@ public class StoreService {
         return AppResponse.success("订单状态修改成功");
     }
 
-
     /**
      * 订单详情查询
      * @param store
@@ -57,13 +54,17 @@ public class StoreService {
     /**
      * 订单列表查询
      * @author Yuanxuan-chen
-     * @date 2020-04-27
+     * @date 2020-04-28
      * @param store
      * @return
      */
     public AppResponse listOrder(Store store){
-        //获取当前登陆人信息
-        store.setUpdateUser(SecurityUtils.getCurrentUserId());
+        //判断当前店长用户是否开店
+        String storeCode = storeDao.getStoreCode(SecurityUtils.getCurrentUserId());
+        if (null ==  storeCode){
+            return AppResponse.bizError("账号未绑定门店");
+        }
+        store.setStoreCode(storeCode);
         //订单列表查询
         List<Store> storeInfo = storeDao.listOrder(store);
         if(null == storeInfo) {
@@ -72,9 +73,10 @@ public class StoreService {
         return AppResponse.success("订单列表查询成功", storeInfo);
     }
 
-
     /**
      * 门店店长查询司机信息
+     * @author Yuanxuan-chen
+     * @date 2020-04-27
      * @return
      */
     public AppResponse listDriver(){
@@ -90,6 +92,8 @@ public class StoreService {
 
     /**
      * 司机负责门店信息查询
+     * @author Yuanxuan-chen
+     * @date 2020-04-27
      * @return
      */
     public AppResponse listStore(){
@@ -102,7 +106,5 @@ public class StoreService {
         }
         return AppResponse.success("司机负责门店信息查询成功", storeInfo);
     }
-
-
 
 }
