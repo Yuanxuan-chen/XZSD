@@ -26,7 +26,7 @@
              create_time,
              good_state,
              sell_volume,
-             get_good_date,
+--              get_good_date,
              browse_volume,
              version)
             values
@@ -51,7 +51,7 @@
              now(),
              3,
              0,
-             now(),
+--              now(),
              0,
              0)
     </insert>
@@ -100,6 +100,9 @@
     <update id="stateGood" parameterType="com.xzsd.pc.good.entity.Good">
         update t_sys_goods as t
         set t.good_state = #{goodState},
+            <if test="goodState == 1" >
+                t.get_good_date = now(),
+            </if>
             t.update_user = #{updateUser},
             t.update_time = now(),
             t.version = version + 1

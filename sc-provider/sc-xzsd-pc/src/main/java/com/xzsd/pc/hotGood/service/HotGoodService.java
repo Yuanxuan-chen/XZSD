@@ -59,11 +59,19 @@ public class HotGoodService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse saveHotGood(HotGood hotGood) {
+        //判断商品是否已经添加进入热门商品列表
+        if(0 != hotGoodDao.countGoodCode(hotGood)){
+            return AppResponse.bizError("此商品已添加, 请重试");
+        }
+        //判断商品排序编号是否已经存在
+        if(0 != hotGoodDao.countHotSort(hotGood)){
+            return AppResponse.bizError("排序编号已存在, 请重试");
+        }
         //获取创建者信息
         String createUser = SecurityUtils.getCurrentUserId();
         hotGood.setCreateUser(createUser);
         //创建热门商品编码
-        hotGood.setHotGoodCode(UUIDUtils.getUUID());
+        hotGood.setHotGoodCode(UUIDUtils.getDateRandomID());
         //热门商品新增
         int hotGoodInfo = hotGoodDao.saveHotGood(hotGood);
         if(0 == hotGoodInfo){

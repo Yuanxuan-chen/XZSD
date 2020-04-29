@@ -26,13 +26,15 @@ public class GoodTypeService {
 
     /**
      * 分类新增
+     * @author Yuanxuan-chen
+     * @date 2020-04-29
      * @param goodType
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse saveGoodType(GoodType goodType) {
         //随机生成分类编号
-        goodType.setTypeCode(UUIDUtils.getUUID());
+        goodType.setTypeCode(UUIDUtils.getDateRandomID());
         //获取创建者编号
         String createUser = SecurityUtils.getCurrentUserId();
         goodType.setCreateUser(createUser);

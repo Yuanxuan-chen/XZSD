@@ -61,4 +61,18 @@ public interface HotGoodDao {
      */
     int setHotGood(HotGood hotGood);
 
+    /**
+     * 统计某商品数量
+     * @param hotGood
+     * @return
+     */
+    int countGoodCode(HotGood hotGood);
+
+    /**
+     * 统计某排序编号数量
+     * @param hotGood
+     * @return
+     */
+    int countHotSort(HotGood hotGood);
+
 }

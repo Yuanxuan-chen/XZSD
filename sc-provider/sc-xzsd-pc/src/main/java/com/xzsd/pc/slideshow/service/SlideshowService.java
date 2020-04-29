@@ -45,7 +45,7 @@ public class SlideshowService {
             return AppResponse.bizError("排序商品已存在轮播图列表, 请重新输入");
         }
         //生成轮播图编码
-        slideshow.setSlideshowCode(UUIDUtils.getUUID());
+        slideshow.setSlideshowCode(UUIDUtils.getDateRandomID());
         //轮播图新增
         int count = slideshowDao.saveSlideshow(slideshow);
         if (0 == count) {

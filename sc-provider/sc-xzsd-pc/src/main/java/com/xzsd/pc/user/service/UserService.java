@@ -42,7 +42,7 @@ public class UserService {
         //密码加密
         String password = PasswordUtils.generatePassword(user.getUserPassword());
         //获取随机用户编码
-        user.setUserCode(UUIDUtils.getUUID());
+        user.setUserCode(UUIDUtils.getDateRandomID());
         //密码加密导入
         user.setUserPassword(password);
         //用户新增

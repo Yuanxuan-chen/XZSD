@@ -35,7 +35,7 @@ public class MenuService {
         String createUser = SecurityUtils.getCurrentUserId();
         menu.setCreateUser(createUser);
         //生成随机菜单编号
-        menu.setMenuCode(UUIDUtils.getUUID());
+        menu.setMenuCode(UUIDUtils.getDateRandomID());
         //菜单新增
         int count = menuDao.saveMenu(menu);
         if (0 == count){

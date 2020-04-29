@@ -89,13 +89,8 @@ public class GoodService {
         //获取创建人的编码
         String createUser = SecurityUtils.getCurrentUserId();
         good.setCreateUser(createUser);
-        //判断商品是否存在
-//        int countGoodName = goodDao.countGoodName(good);
-//        if(0 != countGoodName) {
-//            return AppResponse.bizError("商品新增失败, 商品名称已存在, 请重新提交.");
-//        }
         //生成随机商品编码
-        good.setGoodCode(UUIDUtils.getUUID());
+        good.setGoodCode(UUIDUtils.getDateRandomID());
         //商品创建
         int count = goodDao.saveGood(good);
         if(0 == count) {

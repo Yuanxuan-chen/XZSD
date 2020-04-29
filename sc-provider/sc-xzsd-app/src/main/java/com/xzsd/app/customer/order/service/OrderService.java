@@ -40,7 +40,7 @@ public class OrderService {
             return AppResponse.bizError("门店邀请码未填写");
         }
         //生成订单汇总表编号
-        String orderCode = UUIDUtils.getUUID();
+        String orderCode = UUIDUtils.getDateRandomID();
         order.setOrderCode(orderCode);
         //获取用户信息
         Order userInfo = orderDao.getUserInfo(order);

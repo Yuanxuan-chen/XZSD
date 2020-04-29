@@ -73,7 +73,7 @@ public class StoreService {
         String createUser = SecurityUtils.getCurrentUserId();
         store.setCreateUser(createUser);
         //生成随机门店编号
-        store.setStoreCode(UUIDUtils.getUUID());
+        store.setStoreCode(UUIDUtils.getDateRandomID());
         //门店信息新增
         int storeInfo = storeDao.saveStore(store);
         if(0 == storeInfo) {

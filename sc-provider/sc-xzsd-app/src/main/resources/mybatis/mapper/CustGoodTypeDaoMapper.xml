@@ -40,6 +40,7 @@
         where parent_code = #{typeCode}
         and t.is_delete = 0
         and g.is_delete = 0
+        and g.good_state = 1
         order by type_code
     </select>
 

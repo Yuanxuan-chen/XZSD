@@ -100,4 +100,18 @@
         and version = #{version}
     </update>
 
+    <select id="countGoodCode" parameterType="com.xzsd.pc.hotGood.entity.HotGood" resultType="int" >
+        select count(good_code)
+        from t_sys_hot_good
+        where is_delete = 0
+        and good_code = #{goodCode}
+    </select>
+
+    <select id="countHotSort" parameterType="com.xzsd.pc.hotGood.entity.HotGood" resultType="int" >
+        select count(hot_sort)
+        from t_sys_hot_good
+        where is_delete = 0
+        and hot_sort = #{hotSort}
+    </select>
+
 </mapper>
