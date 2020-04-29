@@ -85,12 +85,14 @@
 
 <!--商品评价分页查询-->
     <select id="listAssess" parameterType="com.xzsd.app.customer.goodType.entity.GoodType" resultType="com.xzsd.app.customer.goodType.entity.GoodType" >
-        select assess_user assessUser,
-               assess_rank assessRank,
-               assess_content assessContent,
-               assess_time assessTime
-        from t_sys_assess
-        where is_delete = 0
+        select  u.user_acct assessUser,
+                a.assess_rank assessRank,
+                a.assess_content assessContent,
+                a.assess_time assessTime
+        from t_sys_assess as a left join t_sys_user as u
+            on a.assess_user = u.user_code
+            and u.is_delete = 0
+        where u.is_delete = 0
         and good_code = #{goodCode}
         <if test="assessRankList != null and assessRankList.size() > 0 ">
             and assess_rank in
