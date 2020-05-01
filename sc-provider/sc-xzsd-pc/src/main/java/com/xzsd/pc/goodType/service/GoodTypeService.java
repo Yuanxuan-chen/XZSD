@@ -66,11 +66,25 @@ public class GoodTypeService {
 
     /**
      * 分类删除
+     * @author Yuanxuan-chen
+     * @date 2020-04-29
      * @param goodType
      * @return
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse deleteGoodType(GoodType goodType) {
+        //判断该分类是否含有子分类
+        if(0 != goodTypeDao.countParentCode(goodType)){
+            return AppResponse.bizError("该分类含有子分类,分类删除异常");
+        }
+        //判断该分类是否存在于商品的一级分类
+        if(0 != goodTypeDao.countLevelOne(goodType)){
+            return AppResponse.bizError("该分类存在商品的,分类删除异常");
+        }
+        //判断该分类是否存在于商品的二级分类
+        if(0 != goodTypeDao.countLevelTwo(goodType)){
+            return AppResponse.bizError("该分类存在商品,分类删除异常");
+        }
         //获取修改者编号
         String updateUser = SecurityUtils.getCurrentUserId();
         goodType.setCreateUser(updateUser);

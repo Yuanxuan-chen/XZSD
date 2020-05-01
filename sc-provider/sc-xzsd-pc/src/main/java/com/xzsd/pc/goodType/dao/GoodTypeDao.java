@@ -59,4 +59,26 @@ public interface GoodTypeDao {
      */
     List<GoodType> selectLevel(GoodType goodType);
 
+
+    /**
+     * 统计子分类数量
+     * @param goodType
+     * @return
+     */
+    int countParentCode(GoodType goodType);
+
+    /**
+     * 统计商品的一级分类
+     * @param goodType
+     * @return
+     */
+    int countLevelOne(GoodType goodType);
+
+    /**
+     * 统计商品的二级分类
+     * @param goodType
+     * @return
+     */
+    int countLevelTwo(GoodType goodType);
+
 }

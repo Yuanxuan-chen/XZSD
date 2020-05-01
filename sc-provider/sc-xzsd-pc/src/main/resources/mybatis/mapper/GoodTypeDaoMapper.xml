@@ -112,4 +112,28 @@
         order by type_code
     </select>
 
+<!--统计子分类数量-->
+    <select id="countParentCode" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="int" >
+        select count(parent_code)
+        from t_sys_good_type
+        where is_delete = 0
+        and parent_code = #{typeCode}
+    </select>
+
+<!--统计商品的一级分类-->
+    <select id="countLevelOne" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="int" >
+        select count(level_one_code)
+        from t_sys_goods
+        where is_delete = 0
+        and level_one_code = #{typeCode}
+    </select>
+
+<!--统计商品的二级分类-->
+    <select id="countLevelTwo" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="int" >
+        select count(level_two_code)
+        from t_sys_goods
+        where is_delete = 0
+        and level_two_code = #{typeCode}
+    </select>
+
 </mapper>

@@ -109,9 +109,11 @@ public class UserService {
             return AppResponse.bizError("账号名已存在, 请重新输入!!");
         }
         //校验店铺邀请码是否存在
-        int countInviteCode = userDao.countInviteCode(user);
-        if(0 == countInviteCode){
-            return AppResponse.bizError("店铺邀请码不存在，请重新输入！");
+        if (null != user.getInviteCode()) {
+            int countInviteCode = userDao.countInviteCode(user);
+            if(0 == countInviteCode){
+                return AppResponse.bizError("店铺邀请码不存在，请重新输入！");
+            }
         }
         //生成随机用户编号
         user.setUserCode(UUIDUtils.getUUID());

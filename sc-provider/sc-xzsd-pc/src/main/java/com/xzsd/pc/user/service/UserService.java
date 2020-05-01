@@ -84,6 +84,14 @@ public class UserService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse deleteUser(User user) {
+        //获取当前登陆人的编号
+        String userCode = SecurityUtils.getCurrentUserId();
+        //删除集合中不能包含当前登陆人的账号
+        for (int i = 0; i<user.getUserCodeList().size(); i++){
+            if(userCode.equals(user.getUserCodeList().get(i))) {
+                return AppResponse.bizError("无法删除当前登陆人的账号");
+            }
+        }
         int count = userDao.deleteUser(user);
         if(0 == count) {
             return AppResponse.bizError("用户删除失败");
