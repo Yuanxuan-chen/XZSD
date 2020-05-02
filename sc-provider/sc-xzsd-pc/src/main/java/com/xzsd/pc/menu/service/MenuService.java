@@ -111,6 +111,7 @@ public class MenuService {
             List<String> menuList = new ArrayList<String>();
             menuList.add("订单管理");
             menuList.add("商品管理");
+            menuList.add("客户管理");
             menu.setMenuNameList(menuList);
         }
         List<Menu> menuInfo = menuDao.listMenu(menu);

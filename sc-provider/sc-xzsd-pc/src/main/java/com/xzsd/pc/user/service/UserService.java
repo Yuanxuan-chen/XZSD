@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Yuanxuan
@@ -64,11 +65,16 @@ public class UserService {
         if(0 != countUserAcct){
             return AppResponse.bizError("用户账号已存在，请重新输入！");
         }
-        //获取修改的密码
+        //获取新的密码
         String updatePassword = user.getUserPassword();
-        //密码加密
-        String password = PasswordUtils.generatePassword(updatePassword);
-        user.setUserPassword(password);
+        //获取旧的密码
+        String oldPassword = userDao.selectPassword(user);
+        //比较新旧密码是否一致
+        if(!Objects.equals(oldPassword, updatePassword)) {
+            //密码加密
+            String password = PasswordUtils.generatePassword(updatePassword);
+            user.setUserPassword(password);
+        }
         //用户修改
         int count = userDao.updateUser(user);
         if(0 == count) {

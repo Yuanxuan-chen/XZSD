@@ -61,7 +61,19 @@ public interface StoreDao {
      */
     int countInviteCode(Store store);
 
+    /**
+     * 统计电话的个数
+     * @param store
+     * @return
+     */
+    int countTel(Store store);
 
+    /**
+     * 统计营业执照的个数
+     * @param store
+     * @return
+     */
+    int countLicenceCode(Store store);
 
     /**
      * 统计店长数量

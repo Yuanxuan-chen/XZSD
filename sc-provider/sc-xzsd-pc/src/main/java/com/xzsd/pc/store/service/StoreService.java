@@ -69,6 +69,16 @@ public class StoreService {
         if(0 != countInviteCode  ){
             return AppResponse.bizError("门店邀请码已存在, 请重新输入");
         }
+        //判断门店邀请码是否存在
+        int countTel = storeDao.countTel(store);
+        if(0 != countTel){
+            return AppResponse.bizError("电话已存在, 请重新输入");
+        }
+        //判断门店邀请码是否存在
+        int countLicenceCode = storeDao.countLicenceCode(store);
+        if(0 != countLicenceCode){
+            return AppResponse.bizError("营业执照已存在, 请重新输入");
+        }
         //创建者编号
         String createUser = SecurityUtils.getCurrentUserId();
         store.setCreateUser(createUser);

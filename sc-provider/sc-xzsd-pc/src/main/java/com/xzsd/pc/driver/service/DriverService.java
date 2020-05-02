@@ -68,7 +68,7 @@ public class DriverService {
         String createUser = SecurityUtils.getCurrentUserId();
         driver.setCreateUser(createUser);
         //随机司机编码产生
-        driver.setDriverCode(UUIDUtils.getUUID());
+        driver.setDriverCode(UUIDUtils.getDateRandomID());
         String password = PasswordUtils.generatePassword(driver.getDriverPassword());
         driver.setDriverPassword(password);
         //司机信息新增

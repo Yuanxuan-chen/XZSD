@@ -58,4 +58,13 @@ public interface UserDao {
      * @return
      */
     User topColumn(User user);
+
+    /**
+     * 用户密码查询
+     * @author Yuanxuan
+     * @date 2020-05-02
+     * @param user
+     * @return
+     */
+    String selectPassword(User user);
 }

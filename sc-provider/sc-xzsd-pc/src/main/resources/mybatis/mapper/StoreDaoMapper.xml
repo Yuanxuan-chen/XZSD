@@ -160,6 +160,28 @@
         </if>
     </select>
 
+<!--统计电话的个数-->
+    <select id="countTel" parameterType="com.xzsd.pc.store.entity.Store" resultType="int">
+        select count(tel)
+        from t_sys_store
+        where is_delete = 0
+        and tel = #{tel}
+        <if test="storeCode != null and storeCode != '' " >
+            and store_code != #{storeCode}
+        </if>
+    </select>
+
+<!--统计营业执照的个数-->
+    <select id="countLicenceCode" parameterType="com.xzsd.pc.store.entity.Store" resultType="int">
+        select count(licence_code)
+        from t_sys_store
+        where is_delete = 0
+        and licence_code = #{licenceCode}
+        <if test="storeCode != null and storeCode != '' " >
+            and store_code != #{storeCode}
+        </if>
+    </select>
+
 <!--统计门店店长账号-->
     <select id="countShopKeeperCode" parameterType="com.xzsd.pc.store.entity.Store" resultType="int">
         select count(user_code)

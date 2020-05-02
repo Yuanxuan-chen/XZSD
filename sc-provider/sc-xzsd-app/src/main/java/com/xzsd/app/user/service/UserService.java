@@ -116,7 +116,7 @@ public class UserService {
             }
         }
         //生成随机用户编号
-        user.setUserCode(UUIDUtils.getUUID());
+        user.setUserCode(UUIDUtils.getDateRandomID());
         user.setCreateUser(user.getUserCode());
         //密码加密
         String password = PasswordUtils.generatePassword(user.getUserPassword());
