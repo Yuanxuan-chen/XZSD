@@ -97,7 +97,7 @@
          values
         (
          #{orderCode},
-         3,
+         2,
          #{storeCode},
          #{buyerTel},
          #{buyerName},

@@ -108,7 +108,9 @@ public class GoodTypeService {
             //set评价等级
             assess.setAssessRank(goodType.getAssessRankList().get(i));
             //set评价内容
-            assess.setAssessContent(goodType.getAssessContentList().get(i));
+            if(goodType.getAssessContentList() != null && goodType.getAssessContentList().size() > 0) {
+                assess.setAssessContent(goodType.getAssessContentList().get(i));
+            }
             //add商品评价汇总
             assessList.add(assess);
         }

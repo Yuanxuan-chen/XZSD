@@ -89,7 +89,7 @@ public class OrderService {
         }
 
         //创建订单汇总表
-        order.setAllPrice(String.valueOf(allPrice));
+        order.setAllPrice(String.format("%.2f",allPrice));
         order.setAllNumber(allNumber);
         int countOrder = orderDao.saveOrder(order);
         if(0 == countOrder || 0 == countDetail ) {
