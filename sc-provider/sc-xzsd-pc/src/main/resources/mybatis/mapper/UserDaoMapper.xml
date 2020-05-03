@@ -8,7 +8,7 @@
         select count(user_acct)
         from t_sys_user
         where user_acct = #{userAcct}
---         and is_delete = 0
+        and is_delete = 0
         <if test="userCode != null and userCode != '' ">
             and user_code != #{userCode}
         </if>

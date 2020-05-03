@@ -134,10 +134,12 @@ public class MenuService {
         if(1 > role || 2 < role){
             return AppResponse.notFound("查询无结果");
         }else if(2 == role){
-            //设置店长查询到的菜单: 订单管理, 商品管理
+            //设置店长查询到的菜单: 订单管理,客户管理, 门店信息管理, 司机信息管理
             List<String> menuList = new ArrayList<String>();
             menuList.add("订单管理");
-            menuList.add("商品管理");
+            menuList.add("客户管理");
+            menuList.add("司机信息管理");
+            menuList.add("门店信息管理");
             menu.setMenuNameList(menuList);
         }
         List<Menu> menuInfo = menuDao.listMenuHome(menu);
