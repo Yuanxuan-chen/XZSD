@@ -89,7 +89,7 @@ public class Slideshow {
     private String slideshowGoodCode;
 
     /**
-     *轮播图片状态, 0启用, 1禁用
+     *轮播图片状态
      */
     private String slideshowState;
 

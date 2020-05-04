@@ -84,4 +84,13 @@ public interface StoreDao {
      */
     int countShopKeeperCode(Store store);
 
+    /**
+     * 获取当前登录人的角色编号
+     * @author Yuanxuan-chen
+     * @date 2020-05-04
+     * @param updateUser
+     * @return
+     */
+    int getUserRole(String updateUser);
+
 }

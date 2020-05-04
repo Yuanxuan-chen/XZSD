@@ -51,4 +51,12 @@ public interface DriverDao {
      */
     int countDriverAcct(Driver driver);
 
+    /**
+     * 获取当前登录人的角色编号
+     * @author Yuanxuan-chen
+     * @date 2020-05-04
+     * @param updateUser
+     * @return
+     */
+    int getUserRole(String updateUser);
 }

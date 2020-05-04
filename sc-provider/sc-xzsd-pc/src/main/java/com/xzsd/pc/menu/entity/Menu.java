@@ -48,7 +48,7 @@ public class Menu {
     private int version;
 
     /**
-     * '菜单编号'
+     * 菜单编号
      */
     private String menuCode;
 
@@ -64,7 +64,7 @@ public class Menu {
 
 
     /**
-     *'菜单路由'
+     *菜单路由
      */
     private String route;
 
@@ -74,7 +74,7 @@ public class Menu {
     private String comment;
 
     /**
-     *'父级编号'
+     *父级编号
      */
     private String parentode;
 

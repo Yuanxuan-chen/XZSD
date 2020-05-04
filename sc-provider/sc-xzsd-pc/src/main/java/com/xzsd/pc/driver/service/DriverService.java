@@ -29,6 +29,13 @@ public class DriverService {
      * @return
      */
     public AppResponse listDriver(Driver driver) {
+        //获取当前登录人编号
+        String updateUser = SecurityUtils.getCurrentUserId();
+        driver.setUpdateUser(updateUser);
+        //获取当前登录人的角色编号
+        int role = driverDao.getUserRole(updateUser);
+        driver.setRole(role);
+        //司机信息分页查询
         PageHelper.startPage(driver.getPageNum(), driver.getPageSize());
         List<Driver> driverInfo = driverDao.listDriver(driver);
         if(null == driverInfo) {

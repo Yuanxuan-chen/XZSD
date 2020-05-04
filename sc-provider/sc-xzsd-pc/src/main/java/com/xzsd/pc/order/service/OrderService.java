@@ -28,6 +28,13 @@ public class OrderService {
      * @return
      */
     public AppResponse listOrder(Order order) {
+        //获取登录人编号
+        String updateUser = SecurityUtils.getCurrentUserId();
+        order.setUpdateUser(updateUser);
+        //获取当前登录人的角色编号
+        int role = orderDao.getUserRole(updateUser);
+        order.setRole(role);
+        //订单分页查询
         PageHelper.startPage(order.getPageNum(), order.getPageSize());
         List<Order> orderInfo = orderDao.listOrder(order);
         if(null == orderInfo) {

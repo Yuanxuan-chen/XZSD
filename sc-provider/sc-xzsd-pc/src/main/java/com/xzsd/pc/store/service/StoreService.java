@@ -29,6 +29,13 @@ public class StoreService {
      * @return
      */
     public AppResponse listStore(Store store) {
+        //获取当前登录人编号
+        String updateUser = SecurityUtils.getCurrentUserId();
+        store.setUpdateUser(updateUser);
+        //获取当前登录人的角色编号
+        int role = storeDao.getUserRole(updateUser);
+        store.setRole(role);
+        //门店信息分页查询
         PageHelper.startPage(store.getPageNum(), store.getPageSize());
         List<Store> storeInfo = storeDao.listStore(store);
         if(null == storeInfo) {

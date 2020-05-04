@@ -118,7 +118,10 @@
         from t_sys_store as s LEFT JOIN t_sys_user as u
         on s.shopkeeper_code = u.user_code
         where s.is_delete = 0
---         and u.role = 2
+        and u.role = 2
+        <if test="role == 2 " >
+            and shopkeeper_code = #{updateUser}
+        </if>
         <if test="storeCode != null and storeCode != '' " >
             and s.store_code like concat('%', #{storeCode}, '%')
         </if>
@@ -189,6 +192,14 @@
         where is_delete = 0
         and role = 2
         and user_code = #{shopkeeperCode}
+    </select>
+
+    <!--获取当前登录人的角色编号-->
+    <select id="getUserRole" parameterType="java.lang.String" resultType="int">
+        select role
+        from t_sys_user
+        where is_delete = 0
+        and user_code = #{updateUser}
     </select>
 
 </mapper>

@@ -3,8 +3,9 @@
 
 <mapper namespace="com.xzsd.pc.customer.dao.CustomerDao">
 
-<!--客户详细信息查询-->
-    <select id="selectCustomer" parameterType="com.xzsd.pc.customer.entity.Customer" resultType="com.xzsd.pc.customer.entity.Customer" >
+    <!--客户详细信息查询-->
+    <select id="selectCustomer" parameterType="com.xzsd.pc.customer.entity.Customer"
+            resultType="com.xzsd.pc.customer.entity.Customer">
         select
         user_code customerCode,
         user_acct customerAcct,
@@ -21,8 +22,9 @@
         and role = 4
     </select>
 
-<!--客户分页查询-->
-    <select id="listCustomer" parameterType="com.xzsd.pc.customer.entity.Customer" resultType="com.xzsd.pc.customer.entity.Customer" >
+    <!--客户分页查询-->
+    <select id="listCustomer" parameterType="com.xzsd.pc.customer.entity.Customer"
+            resultType="com.xzsd.pc.customer.entity.Customer">
         select
         user_code customerCode,
         user_acct customerAcct,
@@ -36,6 +38,13 @@
         from t_sys_user
         where is_delete = 0
         and role = 4
+        <if test="role == 2 ">
+            and invite_code = (
+            select invite_code
+            from t_sys_store
+            where shopkeeper_code = #{updateUser}
+            )
+        </if>
         <if test="customerAcct != null and customerAcct != '' ">
             and user_acct like concat('%', #{customerAcct}, '%')
         </if>
@@ -43,5 +52,13 @@
             and user_name like concat('%', #{customerName}, '%')
         </if>
         order by user_code
+    </select>
+
+    <!--获取当前登录人的角色编号-->
+    <select id="getUserRole" parameterType="java.lang.String" resultType="int">
+        select role
+        from t_sys_user
+        where is_delete = 0
+        and user_code = #{updateUser}
     </select>
 </mapper>

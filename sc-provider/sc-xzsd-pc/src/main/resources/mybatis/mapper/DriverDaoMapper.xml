@@ -117,18 +117,24 @@
 
 <!--司机信息分页查询-->
     <select id="listDriver" parameterType="com.xzsd.pc.driver.entity.Driver" resultType="com.xzsd.pc.driver.entity.Driver" >
-        select
-            user_code driverCode,
-            user_name driverName,
-            user_picture_url userPictureUrl,
-            tel,
-            sex,
-            idcard,
-            user_acct driverAcct,
-            version
-        from t_sys_user
-        where is_delete = 0
+        select  u.user_code        driverCode,
+                u.user_name        driverName,
+                u.user_picture_url userPictureUrl,
+                u.tel,
+                u.sex,
+                u.idcard,
+                u.user_acct        driverAcct,
+                u.version
+        from t_sys_user as u left join t_sys_store as s
+            on u.area_code = s.area_code
+            and u.downtown_code = s.downtown_code
+            and u.province_code = s.province_code
+            and s.is_delete = 0
+        where u.is_delete = 0
         and role = 3
+        <if test="role == 2 " >
+            and shopkeeper_code = #{updateUser}
+        </if>
         <if test="driverCode != null and driverCode != '' " >
             and user_code like concat('%', #{driverCode}, '%')
         </if>
@@ -156,6 +162,13 @@
         <if test="driverCode != null and driverCode != '' ">
             and user_code != #{driverCode}
         </if>
+    </select>
 
+    <!--获取当前登录人的角色编号-->
+    <select id="getUserRole" parameterType="java.lang.String" resultType="int">
+        select role
+        from t_sys_user
+        where is_delete = 0
+        and user_code = #{updateUser}
     </select>
 </mapper>

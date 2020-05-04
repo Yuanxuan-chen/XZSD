@@ -140,6 +140,19 @@ public class Store {
      */
     private String parentCode;
 
+    /**
+     * 角色编号
+     */
+    private int role;
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
     public String getParentCode() {
         return parentCode;
     }

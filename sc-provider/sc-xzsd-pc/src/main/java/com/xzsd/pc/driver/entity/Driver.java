@@ -128,6 +128,19 @@ public class Driver {
      */
     private String userPictureUrl;
 
+    /**
+     * 角色编号
+     */
+    private int role;
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
     public String getMail() {
         return mail;
     }

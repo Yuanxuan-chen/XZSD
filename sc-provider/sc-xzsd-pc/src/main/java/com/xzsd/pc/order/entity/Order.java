@@ -75,34 +75,18 @@ public class Order {
      */
     private String allPrice;
 
-    public int getAllNumber() {
-        return allNumber;
-    }
-
-    public void setAllNumber(int allNumber) {
-        this.allNumber = allNumber;
-    }
-
-    public String getAllPrice() {
-        return allPrice;
-    }
-
-    public void setAllPrice(String allPrice) {
-        this.allPrice = allPrice;
-    }
-
     /**
      *订单总价
      */
     private String orderTotal;
 
     /**
-     *订单物流状态, 0订单取消, 1订单到货, 2取消到货, 3订单已取货, 4取消已取货
+     *订单物流状态
      */
     private int orderState;
 
     /**
-     *支付状态, 0未支付, 1已支付
+     *支付状态
      */
     private int isPay;
 
@@ -165,6 +149,35 @@ public class Order {
      * 售价
      */
     private String sellPrice;
+
+    /**
+     * 角色编号
+     */
+    private int role;
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
+    public int getAllNumber() {
+        return allNumber;
+    }
+
+    public void setAllNumber(int allNumber) {
+        this.allNumber = allNumber;
+    }
+
+    public String getAllPrice() {
+        return allPrice;
+    }
+
+    public void setAllPrice(String allPrice) {
+        this.allPrice = allPrice;
+    }
 
     public List<Integer> getVersionList() {
         return versionList;

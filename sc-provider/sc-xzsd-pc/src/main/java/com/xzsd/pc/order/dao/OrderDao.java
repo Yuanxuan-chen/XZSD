@@ -31,4 +31,11 @@ public interface OrderDao {
      */
     int stateOrder(Order order);
 
+    /**
+     * 获取当前登录人的角色编号
+     * @param updateUser
+     * @return
+     */
+    int getUserRole(String updateUser);
+
 }

@@ -57,16 +57,8 @@ public class User {
      */
     private List<String> userCodeList;
 
-    public List<String> getUserCodeList() {
-        return userCodeList;
-    }
-
-    public void setUserCodeList(List<String> userCodeList) {
-        this.userCodeList = userCodeList;
-    }
-
     /**
-     * 用户账号'
+     * 用户账号
      */
     private String userAcct;
 
@@ -343,5 +335,13 @@ public class User {
 
     public void setAreaName(String areaName) {
         this.areaName = areaName;
+    }
+
+    public List<String> getUserCodeList() {
+        return userCodeList;
+    }
+
+    public void setUserCodeList(List<String> userCodeList) {
+        this.userCodeList = userCodeList;
     }
 }

@@ -72,7 +72,7 @@ public class Customer {
     private String customerPictureUrl;
 
     /**
-     * 性别, 0男, 1女'
+     * 性别
      */
     private int sex;
 
@@ -92,7 +92,7 @@ public class Customer {
     private String idcard;
 
     /**
-     * 角色, 0管理员, 1店长, 2司机, 3客户
+     * 角色, 1管理员, 2店长, 3司机, 4客户
      */
     private int role;
 

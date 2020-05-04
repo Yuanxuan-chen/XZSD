@@ -129,7 +129,7 @@ public class Good {
     private String getGoodDate;
 
     /**
-     * 商品状态, 0在售, 1已下架, 2未发布
+     * 商品状态
      */
     private int goodState;
 

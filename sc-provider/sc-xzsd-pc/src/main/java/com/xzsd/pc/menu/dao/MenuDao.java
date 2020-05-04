@@ -55,5 +55,10 @@ public interface MenuDao {
     List<Menu> listMenuHome(Menu menu);
 
 
+    /**
+     * 获取当前登陆人的角色编号
+     * @param userCode
+     * @return
+     */
     int getUserRole(String userCode);
 }
