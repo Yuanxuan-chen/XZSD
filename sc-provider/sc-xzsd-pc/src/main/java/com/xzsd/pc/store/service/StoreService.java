@@ -71,17 +71,21 @@ public class StoreService {
         if (0 == storeDao.countShopKeeperCode(store)){
             return AppResponse.bizError("店长编号不存在, 请重新输入");
         }
-        //判断门店邀请码是否存在
+        //判断门店店长账号已经被绑定
+        if (0 != storeDao.countKeeperCode(store)){
+            return AppResponse.bizError("店长编号已经绑定, 请重新输入");
+        }
+        //判断门店邀请码是否重复
         int countInviteCode = storeDao.countInviteCode(store);
         if(0 != countInviteCode  ){
             return AppResponse.bizError("门店邀请码已存在, 请重新输入");
         }
-        //判断门店邀请码是否存在
+        //判断电话是否重复
         int countTel = storeDao.countTel(store);
         if(0 != countTel){
             return AppResponse.bizError("电话已存在, 请重新输入");
         }
-        //判断门店邀请码是否存在
+        //判断营业执照是否重复
         int countLicenceCode = storeDao.countLicenceCode(store);
         if(0 != countLicenceCode){
             return AppResponse.bizError("营业执照已存在, 请重新输入");

@@ -26,10 +26,10 @@ public class UserService {
      * 司机信息查询
      * @return
      */
-    public AppResponse selectdriver() {
+    public AppResponse selectDriver() {
         //获取当前登陆人编号
         String userCode = SecurityUtils.getCurrentUserId();
-        User userInfo = userDao.selectdriver(userCode);
+        User userInfo = userDao.selectDriver(userCode);
         if (null == userInfo) {
             return AppResponse.bizError("司机信息查询异常");
         }

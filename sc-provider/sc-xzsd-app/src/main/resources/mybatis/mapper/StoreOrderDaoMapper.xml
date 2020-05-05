@@ -54,7 +54,7 @@
                 #{item}
             </foreach>
         </if>
-        order by o.order_code
+        order by o.create_time DESC
     </select>
 
 
@@ -103,28 +103,32 @@
     <select id="listDriver" parameterType="java.lang.String" resultType="com.xzsd.app.store.entity.Store" >
         select u.user_name driverName,
                u.tel
-        from t_sys_store as s left join t_sys_user as u
-            on s.province_code = u.province_code
-            and s.downtown_code = u.downtown_code
-            and s.area_code = u.area_code
-            and u.is_delete = 0
-        where s.shopkeeper_code = #{userCode}
+        from t_sys_store as s, t_sys_user as u
+        where s.province_code = u.province_code
+        and s.downtown_code = u.downtown_code
+        and s.area_code = u.area_code
+        and s.is_delete = 0
+        and u.is_delete = 0
+        and s.shopkeeper_code = #{userCode}
     </select>
 
 <!--    司机负责门店信息查询-->
     <select id="listStore" parameterType="java.lang.String" resultType="com.xzsd.app.store.entity.Store" >
-        select s.store_code,
-               s.store_name,
-               concat(s.province_name, s.downtown_name, s.area_name, s.address) address,
-               su.user_name,
-               su.tel
-        from t_sys_user as du left join t_sys_store s
-            on  s.province_code = du.province_code
-            and s.downtown_code = du.downtown_code
-            and s.area_code = du.area_code
-            left join t_sys_user as su
-            on s.shopkeeper_code = su.user_code
-        where du.user_code = #{userCode};
+        select  s.store_code,
+                s.store_name,
+                concat(s.province_name, s.downtown_name, s.area_name, s.address) address,
+                u.user_name,
+                u.tel
+        from t_sys_store s left join t_sys_user u
+            on s.shopkeeper_code = u.user_code
+            and u.is_delete = 0, t_sys_user driver
+        where s.is_delete = 0
+        and s.province_code = driver.province_code
+        and s.downtown_code = driver.downtown_code
+        and s.area_code = driver.area_code
+        and s.is_delete = 0
+        and driver.is_delete = 0
+        and driver.user_code = #{userCode};
     </select>
 
 <!--获取登录的门店店长的门店编号-->

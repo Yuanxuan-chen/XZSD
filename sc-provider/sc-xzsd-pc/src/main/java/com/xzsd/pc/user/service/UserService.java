@@ -92,10 +92,15 @@ public class UserService {
     public AppResponse deleteUser(User user) {
         //获取当前登陆人的编号
         String userCode = SecurityUtils.getCurrentUserId();
+        //getAdmin
+        String admin = userDao.getAdmin();
         //删除集合中不能包含当前登陆人的账号
         for (int i = 0; i<user.getUserCodeList().size(); i++){
             if(userCode.equals(user.getUserCodeList().get(i))) {
                 return AppResponse.bizError("无法删除当前登陆人的账号");
+            }
+            if(admin.equals(user.getUserCodeList().get(i))) {
+                return AppResponse.bizError("无法删除admin的账号");
             }
         }
         int count = userDao.deleteUser(user);

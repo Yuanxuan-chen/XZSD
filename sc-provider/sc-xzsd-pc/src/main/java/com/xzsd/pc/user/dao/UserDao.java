@@ -67,4 +67,12 @@ public interface UserDao {
      * @return
      */
     String selectPassword(User user);
+
+    /**
+     * 账号查询
+     * @author Yuanxuan
+     * @date 2020-05-02
+     * @return
+     */
+    String getAdmin();
 }

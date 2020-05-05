@@ -24,10 +24,10 @@ public class UserController {
      * 司机信息查询
      * @return
      */
-    @PostMapping("selectdriver")
-    public AppResponse selectdriver() {
+    @PostMapping("selectDriver")
+    public AppResponse selectDriver() {
         try {
-            return userService.selectdriver();
+            return userService.selectDriver();
         }catch (Exception e) {
             throw e;
         }

@@ -24,7 +24,6 @@ public class HotGoodService {
     private HotGoodDao hotGoodDao;
 
     /**
-     * todo
      * 热门商品分页查询
      * @param hotGood
      * @return

@@ -16,7 +16,6 @@ import java.util.List;
 /**
  * @author Yuanxuan
  * @date 2020-04-08 上午 07:44
- * todo 商品更改的权限问题  状态编码默认
  */
 @Service
 public class GoodService {

@@ -102,8 +102,11 @@
             user_picture_url userPictureUrl,
             user_password driverPassword,
             idcard,
+            province_code,
             province_name,
+            downtown_code,
             downtown_name,
+            area_code,
             area_name,
             version
         from t_sys_user
@@ -142,13 +145,13 @@
             and user_name like concat('%', #{driverName}, '%')
         </if>
         <if test="provinceCode != null and provinceCode != '' " >
-            and province_code = #{provinceCode}
+            and u.province_code = #{provinceCode}
         </if>
         <if test="downtownCode != null and downtownCode != '' " >
-            and downtown_code = #{downtownCode}
+            and u.downtown_code = #{downtownCode}
         </if>
         <if test="areaCode != null and areaCode != '' " >
-            and area_code = #{areaCode}
+            and u.area_code = #{areaCode}
         </if>
         order by user_code
     </select>

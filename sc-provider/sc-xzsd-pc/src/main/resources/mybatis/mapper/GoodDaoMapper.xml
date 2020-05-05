@@ -216,6 +216,7 @@
             version version
         from t_sys_goods
         where is_delete = 0
+        and good_state = 1
         <if test="goodName != null and goodName != '' ">
             and good_name like concat('%', #{goodName}, '%')
         </if>

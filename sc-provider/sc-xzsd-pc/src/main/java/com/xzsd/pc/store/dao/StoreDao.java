@@ -76,13 +76,22 @@ public interface StoreDao {
     int countLicenceCode(Store store);
 
     /**
-     * 统计店长数量
+     * 统计用户里店长数量
      * @author Yuanxuan-chen
      * @date 2020-04-27
      * @param store
      * @return
      */
     int countShopKeeperCode(Store store);
+
+    /**
+     * 统计门店里店长数量
+     * @author Yuanxuan-chen
+     * @date 2020-04-27
+     * @param store
+     * @return
+     */
+    int countKeeperCode(Store store);
 
     /**
      * 获取当前登录人的角色编号

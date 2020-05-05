@@ -4,7 +4,7 @@
 <mapper namespace="com.xzsd.app.user.dao.UserDao">
 
 <!--司机信息查询-->
-    <select id="selectdriver" parameterType="java.lang.String" resultType="com.xzsd.app.user.entity.User" >
+    <select id="selectDriver" parameterType="java.lang.String" resultType="com.xzsd.app.user.entity.User" >
         select user_code userCode,
                user_picture_url userPictureUrl,
                user_acct userAcct,
@@ -36,9 +36,10 @@
                s.store_name storeName,
                s.invite_code inviteCode,
                concat(s.province_name, s.downtown_name, s.area_name, s.address) address
-        from t_sys_user as u, t_sys_store as s
-        where u.user_code = s.shopkeeper_code
-        and u.is_delete = 0
+        from t_sys_user as u left join t_sys_store as s
+            on u.user_code = s.shopkeeper_code
+            and s.is_delete = 0
+        where u.is_delete = 0
         and u.role = 2
         and u.user_code = #{userCode}
     </select>

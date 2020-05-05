@@ -12,7 +12,7 @@ public interface UserDao {
      * 司机信息查询
      * @return
      */
-    User selectdriver(String userCode);
+    User selectDriver(String userCode);
 
     /**
      * 客户信息查询

@@ -185,13 +185,21 @@
         </if>
     </select>
 
-<!--统计门店店长账号-->
+<!--统计用户门店店长账号-->
     <select id="countShopKeeperCode" parameterType="com.xzsd.pc.store.entity.Store" resultType="int">
         select count(user_code)
         from t_sys_user
         where is_delete = 0
         and role = 2
         and user_code = #{shopkeeperCode}
+    </select>
+
+    <!--统计门店里门店店长账号-->
+    <select id="countKeeperCode" parameterType="com.xzsd.pc.store.entity.Store" resultType="int">
+        select count(shopkeeper_code)
+        from t_sys_store
+        where is_delete = 0
+          and shopkeeper_code = #{shopkeeperCode}
     </select>
 
     <!--获取当前登录人的角色编号-->
