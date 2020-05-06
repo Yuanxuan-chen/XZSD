@@ -128,16 +128,9 @@
                 u.idcard,
                 u.user_acct        driverAcct,
                 u.version
-        from t_sys_user as u left join t_sys_store as s
-            on u.area_code = s.area_code
-            and u.downtown_code = s.downtown_code
-            and u.province_code = s.province_code
-            and s.is_delete = 0
+        from t_sys_user as u
         where u.is_delete = 0
         and role = 3
-        <if test="role == 2 " >
-            and shopkeeper_code = #{updateUser}
-        </if>
         <if test="driverCode != null and driverCode != '' " >
             and user_code like concat('%', #{driverCode}, '%')
         </if>
