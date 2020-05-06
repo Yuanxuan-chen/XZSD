@@ -25,6 +25,8 @@ public class SlideshowService {
 
     /**
      * 轮播图新增
+     * @author Yuanxuan
+     * @date 2020-04-10
      * @param slideshow
      * @return
      */
@@ -55,6 +57,8 @@ public class SlideshowService {
 
     /**
      * 轮播图删除
+     * @author Yuanxuan
+     * @date 2020-04-10
      * @param slideshow
      * @return
      */
@@ -74,6 +78,8 @@ public class SlideshowService {
 
     /**
      * 轮播图状态更改
+     * @author Yuanxuan
+     * @date 2020-04-10
      * @param slideshow
      * @return
      */
@@ -93,6 +99,8 @@ public class SlideshowService {
 
     /**
      * 轮播图详细信息查询
+     * @author Yuanxuan
+     * @date 2020-04-10
      * @param slideshow
      * @return
      */
@@ -107,6 +115,8 @@ public class SlideshowService {
 
     /**
      * 轮播图分页查询
+     * @author Yuanxuan
+     * @date 2020-04-10
      * @param slideshow
      * @return
      */

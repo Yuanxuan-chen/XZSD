@@ -26,6 +26,8 @@ public class GoodService {
 
     /**
      * 商品分页查询
+     * @author Yuanxuan
+     * @date 2020-04-08
      * @param good
      * @return
      */
@@ -37,6 +39,8 @@ public class GoodService {
 
     /**
      * 商品选择
+     * @author Yuanxuan
+     * @date 2020-04-08
      * @param good
      * @return
      */
@@ -48,6 +52,8 @@ public class GoodService {
 
     /**
      * 商品详细信息查询
+     * @author Yuanxuan
+     * @date 2020-04-08
      * @param goodCode
      * @return
      */
@@ -80,6 +86,8 @@ public class GoodService {
 
     /**
      * 商品创建
+     * @author Yuanxuan
+     * @date 2020-04-08
      * @param good
      * @return
      */
@@ -121,6 +129,8 @@ public class GoodService {
 
     /**
      * 删除商品
+     * @author Yuanxuan
+     * @date 2020-04-08
      * @param good
      * @return
      */

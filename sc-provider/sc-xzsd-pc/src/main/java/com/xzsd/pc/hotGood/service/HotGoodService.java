@@ -25,6 +25,8 @@ public class HotGoodService {
 
     /**
      * 热门商品分页查询
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param hotGood
      * @return
      */
@@ -39,6 +41,8 @@ public class HotGoodService {
 
     /**
      * 热门商品详细信息查询
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param hotGood
      * @return
      */
@@ -53,6 +57,8 @@ public class HotGoodService {
 
     /**
      * 热门商品新增
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param hotGood
      * @return
      */
@@ -81,6 +87,8 @@ public class HotGoodService {
 
     /**
      * 热门商品修改
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param hotGood
      * @return
      */
@@ -99,6 +107,8 @@ public class HotGoodService {
 
     /**
      * 热门商品删除
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param hotGood
      * @return
      */
@@ -118,6 +128,8 @@ public class HotGoodService {
 
     /**
      * 热门商品展示数量查询
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param hotGood
      * @return
      */
@@ -131,6 +143,8 @@ public class HotGoodService {
 
     /**
      * 热门商品展示数量设置
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param hotGood
      * @return
      */

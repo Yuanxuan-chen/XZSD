@@ -24,6 +24,8 @@ public class OrderService {
 
     /**
      * 订单分页查询
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param order
      * @return
      */
@@ -45,6 +47,8 @@ public class OrderService {
 
     /**
      * 订单详细信息分页查询
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param order
      * @return
      */
@@ -59,6 +63,8 @@ public class OrderService {
 
     /**
      * 订单物流状态修改
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param order
      * @return
      */

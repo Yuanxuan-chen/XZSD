@@ -24,6 +24,8 @@ public class CustomerService {
 
     /**
      * 客户详细信息查询
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param customer
      * @return
      */

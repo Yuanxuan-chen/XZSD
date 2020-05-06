@@ -27,6 +27,8 @@ public class UserService {
 
     /**
      * 用户新增
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param user
      * @return
      */
@@ -56,6 +58,8 @@ public class UserService {
 
     /**
      * 用户修改
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param user
      * @return
      */
@@ -85,6 +89,8 @@ public class UserService {
 
     /**
      * 用户删除
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param user
      * @return
      */
@@ -112,6 +118,8 @@ public class UserService {
 
     /**
      * 用户详细信息查询
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param user
      * @return
      */
@@ -125,6 +133,8 @@ public class UserService {
 
     /**
      * 用户分页查询
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param user
      * @return
      */
@@ -139,6 +149,8 @@ public class UserService {
 
     /**
      * 顶部栏接口
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param user
      * @return
      */

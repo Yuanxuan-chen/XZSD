@@ -25,6 +25,8 @@ public class StoreService {
 
     /**
      * 门店信息分页查询
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param store
      * @return
      */
@@ -46,6 +48,8 @@ public class StoreService {
 
     /**
      * 门店详细信息详情
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param store
      * @return
      */
@@ -105,6 +109,8 @@ public class StoreService {
 
     /**
      * 门店信息修改
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param store
      * @return
      */
@@ -123,6 +129,8 @@ public class StoreService {
 
     /**
      * 门店信息删除
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param store
      * @return
      */
@@ -142,6 +150,8 @@ public class StoreService {
 
     /**
      * 省市区查询
+     * @author Yuanxuan
+     * @date 2020-04-11
      * @param store
      * @return
      */

@@ -26,6 +26,8 @@ public class MenuService {
 
     /**
      * 菜单新增
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param menu
      * @return
      */
@@ -46,6 +48,8 @@ public class MenuService {
 
     /**
      * 菜单修改
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param menu
      * @return
      */
@@ -64,6 +68,8 @@ public class MenuService {
 
     /**
      * 菜单删除
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param menu
      * @return
      */
@@ -82,6 +88,8 @@ public class MenuService {
 
     /**
      * 菜单详细信息查询
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param menu
      * @return
      */
@@ -96,6 +104,8 @@ public class MenuService {
 
     /**
      * 菜单列表查询
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param menu
      * @return
      */
@@ -123,6 +133,8 @@ public class MenuService {
 
     /**
      * 侧边栏菜单列表查询
+     * @author Yuanxuan
+     * @date 2020-04-14
      * @param menu
      * @return
      */
@@ -138,8 +150,8 @@ public class MenuService {
             List<String> menuList = new ArrayList<String>();
             menuList.add("订单管理");
             menuList.add("客户管理");
-//          //menuList.add("司机信息管理");
-//          //menuList.add("门店信息管理");
+            //menuList.add("司机信息管理");
+            //menuList.add("门店信息管理");
             menu.setMenuNameList(menuList);
         }
         List<Menu> menuInfo = menuDao.listMenuHome(menu);
