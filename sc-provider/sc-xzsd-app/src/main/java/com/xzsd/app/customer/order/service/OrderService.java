@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @author Yuanxuan
- * @date 2020-04-21 上午 09:51
+ * @date 2020-04-17 上午 09:51
  */
 @Service
 public class OrderService {
@@ -100,6 +100,8 @@ public class OrderService {
 
     /**
      * 订单状态修改
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @param order
      * @return
      */
@@ -115,6 +117,8 @@ public class OrderService {
 
     /**
      * 订单详情查询
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @param order
      * @return
      */
@@ -147,6 +151,8 @@ public class OrderService {
 
     /**
      * 查询订单评价商品信息列表
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @param order
      * @return
      */

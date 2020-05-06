@@ -22,6 +22,8 @@ public class StoreService {
 
     /**
      * 订单状态修改
+     * @author Yuanxuan
+     * @date 2020-04-21
      * @param store
      * @return
      */
@@ -40,6 +42,8 @@ public class StoreService {
 
     /**
      * 订单详情查询
+     * @author Yuanxuan
+     * @date 2020-04-21
      * @param store
      * @return
      */

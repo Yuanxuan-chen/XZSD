@@ -24,6 +24,8 @@ public class UserService {
 
     /**
      * 司机信息查询
+     * @author Yuanxuan
+     * @date 2020-04-16
      * @return
      */
     public AppResponse selectDriver() {
@@ -38,6 +40,8 @@ public class UserService {
 
     /**
      * 客户信息查询
+     * @author Yuanxuan
+     * @date 2020-04-16
      * @return
      */
     public AppResponse selecteCustomer() {
@@ -52,6 +56,8 @@ public class UserService {
 
     /**
      * 店长信息查询
+     * @author Yuanxuan
+     * @date 2020-04-16
      * @return
      */
     public AppResponse selectStore() {
@@ -67,6 +73,8 @@ public class UserService {
 
     /**
      * 用户密码修改
+     * @author Yuanxuan
+     * @date 2020-04-16
      * @param user
      * @return
      */
@@ -98,6 +106,8 @@ public class UserService {
 
     /**
      * 用户注册
+     * @author Yuanxuan
+     * @date 2020-04-16
      * @param user
      * @return
      */
@@ -131,6 +141,8 @@ public class UserService {
 
     /**
      * 用户店铺邀请码修改
+     * @author Yuanxuan
+     * @date 2020-04-16
      * @param user
      * @return
      */

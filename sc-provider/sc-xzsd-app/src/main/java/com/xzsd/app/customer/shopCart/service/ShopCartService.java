@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @author Yuanxuan
- * @date 2020-04-20 上午 09:07
+ * @date 2020-04-17 上午 09:07
  */
 @Service
 public class ShopCartService {
@@ -24,6 +24,8 @@ public class ShopCartService {
 
     /**
      * 购物车新增商品
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @param shopCart
      * @return
      */
@@ -58,6 +60,8 @@ public class ShopCartService {
 
     /**
      * 购物车修改商品
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @param shopCart
      * @return
      */
@@ -76,6 +80,8 @@ public class ShopCartService {
 
     /**
      * 购物车删除商品
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @param shopCart
      * @return
      */

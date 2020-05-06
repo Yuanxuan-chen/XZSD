@@ -20,6 +20,8 @@ public class HomeService {
 
     /**
      * 轮播图商品查询
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @return
      */
     public AppResponse listSlideshow(){
@@ -33,6 +35,8 @@ public class HomeService {
 
     /**
      * 热门商品信息查询
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @return
      */
     public AppResponse listHotGood(){

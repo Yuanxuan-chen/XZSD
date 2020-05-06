@@ -25,6 +25,8 @@ public class GoodTypeService {
 
     /**
      * 商品分类一级查询
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @return
      */
     public AppResponse levelOneList() {
@@ -37,6 +39,8 @@ public class GoodTypeService {
 
     /**
      * 商品分类二级查询
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @param goodType
      * @return
      */
@@ -50,6 +54,8 @@ public class GoodTypeService {
 
     /**
      * 商品信息查询
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @param goodType
      * @return
      */
@@ -69,6 +75,8 @@ public class GoodTypeService {
 
     /**
      * 商品评价分页查询
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @param goodType
      * @return
      */
@@ -83,6 +91,8 @@ public class GoodTypeService {
 
     /**
      * 商品评价
+     * @author Yuanxuan
+     * @date 2020-04-17
      * @param goodType
      * @return
      */
