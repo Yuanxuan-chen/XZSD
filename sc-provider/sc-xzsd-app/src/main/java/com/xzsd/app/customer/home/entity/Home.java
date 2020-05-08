@@ -1,6 +1,7 @@
 package com.xzsd.app.customer.home.entity;
 
 /**
+ * app首页
  * @author Yuanxuan
  * @date 2020-04-17 上午 10:31
  */

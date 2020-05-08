@@ -11,6 +11,7 @@ import java.io.File;
 import static org.apache.rocketmq.common.UtilAll.deleteFile;
 
 /**
+ * 图片上传
  * @author Yuanxuan
  * @date 2020-04-13 上午 11:40
  */

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 
 /**
+ * 图片上传
  * @author Yuanxuan
  * @date 2020-04-13 下午 02:09
  */

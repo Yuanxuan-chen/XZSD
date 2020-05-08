@@ -1,6 +1,7 @@
 package com.xzsd.pc.customer.entity;
 
 /**
+ * 客户信息管理
  * @author Yuanxuan
  * @date 2020-04-11 上午 11:36
  */

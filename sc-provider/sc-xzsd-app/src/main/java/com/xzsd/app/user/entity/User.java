@@ -1,6 +1,7 @@
 package com.xzsd.app.user.entity;
 
 /**
+ * 司机管理
  * @author Yuanxuan
  * @date 2020-04-14 上午 09:44
  */

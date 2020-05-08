@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * 轮播图管理
  * @author Yuanxuan
  * @date 2020-04-10 下午 08:26
  */

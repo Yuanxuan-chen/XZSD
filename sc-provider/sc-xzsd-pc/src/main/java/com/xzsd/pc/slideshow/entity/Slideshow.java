@@ -3,6 +3,7 @@ package com.xzsd.pc.slideshow.entity;
 import java.util.List;
 
 /**
+ * 轮播图管理
  * @author Yuanxuan
  * @date 2020-04-10 下午 07:52
  */

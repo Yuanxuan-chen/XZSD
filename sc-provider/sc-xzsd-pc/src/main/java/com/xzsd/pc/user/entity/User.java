@@ -3,6 +3,7 @@ package com.xzsd.pc.user.entity;
 import java.util.List;
 
 /**
+ * 用户管理
  * @author Yuanxuan
  * @date 2020-04-14 上午 09:44
  */

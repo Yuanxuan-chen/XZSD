@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * 购物车管理
  * @author Yuanxuan
  * @date 2020-04-17 上午 09:07
  */

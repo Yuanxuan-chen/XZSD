@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * 热门商品
  * @author Yuanxuan
  * @date 2020-04-11 下午 05:36
  */

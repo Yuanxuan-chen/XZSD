@@ -3,6 +3,7 @@ package com.xzsd.pc.store.entity;
 import java.util.List;
 
 /**
+ * 门店信息管理
  * @author Yuanxuan
  * @date 2020-04-11 下午 09:32
  */

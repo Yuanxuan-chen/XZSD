@@ -3,6 +3,7 @@ package com.xzsd.pc.hotGood.entity;
 import java.util.List;
 
 /**
+ * 热门商品
  * @author Yuanxuan
  * @date 2020-04-11 下午 05:23
  */

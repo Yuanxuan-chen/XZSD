@@ -3,6 +3,7 @@ package com.xzsd.pc.menu.entity;
 import java.util.List;
 
 /**
+ * 菜单管理
  * @author Yuanxuan
  * @date 2020-04-14 下午 05:42
  */

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
+ * app首页
  * @author Yuanxuan
  * @date 2020-04-17 上午 10:55
  */

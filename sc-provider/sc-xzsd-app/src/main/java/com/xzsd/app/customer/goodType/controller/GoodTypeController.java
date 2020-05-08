@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
+ * 商品分类
  * @author Yuanxuan
  * @date 2020-04-17 下午 02:40
  */

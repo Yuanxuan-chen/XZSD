@@ -3,6 +3,7 @@ package com.xzsd.app.customer.goodType.entity;
 import java.util.List;
 
 /**
+ * 商品分类
  * @author Yuanxuan
  * @date 2020-04-17 下午 12:20
  */

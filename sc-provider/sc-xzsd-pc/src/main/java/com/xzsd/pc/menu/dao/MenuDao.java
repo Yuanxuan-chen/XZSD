@@ -5,6 +5,7 @@ import com.xzsd.pc.menu.entity.Menu;
 import java.util.List;
 
 /**
+ * 菜单管理
  * @author Yuanxuan
  * @date 2020-04-14 下午 05:52
  */

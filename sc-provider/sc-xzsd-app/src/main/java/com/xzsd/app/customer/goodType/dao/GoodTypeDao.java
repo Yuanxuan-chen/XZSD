@@ -5,6 +5,7 @@ import com.xzsd.app.customer.goodType.entity.GoodType;
 import java.util.List;
 
 /**
+ * 商品分类
  * @author Yuanxuan
  * @date 2020-04-17 下午 02:21
  */

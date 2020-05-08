@@ -5,6 +5,7 @@ import com.xzsd.app.customer.shopCart.entity.ShopCart;
 import java.util.List;
 
 /**
+ * 购物车管理
  * @author Yuanxuan
  * @date 2020-04-20 上午 08:56
  */

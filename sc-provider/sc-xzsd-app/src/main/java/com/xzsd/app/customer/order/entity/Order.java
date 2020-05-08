@@ -3,6 +3,7 @@ package com.xzsd.app.customer.order.entity;
 import java.util.List;
 
 /**
+ * 订单管理
  * @author Yuanxuan
  * @date 2020-04-21 上午 09:27
  */
