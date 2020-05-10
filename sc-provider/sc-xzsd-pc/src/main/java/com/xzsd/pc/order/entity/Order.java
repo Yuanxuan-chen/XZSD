@@ -59,6 +59,7 @@ public class Order {
      */
     private String orderCode;
 
+
     /**
      * 订单编码集合
      */
@@ -121,6 +122,7 @@ public class Order {
      */
     private String payStop;
 
+<<<<<<< Updated upstream
     /**
      * 用户编码
      */
@@ -243,6 +245,8 @@ public class Order {
     public void setSellPrice(String sellPrice) {
         this.sellPrice = sellPrice;
     }
+=======
+>>>>>>> Stashed changes
 
     public String getPayStart() {
         return payStart;

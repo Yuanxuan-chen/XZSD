@@ -73,6 +73,7 @@ public class HotGood {
      */
     private String hotSort;
 
+<<<<<<< Updated upstream
     /**
      *商品价格
      */
@@ -112,6 +113,8 @@ public class HotGood {
         this.goodIntroduce = goodIntroduce;
     }
 
+=======
+>>>>>>> Stashed changes
     public List<String> getHotGoodCodeList() {
         return hotGoodCodeList;
     }

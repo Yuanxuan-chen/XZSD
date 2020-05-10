@@ -156,7 +156,11 @@ public class GoodTypeService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AppResponse selectLevel(GoodType goodType) {
+<<<<<<< Updated upstream
         //PageHelper.startPage(goodType.getPageNum(), goodType.getPageSize());
+=======
+        PageHelper.startPage(goodType.getPageNum(), goodType.getPageSize());
+>>>>>>> Stashed changes
         List<GoodType> goodTypeInfo = goodTypeDao.selectLevel(goodType);
         if(null == goodTypeInfo) {
             return AppResponse.bizError("分类查询异常");

@@ -59,6 +59,7 @@ public interface GoodTypeDao {
      * @return
      */
     List<GoodType> selectLevel(GoodType goodType);
+<<<<<<< Updated upstream
 
 
     /**
@@ -81,5 +82,7 @@ public interface GoodTypeDao {
      * @return
      */
     int countLevelTwo(GoodType goodType);
+=======
+>>>>>>> Stashed changes
 
 }

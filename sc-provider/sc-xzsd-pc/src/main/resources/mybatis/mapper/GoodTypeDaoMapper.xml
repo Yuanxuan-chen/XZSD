@@ -112,9 +112,16 @@
         order by type_code
     </select>
 
+<<<<<<< Updated upstream
 <!--统计子分类数量-->
     <select id="countParentCode" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="int" >
         select count(parent_code)
+=======
+<!--分类一二级菜单查询-->
+    <select id="selectLevel" parameterType="com.xzsd.pc.goodType.entity.GoodType" resultType="com.xzsd.pc.goodType.entity.GoodType">
+        select type_code typeCode,
+               type_name typeName
+>>>>>>> Stashed changes
         from t_sys_good_type
         where is_delete = 0
         and parent_code = #{typeCode}

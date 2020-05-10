@@ -134,6 +134,13 @@ public class Store {
      */
     private String driverCode;
 
+    public List<String> getStoreCodeList() {
+        return storeCodeList;
+    }
+
+    public void setStoreCodeList(List<String> storeCodeList) {
+        this.storeCodeList = storeCodeList;
+    }
 
 
     /**

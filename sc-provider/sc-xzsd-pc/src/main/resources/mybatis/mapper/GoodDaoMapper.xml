@@ -25,9 +25,12 @@
              create_user,
              create_time,
              good_state,
+<<<<<<< Updated upstream
              sell_volume,
 --              get_good_date,
              browse_volume,
+=======
+>>>>>>> Stashed changes
              version)
             values
             (#{goodCode},
@@ -50,9 +53,12 @@
              #{createUser},
              now(),
              3,
+<<<<<<< Updated upstream
              0,
 --              now(),
              0,
+=======
+>>>>>>> Stashed changes
              0)
     </insert>
 
@@ -152,7 +158,11 @@
         sell_volume sellVolume,
         level_one_code levelOneCode,
         level_one_name levelOneName,
+<<<<<<< Updated upstream
         level_two_code levelTwoCode,
+=======
+        level_two_code levelOneCode,
+>>>>>>> Stashed changes
         level_two_name levelTwoName,
         ad ad,
         good_introduce goodIntroduce,

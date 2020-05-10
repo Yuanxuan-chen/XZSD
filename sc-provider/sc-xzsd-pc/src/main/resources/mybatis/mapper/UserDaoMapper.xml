@@ -7,8 +7,13 @@
     <select id="countUserAcct" parameterType="com.xzsd.pc.user.entity.User" resultType="int">
         select count(user_acct)
         from t_sys_user
+<<<<<<< Updated upstream
         where user_acct = #{userAcct}
         and is_delete = 0
+=======
+        where is_delete = 0
+        and user_acct = #{userAcct}
+>>>>>>> Stashed changes
         <if test="userCode != null and userCode != '' ">
             and user_code != #{userCode}
         </if>

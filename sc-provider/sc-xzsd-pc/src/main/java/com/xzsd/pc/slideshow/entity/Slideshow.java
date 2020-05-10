@@ -63,7 +63,10 @@ public class Slideshow {
      * 轮播图片编号集合
      */
     private List<String> slideshowCodeList;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     /**
      * 轮播图片路径
      */
@@ -94,6 +97,7 @@ public class Slideshow {
      */
     private String slideshowState;
 
+<<<<<<< Updated upstream
     public List<Integer> getVersionList() {
         return versionList;
     }
@@ -102,6 +106,8 @@ public class Slideshow {
         this.versionList = versionList;
     }
 
+=======
+>>>>>>> Stashed changes
     public List<String> getSlideshowCodeList() {
         return slideshowCodeList;
     }
